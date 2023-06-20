@@ -20,9 +20,9 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle }) => {
             <Image style={imageStyle} source={{ uri: item.image }}></Image>
             {/* info */}
             <View style={styles.info}>
-                <Text numberOfLines={1} style={{ color: COLORS.blackText, ...FONTS.h5, fontWeight: 'bold' }}>{item.name}</Text>
+                <Text numberOfLines={1} style={{ color: COLORS.blackText, ...FONTS.h6, fontWeight: 'bold' }}>{item.name}</Text>
                 <Text numberOfLines={1} style={{ color: COLORS.darkGray2, ...FONTS.subtitle2}}>{item.description}</Text>
-                <Text numberOfLines={1} style={[{ color: COLORS.blackText, marginTop: SIZES.base, fontWeight: 'bold' }, FONTS.h4]}>${item.price}</Text>
+                <Text numberOfLines={1} style={[{ color: COLORS.blackText, marginTop: SIZES.base, fontWeight: 'bold' }, FONTS.h5]}>${item.price}</Text>
             </View>
         </TouchableOpacity>
     )

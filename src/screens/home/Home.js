@@ -4,10 +4,11 @@ import { icons, COLORS, SIZES, FONTS } from '../../constants'
 import data from '../../data'
 import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Animated, { Extrapolate, interpolate, interpolateColor, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
-const Section = ({ title, onPress, children }) => {
+import Carousel from 'react-native-reanimated-carousel'
+const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
-      <View style={styles.section}>
+      <View style={[styles.section, style]}>
         <Text style={{ ...FONTS.h5, color: COLORS.blackText, fontWeight: 'bold' }}>{title}</Text>
         <TouchableOpacity onPress={onPress}>
           <Text style={{ color: COLORS.primary, ...FONTS.subtitle2 }}>Show All</Text>
@@ -140,6 +141,7 @@ const Home = () => {
   const PopularSection = () => {
     return (
       <Section
+        style={{ marginTop: 0 }}
         onPress={() => console.log("Popular section")}
         title={"Popular"}>
         <FlatList
@@ -155,12 +157,12 @@ const Home = () => {
                   marginLeft: index == 0 ? SIZES.padding : 18,
                   marginRight: index == popular.length - 1 ? SIZES.padding : 0,
                   padding: SIZES.radius,
-                  width: 250
+                  width: 210
                 }}
                 imageStyle={{
                   width: 150,
                   height: 150,
-                  marginTop: 30
+                  marginTop: SIZES.radius
                 }}
               />
             )
@@ -209,7 +211,6 @@ const Home = () => {
     return (
       <View
         style={{
-          marginTop: SIZES.padding,
           marginHorizontal: SIZES.padding
         }}>
         <Text
@@ -277,9 +278,38 @@ const Home = () => {
     )
   }
 
-  const Carousel = () => {
+  const MyCarousel = () => {
     return (
-      <View></View>
+      <Carousel
+        pagingEnabled
+        snapEnabled={false}
+        mode="parallax"
+        loop
+        width={SIZES.width}
+        height={200}
+        autoPlay={true}
+        autoPlayInterval={1500}
+        data={data.carousel}
+        scrollAnimationDuration={3500}
+        // onSnapToItem={(index) => console.log('current index:', index)}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => console.log(item.id)}
+            style={{
+              flex: 1
+            }}>
+            <Image
+              source={item.image}
+              resizeMode='cover'
+              style={{
+                width: null,
+                height: null,
+                flex: 1
+              }}
+            />
+          </TouchableOpacity>
+        )}
+      />
     )
   }
   return (
@@ -308,14 +338,11 @@ const Home = () => {
         {/* delivery to */}
         <DeliveryTo />
         {/* carousel */}
-        <Carousel />
-        <Dots />
-        {/* list category */}
-        {/* <ListCategory /> */}
+        <MyCarousel />
         {/* list popular */}
-        {/* <PopularSection /> */}
+        <PopularSection />
         {/* list recommended */}
-        {/* <RecommendedSection /> */}
+        <RecommendedSection />
         {/* menu type */}
         {/* <HeaderMenuType /> */}
         {/* list */}
@@ -429,10 +456,10 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: COLORS.lightGray2,
     borderRadius: SIZES.radius,
-    marginVertical: SIZES.base,
+    marginVertical: SIZES.radius,
     marginHorizontal: SIZES.padding,
     paddingHorizontal: 12,
     borderRadius: SIZES.radius,
-    alignItems: 'center'
+    alignItems: 'center',
   }
 })

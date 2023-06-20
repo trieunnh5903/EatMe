@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Image, StyleSheet } from "react-native";
-import { COLORS, FONTS, SIZES, bottom_tabs, } from '../constants';
+import { COLORS, FONTS, SIZES, bottom_tabs } from '../constants';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useTheme } from 'react-native-paper';
 const Tab = createMaterialBottomTabNavigator();

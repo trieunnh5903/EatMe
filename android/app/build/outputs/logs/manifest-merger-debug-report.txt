@@ -11,6 +11,7 @@ MERGED from [com.facebook.flipper:flipper:0.125.0] C:\Users\nguye\.gradle\caches
 MERGED from [:react-native-community_masked-view] D:\GitHub\EatMe\node_modules\@react-native-community\masked-view\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] D:\GitHub\EatMe\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-pager-view] D:\GitHub\EatMe\node_modules\react-native-pager-view\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] D:\GitHub\EatMe\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] D:\GitHub\EatMe\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-splash-screen] D:\GitHub\EatMe\node_modules\react-native-splash-screen\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
@@ -18,7 +19,6 @@ MERGED from [:react-native-vector-icons] D:\GitHub\EatMe\node_modules\react-nati
 MERGED from [com.facebook.react:react-android:0.71.11] C:\Users\nguye\.gradle\caches\transforms-3\e72c384b604489998aa7d7b6ebf2cf81\transformed\jetified-react-android-0.71.11-debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\nguye\.gradle\caches\transforms-3\99aff712051ad58ba66b2f75862e9a10\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.react:hermes-android:0.71.11] C:\Users\nguye\.gradle\caches\transforms-3\8634fceadc952a6e77b244014cd0e9dd\transformed\jetified-hermes-android-0.71.11-debug\AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\.transforms\f30173044cbc2c1332ebd9b7988a53b7\transformed\jetified-react-native-reanimated-71-hermes\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fbjni:fbjni:0.3.0] C:\Users\nguye\.gradle\caches\transforms-3\c9bd024e1950645d86b630b5a7b35a74\transformed\jetified-fbjni-0.3.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:flipper:2.6.0] C:\Users\nguye\.gradle\caches\transforms-3\a66b40010c47d35a10124f7d66afc72f\transformed\jetified-flipper-2.6.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.6.0] C:\Users\nguye\.gradle\caches\transforms-3\b5c8b1cd3f7da139fd5ba6bff41cbbf8\transformed\jetified-stetho-2.6.0\AndroidManifest.xml:2:1-9:12
@@ -186,6 +186,8 @@ MERGED from [:react-native-gesture-handler] D:\GitHub\EatMe\node_modules\react-n
 MERGED from [:react-native-gesture-handler] D:\GitHub\EatMe\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-pager-view] D:\GitHub\EatMe\node_modules\react-native-pager-view\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-pager-view] D:\GitHub\EatMe\node_modules\react-native-pager-view\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] D:\GitHub\EatMe\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] D:\GitHub\EatMe\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] D:\GitHub\EatMe\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -200,8 +202,6 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\nguy
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\nguye\.gradle\caches\transforms-3\99aff712051ad58ba66b2f75862e9a10\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.react:hermes-android:0.71.11] C:\Users\nguye\.gradle\caches\transforms-3\8634fceadc952a6e77b244014cd0e9dd\transformed\jetified-hermes-android-0.71.11-debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:hermes-android:0.71.11] C:\Users\nguye\.gradle\caches\transforms-3\8634fceadc952a6e77b244014cd0e9dd\transformed\jetified-hermes-android-0.71.11-debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\.transforms\f30173044cbc2c1332ebd9b7988a53b7\transformed\jetified-react-native-reanimated-71-hermes\AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-reanimated] D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\.transforms\f30173044cbc2c1332ebd9b7988a53b7\transformed\jetified-react-native-reanimated-71-hermes\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fbjni:fbjni:0.3.0] C:\Users\nguye\.gradle\caches\transforms-3\c9bd024e1950645d86b630b5a7b35a74\transformed\jetified-fbjni-0.3.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fbjni:fbjni:0.3.0] C:\Users\nguye\.gradle\caches\transforms-3\c9bd024e1950645d86b630b5a7b35a74\transformed\jetified-fbjni-0.3.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.6.0] C:\Users\nguye\.gradle\caches\transforms-3\a66b40010c47d35a10124f7d66afc72f\transformed\jetified-flipper-2.6.0\AndroidManifest.xml:5:5-7:41
