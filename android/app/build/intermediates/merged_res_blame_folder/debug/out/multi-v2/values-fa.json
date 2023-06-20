@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.eatme.app-mergeDebugResources-22:/values-fa/values-fa.xml",
+            "outputFile": "com.eatme.app-mergeDebugResources-27:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "C:\\Users\\nguye\\.gradle\\caches\\transforms-3\\c05df83dbc847297b7ccad2bb18337e0\\transformed\\core-1.7.0\\res\\values-fa\\values-fa.xml",

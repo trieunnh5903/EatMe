@@ -1,70 +1,70 @@
 [
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable-xhdpi_launch_screen.png.flat",
+        "source": "com.eatme.app-main-31:/drawable-xhdpi/launch_screen.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable-mdpi_launch_screen.png.flat",
+        "source": "com.eatme.app-main-31:/drawable-mdpi/launch_screen.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable-xxhdpi_launch_screen.png.flat",
+        "source": "com.eatme.app-main-31:/drawable-xxhdpi/launch_screen.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/layout_launch_screen.xml.flat",
-        "source": "com.eatme.app-main-26:/layout/launch_screen.xml"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable-hdpi_launch_screen.png.flat",
-        "source": "com.eatme.app-main-26:/drawable-hdpi/launch_screen.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable-xxxhdpi_launch_screen.png.flat",
+        "source": "com.eatme.app-main-31:/drawable-xxxhdpi/launch_screen.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.eatme.app-main-31:/drawable/rn_edit_text_material.xml"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable-mdpi_launch_screen.png.flat",
-        "source": "com.eatme.app-main-26:/drawable-mdpi/launch_screen.png"
+        "merged": "com.eatme.app-merged_res-29:/layout_launch_screen.xml.flat",
+        "source": "com.eatme.app-main-31:/layout/launch_screen.xml"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable-xxxhdpi_launch_screen.png.flat",
-        "source": "com.eatme.app-main-26:/drawable-xxxhdpi/launch_screen.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable_rn_edit_text_material.xml.flat",
-        "source": "com.eatme.app-main-26:/drawable/rn_edit_text_material.xml"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable-xhdpi_launch_screen.png.flat",
-        "source": "com.eatme.app-main-26:/drawable-xhdpi/launch_screen.png"
+        "merged": "com.eatme.app-merged_res-29:/drawable-hdpi_launch_screen.png.flat",
+        "source": "com.eatme.app-main-31:/drawable-hdpi/launch_screen.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.eatme.app-main-26:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.eatme.app-merged_res-24:/drawable-xxhdpi_launch_screen.png.flat",
-        "source": "com.eatme.app-main-26:/drawable-xxhdpi/launch_screen.png"
+        "merged": "com.eatme.app-merged_res-29:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.eatme.app-main-31:/mipmap-hdpi/ic_launcher.png"
     }
 ]
