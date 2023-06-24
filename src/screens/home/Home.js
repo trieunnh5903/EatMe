@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
 import { icons, COLORS, SIZES, FONTS } from '../../constants'
 import data from '../../data'
 import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
-import Animated, { Extrapolate, interpolate, interpolateColor, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import Carousel from 'react-native-reanimated-carousel'
+import { useNavigation } from '@react-navigation/native'
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
@@ -21,35 +21,43 @@ const Section = ({ title, onPress, children, style }) => {
 }
 
 const Home = () => {
-  const [categoryId, setCategoryId] = useState(1);
-  const [menuTypeId, setMenuTypeId] = useState(1);
-  const [menuList, setMenuList] = useState([]);
-  const [recommends, setRecommends] = useState([]);
-  const [popular, setPopular] = useState([])
-  const [showFilterModal, setShowFilterModal] = useState(false);
-  const tabMenuList = useRef();
-  const scrollX = useRef(useSharedValue(0)).current;
-  const currentIndex = useRef(0);
-  const onViewChangeRef = React.useRef(({ viewableItems }) => {
-    currentIndex.current = viewableItems[0].index
-  })
-  useEffect(() => {
-    handlerChangeCategory
-  }, [])
+  const navigation = useNavigation();
+  const [page, setPage] = useState(1)
+  const _enerateArray = useCallback(
+    (n) => {
+      let arr = new Array(n);
+      for (let i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+          arr[i] = {
+            id: `${Math.round(Math.random() * 1000)}`,
+            name: "Hamburger",
+            description: "Chicken patty hamburger",
+            categories: [1, 2],
+            price: 15.99,
+            calories: 78,
+            isFavourite: true,
+            image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
+          };
+        } else {
+          arr[i] = {
+            id: `${Math.round(Math.random() * 1000)}`,
+            name: "Wrap Sandwich",
+            description: "Grilled vegetables sandwich",
+            categories: [1, 2],
+            price: 10.99,
+            calories: 78,
+            isFavourite: true,
+            image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/wrap_sandwich.png'
+          };
+        }
+      }
+      return arr;
+    }, []
+  )
 
-  const handlerChangeCategory = useMemo(() => {
-    let selectedPopular = data.menu.find(a => a.name == "Popular");
-    let selectedRecommend = data.menu.find(a => a.name == 'Recommended');
-    let menu = data.menu.filter(a => a.id == menuTypeId);
-    setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)))
-    setPopular(selectedPopular?.list.filter(a => a.categories.includes(categoryId)))
-    setMenuList(menu[0]?.list.filter(a => a.categories.includes(categoryId)))
-  }, [categoryId, menuTypeId]);
-
-  const onTabPress = useCallback((tabId) => {
-    setMenuTypeId(tabId);
-    handlerChangeCategory
-  }, [])
+  const [menuList, setMenuList] = useState(_enerateArray(20));
+  const [recommends, setRecommends] = useState(_enerateArray(10));
+  const [popular, setPopular] = useState(_enerateArray(20))
 
   const SearchInput = () => {
     return (
@@ -63,42 +71,6 @@ const Home = () => {
           <Image source={icons.filter} style={styles.icon} />
         </TouchableOpacity>
       </View>
-    )
-  }
-
-  const HeaderMenuType = () => {
-    return (
-      <FlatList
-        ref={tabMenuList}
-        horizontal
-        data={data.menu}
-        keyExtractor={(item) => `${item.id}`}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          marginTop: 30,
-          marginBottom: 20
-        }}
-        renderItem={({ item, index }) => {
-          return (
-            <TouchableOpacity
-              style={{
-                marginLeft: SIZES.padding,
-                marginRight: index == data.menu.length - 1 ? SIZES.padding : 0
-              }}
-              onPress={() => onTabPress(item.id)}>
-              <Text
-                style={[
-                  FONTS.h6,
-                  {
-                    color: menuTypeId == item.id
-                      ? COLORS.primary
-                      : COLORS.blackText,
-                    fontWeight: 'bold'
-                  },
-                ]}>{item.name}</Text>
-            </TouchableOpacity>
-          )
-        }} />
     )
   }
 
@@ -170,42 +142,6 @@ const Home = () => {
       </Section>
     )
   }
-  const onListCategoryPress = useCallback(
-    (categoryId) => {
-      setCategoryId(categoryId)
-      handlerChangeCategory
-    }, [categoryId]
-  )
-  const ListCategory = () => {
-    return (
-      <FlatList
-        data={data.categories}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={item => `${item.id}`}
-        renderItem={({ item, index }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => onListCategoryPress(item.id)}
-              style={[
-                styles.categoriesItem,
-                {
-                  backgroundColor: item.id == categoryId ? COLORS.primary : COLORS.lightGray2,
-                  marginLeft: index == 0 ? SIZES.padding : 18,
-                  marginRight: index == data.categories.length - 1 ? SIZES.padding : 0
-                }]}>
-              <Image style={{ width: 32, height: 32, }} source={{ uri: item.icon }} />
-              <Text
-                style={{
-                  color: item.id == categoryId ? COLORS.white : COLORS.darkGray,
-                  marginLeft: SIZES.base,
-                  ...FONTS.button
-                }}>{item.name}</Text>
-            </TouchableOpacity>
-          )
-        }} />
-    )
-  }
 
   const DeliveryTo = () => {
     return (
@@ -228,52 +164,6 @@ const Home = () => {
           >{data?.myProfile?.address}</Text>
           <Image source={icons.down_arrow} style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
-      </View>
-    )
-  }
-
-  const onScroll = useAnimatedScrollHandler((event) => {
-    scrollX.value = event.contentOffset.x
-  })
-  const Dots = ({ containerStyle }) => {
-    return (
-      <View style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...containerStyle
-      }}>
-        {
-          data.carousel.map((item, index) => {
-            const reanimatedStyle = useAnimatedStyle(() => {
-              const inputRange = [(index - 1) * SIZES.width, index * SIZES.width, (index + 1) * SIZES.width];
-              const backgroundColor = interpolateColor(scrollX.value,
-                inputRange,
-                [COLORS.lightOrange, COLORS.primary, COLORS.lightOrange]);
-              const width = interpolate(scrollX.value,
-                inputRange,
-                [10, 30, 10],
-                Extrapolate.CLAMP)
-              return {
-                backgroundColor,
-                width
-              }
-            })
-            return (
-              <Animated.View
-                key={`${item.id}`}
-                style={[{
-                  borderRadius: 10,
-                  marginHorizontal: SIZES.base,
-                  width: 10,
-                  height: 10,
-                  backgroundColor: COLORS.primary
-                }, reanimatedStyle]}>
-
-              </Animated.View>
-            )
-          })
-        }
       </View>
     )
   }
@@ -312,10 +202,13 @@ const Home = () => {
       />
     )
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
-      <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+      <ScrollView
+        nestedScrollEnabled
+        showsVerticalScrollIndicator={false}>
         {/* header */}
         <Header
           containerStyle={styles.headerContainerStyle}
@@ -346,10 +239,16 @@ const Home = () => {
         {/* menu type */}
         {/* <HeaderMenuType /> */}
         {/* list */}
-        {/* <FlatList
+        <Text style={{
+          marginTop: 30,
+          marginHorizontal: SIZES.padding,
+          marginBottom: 20,
+          ...FONTS.h5, color: COLORS.blackText, fontWeight: 'bold'
+        }}>Nearby you</Text>
+        <FlatList
           data={menuList}
           scrollEnabled={false}
-          keyExtractor={item => `${item.id}`}
+          keyExtractor={(item, index) => `${index}`}
           showsVerticalScrollIndicator={false}
           renderItem={({ item, index }) => {
             return (
@@ -357,10 +256,11 @@ const Home = () => {
                 imageStyle={styles.imageCard}
                 onPress={() => console.log("HorizontalFoodCard")}
                 item={item}
-                containerStyle={styles.horizontalFoodCard} />
+                containerStyle={styles.horizontalFoodCard}
+              />
             )
           }}
-        /> */}
+        />
       </ScrollView>
     </SafeAreaView>
   )
@@ -449,6 +349,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
+    paddingBottom: 80
   },
 
   searchContainer: {
@@ -459,7 +360,7 @@ const styles = StyleSheet.create({
     marginVertical: SIZES.radius,
     marginHorizontal: SIZES.padding,
     paddingHorizontal: 12,
-    borderRadius: SIZES.radius,
+    borderRadius: SIZES.padding,
     alignItems: 'center',
   }
 })

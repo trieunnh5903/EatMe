@@ -11,6 +11,11 @@ const BottomTabNavigator = () => {
     return (
         <Tab.Navigator
             barStyle={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                elevation: 0,
                 backgroundColor: COLORS.white2,
                 borderTopColor: 'rgba(220,220,222,.6)',
                 borderTopWidth: 1,
@@ -31,7 +36,6 @@ const BottomTabNavigator = () => {
                             component={item.component}
                             key={`bottom_tabs-${item.id}`}
                             options={{
-                                tabBarColor: 'blue',
                                 tabBarIcon: ({ focused }) => {
                                     return <Image
                                         style={[styles.iconBottomTab, { tintColor: focused ? COLORS.primary : COLORS.black }]}

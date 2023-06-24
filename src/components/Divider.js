@@ -5,11 +5,11 @@ import { COLORS, SIZES } from '../constants'
 const Divider = () => {
   return (
     <View style={{
-        marginVertical: SIZES.padding,
-        height: 2,
-        backgroundColor: COLORS.lightGray1
+      width: '100%',
+      height: 2,
+      backgroundColor: COLORS.lightGray1
     }}>
-     
+
     </View>
   )
 }
