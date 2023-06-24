@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View, SafeAreaView, ScrollView, StatusBar } from 'react-native'
 import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
-import { icons, COLORS, SIZES, FONTS } from '../../constants'
+import { icons, COLORS, SIZES, FONTS, images } from '../../constants'
 import data from '../../data'
 import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
@@ -27,33 +27,19 @@ const Home = () => {
     (n) => {
       let arr = new Array(n);
       for (let i = 0; i < n; i++) {
-        if (i % 2 == 0) {
-          arr[i] = {
-            id: `${Math.round(Math.random() * 1000)}`,
-            name: "Hamburger",
-            description: "Chicken patty hamburger",
-            categories: [1, 2],
-            price: 15.99,
-            calories: 78,
-            isFavourite: true,
-            image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
-          };
-        } else {
-          arr[i] = {
-            id: `${Math.round(Math.random() * 1000)}`,
-            name: "Wrap Sandwich",
-            description: "Grilled vegetables sandwich",
-            categories: [1, 2],
-            price: 10.99,
-            calories: 78,
-            isFavourite: true,
-            image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/wrap_sandwich.png'
-          };
+        arr[i] = {
+          id: i,
+          name: "Hamburger",
+          description: "Chicken patty hamburger",
+          categories: [1, 2],
+          price: 15.99,
+          calories: 78,
+          isFavourite: true,
+          image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
         }
       }
       return arr;
-    }, []
-  )
+    }, [])
 
   const [menuList, setMenuList] = useState(_enerateArray(20));
   const [recommends, setRecommends] = useState(_enerateArray(10));
@@ -65,9 +51,14 @@ const Home = () => {
         {/* icon */}
         <Image source={icons.search} style={styles.icon} />
         {/* text input */}
-        <TextInput placeholder='search food' style={styles.searchInput} />
+        <TouchableOpacity style={{flex: 1}} onPress={() => navigation.navigate("Search")}>
+          <TextInput
+            editable={false}
+            placeholder='search food'
+            style={styles.searchInput}></TextInput>
+        </TouchableOpacity>
         {/* filter */}
-        <TouchableOpacity onPress={() => setShowFilterModal(true)}>
+        <TouchableOpacity>
           <Image source={icons.filter} style={styles.icon} />
         </TouchableOpacity>
       </View>
@@ -204,25 +195,26 @@ const Home = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
       <ScrollView
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>
         {/* header */}
         <Header
-          containerStyle={styles.headerContainerStyle}
-          title={'HOME'}
+          containerStyle={{
+            paddingHorizontal: SIZES.padding,
+            alignItems: 'center'
+          }}
           rightComponent={
             <View>
               <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
             </View>
           }
           leftComponent={
-            <TouchableOpacity
-              style={styles.headerLeftComponent}>
-              <Image source={icons.menu} style={styles.iconMenu} />
-            </TouchableOpacity>
+            <View>
+              <Image source={images.logo_02} style={styles.logo} />
+            </View>
           }
         />
         {/* search */}
@@ -271,13 +263,13 @@ export default Home
 const styles = StyleSheet.create({
   headerContainerStyle: {
     height: 50,
-    paddingHorizontal: SIZES.padding,
+    marginHorizontal: SIZES.padding,
     alignItems: 'center',
   },
   profile: {
     width: 40,
     height: 40,
-    borderRadius: SIZES.radius
+    borderRadius: 40
   },
   deliveryTo: {
     flexDirection: 'row',
@@ -289,10 +281,10 @@ const styles = StyleSheet.create({
     height: 24,
     tintColor: COLORS.black,
   },
-  iconMenu: {
-    width: 24,
-    height: 24,
-    tintColor: COLORS.gray2,
+  logo: {
+    resizeMode: 'contain',
+    flex: 1,
+    width: 140,
   },
   categoriesItem: {
     alignItems: 'center',
@@ -326,15 +318,7 @@ const styles = StyleSheet.create({
     marginBottom: SIZES.radius,
   },
 
-  headerLeftComponent: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: SIZES.radius,
-    borderColor: COLORS.gray2
-  },
+
 
   icon: {
     width: 24,
@@ -349,12 +333,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    paddingBottom: 80
   },
 
   searchContainer: {
     flexDirection: 'row',
-    height: 50,
+    height: 40,
     backgroundColor: COLORS.lightGray2,
     borderRadius: SIZES.radius,
     marginVertical: SIZES.radius,

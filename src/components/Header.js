@@ -5,7 +5,7 @@ import { FONTS } from '../constants'
 
 const Header = React.memo(({ title, containerStyle, leftComponent, rightComponent }) => {
     return (
-        <View style={{ flexDirection: 'row', height: 50, ...containerStyle }}>
+        <View style={{ flexDirection: 'row', height: 50 , ...containerStyle }}>
             {/* left */}
             {leftComponent}
             {/* title */}

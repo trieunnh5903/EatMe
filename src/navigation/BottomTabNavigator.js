@@ -1,32 +1,23 @@
 import React, { useEffect } from 'react'
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text } from "react-native";
 import { COLORS, FONTS, SIZES, bottom_tabs } from '../constants';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { useTheme } from 'react-native-paper';
-const Tab = createMaterialBottomTabNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-    const theme = useTheme();
-    theme.colors.secondaryContainer = "transperent"
     return (
         <Tab.Navigator
             barStyle={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                elevation: 0,
                 backgroundColor: COLORS.white2,
-                borderTopColor: 'rgba(220,220,222,.6)',
-                borderTopWidth: 1,
             }}
-            sceneAnimationEnabled={false}
-            sceneAnimationType='opacity'
-            shifting={true}
             keyboardHidesNavigationBar={true}
             activeColor={COLORS.primary}
             screenOptions={{
                 headerShown: false,
+                tabBarStyle: {
+                    height: 60,
+                    justifyContent: 'center',
+                }
             }}>
             {
                 bottom_tabs.map((item) => {
@@ -39,7 +30,12 @@ const BottomTabNavigator = () => {
                                 tabBarIcon: ({ focused }) => {
                                     return <Image
                                         style={[styles.iconBottomTab, { tintColor: focused ? COLORS.primary : COLORS.black }]}
-                                        source={item.icon} />
+                                        source={focused ? item.icon_fill : item.icon} />
+                                },
+                                tabBarLabel: ({ focused }) => {
+                                    return (
+                                        <Text style={[FONTS.caption, { color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{item.name}</Text>
+                                    )
                                 }
                             }}
                         />
@@ -52,43 +48,12 @@ const BottomTabNavigator = () => {
 
 
 const styles = StyleSheet.create({
-    tabButtonContent: {
-        width: '80%',
-        height: 50,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 25,
-    },
-
-    tabButtonLabel: {
-        marginLeft: SIZES.base,
-        color: COLORS.blackText,
-        ...FONTS.h3
-    },
-
     iconBottomTab: {
         width: 26,
         height: 26,
         tintColor: COLORS.black,
         resizeMode: 'contain',
-        marginTop: 6
-    },
-
-    tabButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
-
-    tabButtonContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        paddingHorizontal: SIZES.radius,
-        borderTopEndRadius: 20,
-        borderTopStartRadius: 20,
-        backgroundColor: COLORS.white,
-        zIndex: 2
+        marginTop: 4
     },
 })
 
