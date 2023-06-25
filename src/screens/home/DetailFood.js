@@ -41,9 +41,9 @@ const DetailFood = ({ route, navigation }) => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      {/* header */}
       <ScrollView>
         <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
+        {/* header */}
         <Header
           containerStyle={{
             paddingHorizontal: SIZES.padding,
@@ -144,7 +144,7 @@ const DetailFood = ({ route, navigation }) => {
             >Delivery Time:
               <Text
                 style={{ color: COLORS.gray }}
-              > 30 Mint</Text></Text>
+              > 30 Mins</Text></Text>
 
           </View>
         </View>
