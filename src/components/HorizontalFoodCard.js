@@ -8,7 +8,7 @@ import icons from '../constants/icons'
 const HorizontalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, containerStyle]}>
-            <Image source={{ uri: `${item.image}` }} style={[imageStyle]} />
+            <Image style={imageStyle} source={{ uri: item.image }}></Image>
             <View style={{ flex: 1, marginTop: SIZES.radius }}>
                 <Text numberOfLines={1} style={[FONTS.h6, { color: COLORS.blackText, fontWeight: 'bold' }]}>{item.name}</Text>
                 <Text numberOfLines={1} style={[FONTS.subtitle2, { color: COLORS.darkGray2 }]}>{item.description}</Text>

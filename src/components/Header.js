@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS } from '../constants/colors'
 import { FONTS } from '../constants'
 
-const Header = React.memo(({ title, containerStyle, leftComponent, rightComponent }) => {
+const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
     return (
         <View style={{ flexDirection: 'row', height: 50 , ...containerStyle }}>
             {/* left */}
@@ -14,7 +14,7 @@ const Header = React.memo(({ title, containerStyle, leftComponent, rightComponen
             {rightComponent}
         </View>
     )
-})
+}
 
 export default Header
 

@@ -5,6 +5,7 @@ import data from '../../data'
 import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
+import { SharedElement } from 'react-navigation-shared-element'
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
@@ -51,7 +52,7 @@ const Home = () => {
         {/* icon */}
         <Image source={icons.search} style={styles.icon} />
         {/* text input */}
-        <TouchableOpacity style={{flex: 1}} onPress={() => navigation.navigate("Search")}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigation.navigate("Search")}>
           <TextInput
             editable={false}
             placeholder='search food'
@@ -115,6 +116,7 @@ const Home = () => {
           renderItem={({ item, index }) => {
             return (
               <VerticalFoodCard
+                onPress={() => navigation.navigate('DetailFood', item)}
                 item={item}
                 containerStyle={{
                   marginLeft: index == 0 ? SIZES.padding : 18,
@@ -246,7 +248,7 @@ const Home = () => {
             return (
               <HorizontalFoodCard
                 imageStyle={styles.imageCard}
-                onPress={() => console.log("HorizontalFoodCard")}
+                onPress={() => navigation.navigate('DetailFood', item)}
                 item={item}
                 containerStyle={styles.horizontalFoodCard}
               />

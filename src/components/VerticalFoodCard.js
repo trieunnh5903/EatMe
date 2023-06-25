@@ -4,10 +4,11 @@ import icons from '../constants/icons'
 import { SIZES } from '../constants/sizes'
 import { COLORS } from '../constants/colors'
 import { FONTS } from '../constants/fonts'
+import { SharedElement } from 'react-navigation-shared-element'
 
-const VerticalFoodCard = ({ containerStyle, item, imageStyle }) => {
+const VerticalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
     return (
-        <TouchableOpacity style={[styles.container, containerStyle]}>
+        <TouchableOpacity onPress={onPress} style={[styles.container, containerStyle]}>
             {/* calories */}
             <View style={styles.calories}>
                 <Image style={styles.iconCalories} source={icons.calories} />
@@ -17,11 +18,13 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle }) => {
                 </TouchableOpacity>
             </View>
             {/* image */}
-            <Image style={imageStyle} source={{ uri: item.image }}></Image>
+            <SharedElement id={`item.${item.id}.image`}>
+                <Image style={imageStyle} source={{ uri: item.image }}></Image>
+            </SharedElement>
             {/* info */}
             <View style={styles.info}>
                 <Text numberOfLines={1} style={{ color: COLORS.blackText, ...FONTS.h6, fontWeight: 'bold' }}>{item.name}</Text>
-                <Text numberOfLines={1} style={{ color: COLORS.darkGray2, ...FONTS.subtitle2}}>{item.description}</Text>
+                <Text numberOfLines={1} style={{ color: COLORS.darkGray2, ...FONTS.subtitle2 }}>{item.description}</Text>
                 <Text numberOfLines={1} style={[{ color: COLORS.blackText, marginTop: SIZES.base, fontWeight: 'bold' }, FONTS.h5]}>${item.price}</Text>
             </View>
         </TouchableOpacity>
