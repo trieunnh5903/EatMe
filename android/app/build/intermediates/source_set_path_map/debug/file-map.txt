@@ -33,8 +33,8 @@ com.eatme.app-main-31 D:\GitHub\EatMe\android\app\src\main\res
 com.eatme.app-packaged_res-32 D:\GitHub\EatMe\node_modules\@react-native-community\masked-view\android\build\intermediates\packaged_res\debug
 com.eatme.app-packaged_res-33 D:\GitHub\EatMe\node_modules\react-native-gesture-handler\android\build\intermediates\packaged_res\debug
 com.eatme.app-packaged_res-34 D:\GitHub\EatMe\node_modules\react-native-pager-view\android\build\intermediates\packaged_res\debug
-com.eatme.app-packaged_res-35 D:\GitHub\EatMe\node_modules\react-native-reanimated\android\build\intermediates\packaged_res\debug
-com.eatme.app-packaged_res-36 D:\GitHub\EatMe\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
-com.eatme.app-packaged_res-37 D:\GitHub\EatMe\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
+com.eatme.app-packaged_res-35 D:\GitHub\EatMe\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
+com.eatme.app-packaged_res-36 D:\GitHub\EatMe\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
+com.eatme.app-packaged_res-37 D:\GitHub\EatMe\node_modules\react-native-shared-element\android\build\intermediates\packaged_res\debug
 com.eatme.app-packaged_res-38 D:\GitHub\EatMe\node_modules\react-native-splash-screen\android\build\intermediates\packaged_res\debug
 com.eatme.app-packaged_res-39 D:\GitHub\EatMe\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\debug

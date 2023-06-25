@@ -55,8 +55,8 @@
 32-->D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:14:9-41
 33            android:launchMode="singleTask"
 33-->D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:16:9-40
-34            android:windowSoftInputMode="adjustResize" >
-34-->D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:17:9-51
+34            android:windowSoftInputMode="stateUnspecified|adjustPan" >
+34-->D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:17:9-65
 35            <intent-filter>
 35-->D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:19:9-22:25
 36                <action android:name="android.intent.action.MAIN" />

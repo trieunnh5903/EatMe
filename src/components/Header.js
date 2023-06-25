@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../constants/colors'
-import { FONTS } from '../constants'
+import { FONTS, SIZES } from '../constants'
 
 const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
     return (
-        <View style={{ flexDirection: 'row', height: 50 , ...containerStyle }}>
+        <View
+            style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 60,
+                ...containerStyle
+            }}>
             {/* left */}
             {leftComponent}
             {/* title */}

@@ -154,7 +154,7 @@ ADDED from D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:12:7-23:18
 	android:launchMode
 		ADDED from D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:16:9-40
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:17:9-51
+		ADDED from D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:17:9-65
 	android:exported
 		ADDED from D:\GitHub\EatMe\android\app\src\main\AndroidManifest.xml:18:9-32
 	android:configChanges

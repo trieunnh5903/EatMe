@@ -140,7 +140,8 @@ const Home = () => {
     return (
       <View
         style={{
-          marginHorizontal: SIZES.padding
+          marginHorizontal: SIZES.padding,
+          marginTop: SIZES.radius
         }}>
         <Text
           style={{
@@ -200,27 +201,42 @@ const Home = () => {
     <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
       <ScrollView
+        stickyHeaderIndices={[0]}
+        stickyHeaderHiddenOnScroll
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>
         {/* header */}
-        <Header
-          containerStyle={{
-            paddingHorizontal: SIZES.padding,
-            alignItems: 'center'
-          }}
-          rightComponent={
-            <View>
-              <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
-            </View>
-          }
-          leftComponent={
-            <View>
-              <Image source={images.logo_02} style={styles.logo} />
-            </View>
-          }
-        />
+        <View style={{ flex: 1, width: SIZES.width, backgroundColor: COLORS.white }}>
+          <Header
+            containerStyle={{
+              paddingHorizontal: SIZES.padding,
+              alignItems: 'center',
+              borderBottomWidth: 1,
+              borderColor: COLORS.lightGray2
+            }}
+            rightComponent={
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity
+                  style={{ paddingHorizontal: SIZES.radius }}
+                  onPress={() => navigation.navigate("Search")}>
+                  <Image source={icons.search} style={styles.icon} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginLeft: SIZES.radius }}>
+                  <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
+                </TouchableOpacity>
+              </View>
+            }
+            leftComponent={
+              <View>
+                <Image source={images.logo_02} style={styles.logo} />
+              </View>
+            }
+          />
+        </View>
+
         {/* search */}
-        <SearchInput />
+        {/* <View style={{ flex: 1, width: SIZES.width, backgroundColor: COLORS.white }}>
+        </View> */}
         {/* filter modal */}
         {/* delivery to */}
         <DeliveryTo />
@@ -269,9 +285,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profile: {
-    width: 40,
-    height: 40,
-    borderRadius: 40
+    width: 24,
+    height: 24,
+    borderRadius: 24
   },
   deliveryTo: {
     flexDirection: 'row',
@@ -284,9 +300,9 @@ const styles = StyleSheet.create({
     tintColor: COLORS.black,
   },
   logo: {
+    height: 50,
     resizeMode: 'contain',
-    flex: 1,
-    width: 140,
+    width: 120,
   },
   categoriesItem: {
     alignItems: 'center',
@@ -324,7 +340,8 @@ const styles = StyleSheet.create({
 
   icon: {
     width: 24,
-    height: 24
+    height: 24,
+    tintColor: COLORS.black
   },
 
   searchInput: {
