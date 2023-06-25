@@ -3,7 +3,7 @@ import React from 'react'
 import ButtonIcon from './ButtonIcon';
 import { COLORS, FONTS, SIZES, icons } from '../constants';
 
-const QuantityInput = ({ containerStyle, onAddPress, onRemovePress, quantity = 1, iconStyle, labelStyle }) => {
+const QuantityInput = ({ containerStyle, iconContainerStyle, onAddPress, onRemovePress, quantity = 1, iconStyle, labelStyle }) => {
     return (
         <View
             style={{
@@ -15,6 +15,7 @@ const QuantityInput = ({ containerStyle, onAddPress, onRemovePress, quantity = 1
             <ButtonIcon
                 icon={icons.remove}
                 iconStyle={iconStyle}
+                containerStyle={iconContainerStyle}
                 onPress={onRemovePress}
             />
             <Text
@@ -22,6 +23,7 @@ const QuantityInput = ({ containerStyle, onAddPress, onRemovePress, quantity = 1
             <ButtonIcon
                 icon={icons.add}
                 iconStyle={iconStyle}
+                containerStyle={iconContainerStyle}
                 onPress={onAddPress}
             />
         </View>

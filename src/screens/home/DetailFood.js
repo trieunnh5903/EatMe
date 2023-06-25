@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { Header } from '../../components'
+import { ButtonText, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 import { SharedElement } from 'react-navigation-shared-element'
@@ -43,7 +43,7 @@ const DetailFood = ({ route, navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* header */}
       <ScrollView>
-        <StatusBar animated backgroundColor={COLORS.white2} barStyle={'dark-content'} />
+        <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
         <Header
           containerStyle={{
             paddingHorizontal: SIZES.padding,
@@ -80,6 +80,33 @@ const DetailFood = ({ route, navigation }) => {
             backgroundColor: COLORS.white,
             paddingHorizontal: SIZES.padding
           }}>
+          {/* input quantity */}
+          <QuantityInput
+            labelStyle={{
+              color: COLORS.white,
+              marginHorizontal: 5,
+              ...FONTS.h6,
+              fontWeight: 'bold'
+            }}
+            iconContainerStyle={{
+              backgroundColor: COLORS.primary,
+              borderRadius: 100,
+              marginHorizontal: SIZES.radius,
+            }}
+            iconStyle={{
+              width: 36,
+              height: 36,
+              tintColor: COLORS.white,
+            }}
+            containerStyle={{
+              backgroundColor: COLORS.primary,
+              borderRadius: 3 * SIZES.radius,
+              height: 50,
+              alignSelf: 'center',
+              position: 'absolute',
+              top: -25
+            }}
+          />
           {/* title */}
           <View
             style={{
@@ -122,7 +149,23 @@ const DetailFood = ({ route, navigation }) => {
           </View>
         </View>
         {/* footer */}
-
+        <ButtonText
+          label={"Add to Cart"}
+          containerStyle={{
+            marginTop: SIZES.padding,
+            marginBottom: SIZES.radius,
+            marginHorizontal: SIZES.padding,
+            height: 50,
+            flex: 1,
+            borderRadius: SIZES.padding,
+            backgroundColor: COLORS.primary
+          }}
+          labelStyle={{
+            color: COLORS.white,
+            ...FONTS.bodyText1,
+            fontWeight: 'bold'
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   )
@@ -154,6 +197,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: COLORS.white2
+    backgroundColor: COLORS.white
   }
 })

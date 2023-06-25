@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { FONTS } from '../constants'
+import { COLORS, FONTS } from '../constants'
+import { color } from 'react-native-reanimated'
 
 const ButtonText = ({ label, labelStyle, containerStyle, onPress, disabled }) => {
     return (
@@ -8,7 +9,7 @@ const ButtonText = ({ label, labelStyle, containerStyle, onPress, disabled }) =>
             disabled={disabled}
             onPress={onPress}
             style={[styles.container, containerStyle]}>
-            <Text style={[FONTS.h3, labelStyle]}>{label}</Text>
+            <Text style={[FONTS.button, labelStyle]}>{label}</Text>
         </TouchableOpacity>
     )
 }
