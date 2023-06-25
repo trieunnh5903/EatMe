@@ -29,7 +29,7 @@ const Home = () => {
       let arr = new Array(n);
       for (let i = 0; i < n; i++) {
         arr[i] = {
-          id: i,
+          id: Math.random(),
           name: "Hamburger",
           description: "Chicken patty hamburger",
           categories: [1, 2],

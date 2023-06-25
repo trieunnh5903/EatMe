@@ -4,11 +4,14 @@ import { SIZES } from '../constants/sizes'
 import { COLORS } from '../constants/colors'
 import { FONTS } from '../constants/fonts'
 import icons from '../constants/icons'
+import { SharedElement } from 'react-navigation-shared-element'
 
 const HorizontalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, containerStyle]}>
-            <Image style={imageStyle} source={{ uri: item.image }}></Image>
+            <SharedElement id={`item.${item.id}.image`}>
+                <Image style={imageStyle} source={{ uri: item.image }}></Image>
+            </SharedElement>
             <View style={{ flex: 1, marginTop: SIZES.radius }}>
                 <Text numberOfLines={1} style={[FONTS.h6, { color: COLORS.blackText, fontWeight: 'bold' }]}>{item.name}</Text>
                 <Text numberOfLines={1} style={[FONTS.subtitle2, { color: COLORS.darkGray2 }]}>{item.description}</Text>

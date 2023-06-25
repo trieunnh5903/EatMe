@@ -4,8 +4,11 @@ import { Header } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 import { SharedElement } from 'react-navigation-shared-element'
-const DetailFood = ({ route }) => {
-  const navigation = useNavigation();
+const DetailFood = ({ route, navigation }) => {
+  // const navigation = useNavigation();
+  React.useLayoutEffect(() => {
+    navigation.setOptions({ tabBarVisible: false });
+  }, [navigation]);
   const item = route.params;
   const TextMore = () => {
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text
