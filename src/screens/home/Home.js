@@ -5,7 +5,6 @@ import data from '../../data'
 import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
-import { SharedElement } from 'react-navigation-shared-element'
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
@@ -35,7 +34,7 @@ const Home = () => {
           categories: [1, 2],
           price: 15.99,
           calories: 78,
-          isFavourite: true,
+          isFavourite: i % 2 == 0 ? true : false,
           image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
         }
       }
@@ -82,6 +81,7 @@ const Home = () => {
           renderItem={({ item, index }) => {
             return (
               <HorizontalFoodCard
+                onPress={() => navigation.navigate('DetailFood', item)}
                 imageStyle={{
                   marginTop: 35,
                   height: 150,
@@ -152,6 +152,7 @@ const Home = () => {
         </Text>
 
         <TouchableOpacity
+          onPress={() => navigation.navigate("EnterAddress")}
           style={styles.deliveryTo}>
           <Text
             style={{ ...FONTS.h6, color: COLORS.blackText, fontWeight: 'bold' }}

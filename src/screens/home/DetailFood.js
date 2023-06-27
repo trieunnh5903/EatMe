@@ -1,21 +1,18 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, memo } from 'react'
 import { ButtonText, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
-import { useNavigation } from '@react-navigation/native'
 import { SharedElement } from 'react-navigation-shared-element'
 const DetailFood = ({ route, navigation }) => {
   // const navigation = useNavigation();
-  React.useLayoutEffect(() => {
-    navigation.setOptions({ tabBarVisible: false });
-  }, [navigation]);
   const item = route.params;
-  const TextMore = () => {
+  const [quantity, setQuantity] = useState(0);
+  const TextMore = memo(() => {
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
-    const toggleNumberOfLines = () => { //To toggle the show text or hide it
+    const toggleNumberOfLines = useCallback(() => { //To toggle the show text or hide it
       setTextShown(!textShown);
-    }
+    }, [])
 
     const onTextLayout = useCallback(e => {
       setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
@@ -23,7 +20,7 @@ const DetailFood = ({ route, navigation }) => {
     }, []);
 
     return (
-      <View style={{ marginVertical: SIZES.padding }}>
+      <View style={{ marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
         <Text
           onTextLayout={onTextLayout}
           numberOfLines={textShown ? undefined : 4}
@@ -38,16 +35,109 @@ const DetailFood = ({ route, navigation }) => {
         }
       </View>
     )
-  }
+  }, [item])
+
+  const ImageFood = () => (
+    <View style={{ paddingHorizontal: SIZES.padding, alignItems: 'center' }}>
+      <SharedElement id={`item.${item.id}.image`}>
+        <Image
+          style={styles.imageFood}
+          source={{ uri: item.image }} />
+      </SharedElement>
+
+    </View>
+  )
+
+  const InformationFood = () => (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.white,
+        paddingHorizontal: SIZES.padding
+      }}>
+      {/* input quantity */}
+      <QuantityInput
+        onAddPress={() => setQuantity(quantity => quantity + 1)}
+        onRemovePress={() => {
+          if (quantity > 0) setQuantity(quantity - 1)
+        }}
+        labelStyle={{
+          color: COLORS.white,
+          marginHorizontal: 5,
+          ...FONTS.h6,
+          fontWeight: 'bold'
+        }}
+        iconContainerStyle={{
+          backgroundColor: COLORS.primary,
+          borderRadius: 100,
+          marginHorizontal: SIZES.radius,
+        }}
+        quantity={quantity}
+        iconStyle={{
+          width: 36,
+          height: 36,
+          tintColor: COLORS.white,
+        }}
+        containerStyle={{
+          backgroundColor: COLORS.primary,
+          borderRadius: 3 * SIZES.radius,
+          height: 50,
+          alignSelf: 'center',
+          position: 'absolute',
+          top: -25
+        }}
+      />
+      {/* title */}
+      <View
+        style={{
+          marginTop: SIZES.padding + SIZES.padding / 2,
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}>
+        <View style={{ flex: 1 }}>
+          <View>
+            <Text
+              style={styles.textBody}>Mcdonalds</Text>
+          </View>
+          <Text
+            style={styles.textTitle}>{item.name}</Text>
+        </View>
+        <Text
+          style={[styles.textTitle, {
+            paddingHorizontal: SIZES.padding,
+          }]}>${item.price}</Text>
+      </View>
+      {/* desc */}
+      <TextMore />
+      {/* delivery */}
+      <View
+        style={{ flexDirection: 'row' }}>
+        <Image
+          source={icons.clock}
+          style={styles.icon} />
+        <Text
+          style={{
+            marginHorizontal: SIZES.radius,
+            color: COLORS.black,
+            ...FONTS.bodyText1
+          }}
+        >Delivery Time:
+          <Text
+            style={{ color: COLORS.gray }}
+          > 30 Mins</Text></Text>
+
+      </View>
+    </View>
+  )
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
         {/* header */}
         <Header
           containerStyle={{
             paddingHorizontal: SIZES.padding,
-            paddingVertical: SIZES.radius
           }}
           leftComponent={(
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -59,107 +149,19 @@ const DetailFood = ({ route, navigation }) => {
           rightComponent={(
             <TouchableOpacity>
               <Image
-                source={icons.favourite}
-                style={styles.icon} />
+                source={item.isFavourite ? icons.favourite_fill : icons.favourite}
+                style={[styles.icon, { tintColor: item.isFavourite ? COLORS.primary : COLORS.black }]} />
             </TouchableOpacity>
           )}
         />
         {/* image */}
-        <View style={{ paddingHorizontal: SIZES.padding, alignItems: 'center' }}>
-          <SharedElement id={`item.${item.id}.image`}>
-            <Image
-              style={styles.imageFood}
-              source={{ uri: item.image }} />
-          </SharedElement>
-
-        </View>
+        <ImageFood />
         {/* content */}
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.white,
-            paddingHorizontal: SIZES.padding
-          }}>
-          {/* input quantity */}
-          <QuantityInput
-            labelStyle={{
-              color: COLORS.white,
-              marginHorizontal: 5,
-              ...FONTS.h6,
-              fontWeight: 'bold'
-            }}
-            iconContainerStyle={{
-              backgroundColor: COLORS.primary,
-              borderRadius: 100,
-              marginHorizontal: SIZES.radius,
-            }}
-            iconStyle={{
-              width: 36,
-              height: 36,
-              tintColor: COLORS.white,
-            }}
-            containerStyle={{
-              backgroundColor: COLORS.primary,
-              borderRadius: 3 * SIZES.radius,
-              height: 50,
-              alignSelf: 'center',
-              position: 'absolute',
-              top: -25
-            }}
-          />
-          {/* title */}
-          <View
-            style={{
-              marginTop: SIZES.padding + SIZES.padding / 2,
-              flexDirection: 'row',
-              alignItems: 'center'
-            }}>
-            <View style={{ flex: 1 }}>
-              <View>
-                <Text
-                  style={styles.textBody}>Mcdonalds</Text>
-              </View>
-              <Text
-                style={styles.textTitle}>{item.name}</Text>
-            </View>
-            <Text
-              style={[styles.textTitle, {
-                paddingHorizontal: SIZES.padding,
-              }]}>${item.price}</Text>
-          </View>
-          {/* desc */}
-          <TextMore />
-          {/* delivery */}
-          <View
-            style={{ flexDirection: 'row' }}>
-            <Image
-              source={icons.clock}
-              style={styles.icon} />
-            <Text
-              style={{
-                marginHorizontal: SIZES.radius,
-                color: COLORS.black,
-                ...FONTS.bodyText1
-              }}
-            >Delivery Time:
-              <Text
-                style={{ color: COLORS.gray }}
-              > 30 Mins</Text></Text>
-
-          </View>
-        </View>
+        <InformationFood />
         {/* footer */}
         <ButtonText
           label={"Add to Cart"}
-          containerStyle={{
-            marginTop: SIZES.padding,
-            marginBottom: SIZES.radius,
-            marginHorizontal: SIZES.padding,
-            height: 50,
-            flex: 1,
-            borderRadius: SIZES.padding,
-            backgroundColor: COLORS.primary
-          }}
+          containerStyle={styles.buttonFooter}
           labelStyle={{
             color: COLORS.white,
             ...FONTS.bodyText1,
@@ -174,6 +176,16 @@ const DetailFood = ({ route, navigation }) => {
 export default DetailFood
 
 const styles = StyleSheet.create({
+  buttonFooter: {
+    marginTop: SIZES.padding,
+    marginBottom: SIZES.radius,
+    marginHorizontal: SIZES.padding,
+    height: 50,
+    flex: 1,
+    borderRadius: SIZES.padding,
+    backgroundColor: COLORS.primary
+  },
+
   textTitle: {
     color: COLORS.blackText,
     ...FONTS.h5,

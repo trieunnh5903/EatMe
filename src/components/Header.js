@@ -26,10 +26,10 @@ export default Header
 
 const styles = StyleSheet.create({
     title: {
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
         flex: 1,
         textAlign: 'center',
         color: COLORS.blackText,
-        ...FONTS.subtitle1, fontWeight: 'bold'
+        ...FONTS.h6, fontWeight: 'bold'
     }
 })

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput, Image } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput, Image, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, Platform } from 'react-native'
 import React from 'react'
 import { COLORS, SIZES, icons } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
@@ -50,6 +50,14 @@ const Search = () => {
         title={"Search"}
       />
       <SearchInput />
+      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: SIZES.padding,
+            paddingVertical: SIZES.radius
+          }}><Text>Found 13+ products</Text></View>
+      </TouchableWithoutFeedback>
       {/* list */}
     </SafeAreaView>
   )
