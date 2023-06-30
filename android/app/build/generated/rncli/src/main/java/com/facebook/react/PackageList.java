@@ -27,6 +27,8 @@ import com.swmansion.rnscreens.RNScreensPackage;
 import com.ijzerenhein.sharedelement.RNSharedElementPackage;
 // react-native-splash-screen
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+// react-native-svg
+import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -82,6 +84,7 @@ public class PackageList {
       new RNScreensPackage(),
       new RNSharedElementPackage(),
       new SplashScreenReactPackage(),
+      new SvgPackage(),
       new VectorIconsPackage()
     ));
   }

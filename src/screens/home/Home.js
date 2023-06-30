@@ -222,9 +222,14 @@ const Home = () => {
                   onPress={() => navigation.navigate("Search")}>
                   <Image source={icons.search} style={styles.icon} />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginLeft: SIZES.radius }}>
-                  <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
+                <TouchableOpacity
+                  style={{ paddingHorizontal: SIZES.radius }}
+                  onPress={() => navigation.navigate("Notification")}>
+                  <Image source={icons.notification} style={styles.icon} />
                 </TouchableOpacity>
+                {/* <TouchableOpacity style={{ marginLeft: SIZES.radius }}>
+                  <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
+                </TouchableOpacity> */}
               </View>
             }
             leftComponent={
@@ -336,8 +341,6 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.padding,
     marginBottom: SIZES.radius,
   },
-
-
 
   icon: {
     width: 24,

@@ -42,4 +42,8 @@ export default icons = {
     eye_off: require('../assets/icons/eye_off.png'),
     google: require('../assets/icons/google.png'),
     facebook: require('../assets/icons/facebook.png'),
+    profile: require('../assets/icons/account_circle_FILL0_wght600_GRAD0_opsz48.png'),
+    profile_fill: require('../assets/icons/account_circle_FILL1_wght600_GRAD0_opsz48.png'),
+    address: require('../assets/icons/location_on_FILL0_wght600_GRAD0_opsz48.png'),
+    dark_mode: require('../assets/icons/dark_mode_FILL0_wght600_GRAD0_opsz48.png'),
 }

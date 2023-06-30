@@ -31,7 +31,7 @@ const BottomTabNavigator = () => {
                     },
                     tabBarLabel: ({ focused }) => {
                         return (
-                            <Text style={[FONTS.caption, {fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[0].name}</Text>
+                            <Text style={[FONTS.caption, { fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[0].name}</Text>
                         )
                     }
                 }}
@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
                     },
                     tabBarLabel: ({ focused }) => {
                         return (
-                            <Text style={[FONTS.caption, {fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[1].name}</Text>
+                            <Text style={[FONTS.caption, { fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[1].name}</Text>
                         )
                     }
                 }}
@@ -58,6 +58,10 @@ const BottomTabNavigator = () => {
                 component={bottom_tabs[2].component}
                 key={`bottom_tabs-${bottom_tabs[2].id}`}
                 options={{
+                    tabBarStyle: {
+                        display: 'none'
+                    },
+
                     tabBarIcon: ({ focused }) => {
                         return <Image
                             style={[styles.iconBottomTab, { tintColor: focused ? COLORS.primary : COLORS.black }]}
@@ -65,7 +69,7 @@ const BottomTabNavigator = () => {
                     },
                     tabBarLabel: ({ focused }) => {
                         return (
-                            <Text style={[FONTS.caption, {fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[2].name}</Text>
+                            <Text style={[FONTS.caption, { fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[2].name}</Text>
                         )
                     },
 
@@ -83,7 +87,7 @@ const BottomTabNavigator = () => {
                     },
                     tabBarLabel: ({ focused }) => {
                         return (
-                            <Text style={[FONTS.caption, {fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[3].name}</Text>
+                            <Text style={[FONTS.caption, { fontWeight: '600', color: focused ? COLORS.primary : COLORS.blackText, marginBottom: 4 }]}>{bottom_tabs[3].name}</Text>
                         )
                     }
                 }}

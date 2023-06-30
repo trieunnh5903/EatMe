@@ -1,4 +1,4 @@
-import { Cart, Favourite, Home, Notification, Search } from "../screens";
+import { Cart, Favourite, Home, Notification, Profile, Search } from "../screens";
 import icons from "./icons";
 
 export const bottom_tabs = [
@@ -32,10 +32,10 @@ export const bottom_tabs = [
     },
     {
         id: 5,
-        name: "Notification",
-        component: Notification,
-        icon: icons.notification,
-        icon_fill: icons.notification_fill,
+        name: "Profile",
+        component: Profile,
+        icon: icons.profile,
+        icon_fill: icons.profile_fill,
     },
 
 ]
