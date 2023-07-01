@@ -31,7 +31,7 @@ export default icons = {
     setting: require('../assets/icons/setting.png'),
     menu: require('../assets/icons/menu.png'),
     search: require('../assets/icons/search.png'),
-    filter: require('../assets/icons/filter_alt_FILL0_wght400_GRAD0_opsz48.png'),
+    sort: require('../assets/icons/sort_FILL0_wght400_GRAD0_opsz48.png'),
     down_arrow: require('../assets/icons/expand.png'),
     cart: require('../assets/icons/shopping_bag_FILL0_wght600_GRAD0_opsz48.png'),
     cart_fill: require('../assets/icons/shopping_bag_FILL1_wght600_GRAD0_opsz48.png'),

@@ -1,12 +1,13 @@
 import {
   StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput, Image, Keyboard, TouchableWithoutFeedback,
-  FlatList,
-  Alert
+  FlatList
 } from 'react-native'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
-import { ButtonText, ButtonTextIcon, HorizontalFoodCard, VerticalFoodCard } from '../../components'
+import { ButtonText, ButtonTextIcon, HorizontalFoodCard, VerticalFoodCard, ButtonIcon } from '../../components'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import SortBottomSheet from './SortBottomSheet'
 
 const SearchInput = ({ keyword, setKeyword, onDeletePress }) => {
   return (
@@ -77,6 +78,14 @@ const Search = () => {
   const [keyword, setKeyword] = useState('')
   const navigation = useNavigation();
   const [menuList, setMenuList] = useState(_enerateArray(15));
+
+  // ref
+  const bottomSheetModalRef = useRef(null);
+
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+
   const PopularSection = () => {
     return (
       <View>
@@ -132,87 +141,92 @@ const Search = () => {
       </View>
     )
   }
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* header */}
-      <View
-        style={styles.headerWrapper}>
-        <SearchInput
-          keyword={keyword}
-          setKeyword={setKeyword}
-          onDeletePress={() => setKeyword("")} />
-      </View>
-      {/* list */}
-      {
-        !keyword ? (
-          <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
-            <View style={{ flex: 1 }}>
-              <View
-                style={{
-                  paddingHorizontal: SIZES.padding,
-                  paddingVertical: SIZES.radius
-                }}>
-                <Text
-                  style={{
-                    color: COLORS.blackText,
-                    ...FONTS.subtitle1,
-                    marginBottom: SIZES.radius
-                  }}>Hot search</Text>
+      <BottomSheetModalProvider>
+        {/* header */}
+        <View
+          style={styles.headerWrapper}>
+          <SearchInput
+            keyword={keyword}
+            setKeyword={setKeyword}
+            onDeletePress={() => setKeyword("")} />
+        </View>
+        {/* list */}
+        {
+          !keyword ? (
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+              <View style={{ flex: 1 }}>
                 <View
                   style={{
-                    flexDirection: 'row',
-                    flexWrap: 'wrap'
-                  }}
-                >
-                  <Chips label={"Rice"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Noodle"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Bread"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Pizza"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Hamburger"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Cookies"} onPress={() => console.log("Chips press")} />
-                  <Chips label={"Coca"} onPress={() => console.log("Chips press")} />
+                    paddingHorizontal: SIZES.padding,
+                    paddingVertical: SIZES.radius
+                  }}>
+                  <Text
+                    style={{
+                      color: COLORS.blackText,
+                      ...FONTS.subtitle1,
+                      marginBottom: SIZES.radius
+                    }}>Hot search</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      flexWrap: 'wrap'
+                    }}
+                  >
+                    <Chips label={"Rice"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Noodle"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Bread"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Pizza"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Hamburger"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Cookies"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Coca"} onPress={() => console.log("Chips press")} />
+                  </View>
                 </View>
+                <PopularSection />
               </View>
-              <PopularSection />
-            </View>
-          </TouchableWithoutFeedback>
-        ) :
-          (
-            <>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: SIZES.padding, marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
-                <Text>Found 13+ products</Text>
-                <ButtonTextIcon
-                  containerStyle={{
-                    borderRadius: SIZES.padding,
-                    borderColor: COLORS.gray3,
-                    height: 30,
-                    paddingHorizontal: SIZES.spacing,
-                    borderWidth: 1,
-                    marginTop: -SIZES.base,
+            </TouchableWithoutFeedback>
+          ) :
+            (
+              <>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: SIZES.padding, marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
+                  <Text>Found 13+ products</Text>
+                  <ButtonTextIcon
+                    containerStyle={{
+                      borderRadius: SIZES.padding,
+                      borderColor: COLORS.gray3,
+                      height: 30,
+                      paddingHorizontal: SIZES.spacing,
+                      borderWidth: 1,
+                      marginTop: -SIZES.base,
+                    }}
+                    onPress={handlePresentModalPress}
+                    labelStyle={{ color: COLORS.gray }}
+                    iconLeft={icons.sort}
+                    iconStyle={{ width: 16, height: 16, marginRight: SIZES.base, tintColor: COLORS.gray }}
+                    label={"Sort"} />
+                </View>
+                <FlatList
+                  data={menuList}
+                  keyExtractor={(item, index) => `${index}`}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item, index }) => {
+                    return (
+                      <HorizontalFoodCard
+                        imageStyle={styles.imageCard}
+                        onPress={() => navigation.navigate('DetailFood', item)}
+                        item={item}
+                        containerStyle={styles.horizontalFoodCard}
+                      />
+                    )
                   }}
-                  labelStyle={{ color: COLORS.gray }}
-                  iconLeft={icons.filter}
-                  iconStyle={{ width: 16, height: 16, marginRight: SIZES.base, tintColor: COLORS.gray }}
-                  label={"Filter"} />
-              </View>
-              <FlatList
-                data={menuList}
-                keyExtractor={(item, index) => `${index}`}
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item, index }) => {
-                  return (
-                    <HorizontalFoodCard
-                      imageStyle={styles.imageCard}
-                      onPress={() => navigation.navigate('DetailFood', item)}
-                      item={item}
-                      containerStyle={styles.horizontalFoodCard}
-                    />
-                  )
-                }}
-              />
-            </>
-          )
-      }
+                />
+                <SortBottomSheet bottomSheetModalRef={bottomSheetModalRef} />
+              </>
+            )
+        }
+      </BottomSheetModalProvider>
     </SafeAreaView>
   )
 }
