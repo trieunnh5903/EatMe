@@ -71,7 +71,7 @@ const Profile = () => {
                 ...FONTS.subtitle2,
                 fontWeight: 'bold'
               }}
-            >Thành viên</Text>
+            >Member</Text>
           </View>
         </View>
         {/* user options */}

@@ -52,4 +52,13 @@ export default icons = {
     policy: require('../assets/icons/info_FILL0_wght400_GRAD0_opsz48.png'),
     person: require('../assets/icons/person_FILL0_wght400_GRAD0_opsz48.png'),
     chevron_right: require('../assets/icons/chevron_right_FILL0_wght400_GRAD0_opsz48.png'),
+    baguette: require('../assets/icons/icons8-baguette-94.png'),
+    cola: require('../assets/icons/icons8-cola-94.png'),
+    cookies: require('../assets/icons/icons8-cookies-94.png'),
+    hamburger: require('../assets/icons/icons8-hamburger-94.png'),
+    hot_dog: require('../assets/icons/icons8-hot-dog-94.png'),
+    mcdonald_french_fries: require('../assets/icons/icons8-mcdonald`s-french-fries-94.png'),
+    noodles: require('../assets/icons/icons8-noodles-94.png'),
+    rice: require('../assets/icons/icons8-rice-bowl-94.png'),
+    pizza: require('../assets/icons/icons8-salami-pizza-94.png'),
 }

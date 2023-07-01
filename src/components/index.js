@@ -11,6 +11,7 @@ import QuantityInput from "./QuantityInput"
 import TotalFooter from "./TotalFooter"
 import Divider from "./Divider"
 import CardItem from "./CardItem"
+import BadgeButton from "./BadgeButton"
 export {
     Header,
     CardItem,
@@ -24,5 +25,6 @@ export {
     ButtonText,
     ButtonTextIcon,
     QuantityInput,
-    ButtonQuantityCart
+    ButtonQuantityCart,
+    BadgeButton
 }

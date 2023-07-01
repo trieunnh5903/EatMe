@@ -4,7 +4,7 @@ import Search from "./search/Search";
 import Favourite from "./favourite/Favourite";
 import Notification from "./notification/Notification";
 import DetailFood from "./home/DetailFood";
-import EnterAddress from "./enter_address/EnterAddress";
+import EnterAddress from "./home/EnterAddress";
 import Profile from "./profile/Profile";
 export {
     Profile,

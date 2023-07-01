@@ -109,18 +109,48 @@ const tags = [
 const categories = [
     {
         id: 1,
-        name: "Fast Food",
-        icon: "https://img.icons8.com/fluency/48/null/hamburger.png"
+        name: "Baguette",
+        icon: icons.baguette
     },
     {
         id: 2,
-        name: "Fruit Item",
-        icon: "https://img.icons8.com/fluency/48/null/group-of-fruits.png"
+        name: "Drinks",
+        icon: icons.cola
     },
     {
         id: 3,
-        name: "Rice Item",
-        icon: "https://img.icons8.com/fluency/48/null/rice-bowl.png"
+        name: "Rice",
+        icon: icons.rice
+    },
+    {
+        id: 4,
+        name: "Cookies",
+        icon: icons.cookies
+    },
+    {
+        id: 5,
+        name: "Hamburger",
+        icon: icons.hamburger
+    },
+    {
+        id: 6,
+        name: "Hot Dog",
+        icon: icons.hot_dog
+    },
+    {
+        id: 7,
+        name: "Mcdonald",
+        icon: icons.mcdonald_french_fries
+    },
+    {
+        id: 8,
+        name: "Noodles",
+        icon: icons.noodles
+    },
+    {
+        id: 9,
+        name: "Rice",
+        icon: icons.pizza
     }
 ]
 

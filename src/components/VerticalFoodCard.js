@@ -19,15 +19,6 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
                     source={icons.calories} />
                 <Text
                     style={styles.textCalories}>{item.calories} Calories</Text>
-                <TouchableOpacity>
-                    <Image
-                        style={{
-                            width: 24,
-                            height: 24,
-                            tintColor: item.isFavourite ? COLORS.primary : COLORS.gray2
-                        }}
-                        source={icons.favourite_fill} />
-                </TouchableOpacity>
             </View>
             {/* image */}
             <SharedElement id={`item.${item.id}.image`}>

@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View, S
 import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
 import { icons, COLORS, SIZES, FONTS, images } from '../../constants'
 import data from '../../data'
-import { Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
+import { BadgeButton, Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
 const Section = ({ title, onPress, children, style }) => {
@@ -201,30 +201,22 @@ const Home = () => {
     <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
       <ScrollView
-        // stickyHeaderIndices={[0]}
-        // stickyHeaderHiddenOnScroll
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>
         {/* header */}
-        <View style={{ flex: 1, width: SIZES.width, backgroundColor: COLORS.white }}>
+        <View style={styles.headerWrapper}>
           <Header
             containerStyle={{
               paddingHorizontal: SIZES.padding,
               alignItems: 'center',
-              // borderBottomWidth: 1,
-              // borderColor: COLORS.lightGray2
             }}
             rightComponent={
-              <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-                <TouchableOpacity
-                  style={{ padding: SIZES.base }}
-                  onPress={() => navigation.navigate("Notification")}>
-                  <Image source={icons.notification} style={styles.icon} />
-                </TouchableOpacity>
-                {/* <TouchableOpacity style={{ marginLeft: SIZES.radius }}>
-                  <Image style={styles.profile} source={{ uri: data.myProfile.profile_image }}></Image>
-                </TouchableOpacity> */}
-              </View>
+              <BadgeButton
+                onPress={() => navigation.navigate("Notification")}
+                icon={icons.notification}
+                iconStyle={styles.icon}
+                badgeStyle={styles.badgeNotification}
+              />
             }
             leftComponent={
               <View>
@@ -233,15 +225,45 @@ const Home = () => {
             }
           />
         </View>
-
-        {/* search */}
-        {/* <View style={{ flex: 1, width: SIZES.width, backgroundColor: COLORS.white }}>
-        </View> */}
-        {/* filter modal */}
         {/* delivery to */}
         <DeliveryTo />
         {/* carousel */}
         <MyCarousel />
+        <View style={{
+          flexDirection: 'row', flexWrap: 'wrap',
+          paddingHorizontal: SIZES.padding,
+          paddingVertical: SIZES.radius,
+          marginBottom: SIZES.padding,
+          rowGap: 30 ,
+          columnGap: 5
+        }}>
+          {
+            data.categories.map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={item.id}
+                  style={{
+                    width: 80,
+                    height: 50,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                  <Image
+                    source={item.icon}
+                    style={{ width: 48, height: 48, resizeMode: 'contain' }}
+                  />
+                  <Text
+                  style={{
+                   
+                    color: COLORS.blackText,
+                    ...FONTS.subtitle2,
+                    fontWeight: 'bold'
+                  }}>{item.name}</Text>
+                </TouchableOpacity>
+              )
+            })
+          }
+        </View>
         {/* list popular */}
         <PopularSection />
         {/* list recommended */}
@@ -279,10 +301,22 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-  headerContainerStyle: {
-    height: 50,
-    marginHorizontal: SIZES.padding,
+  badgeNotification: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    top: 0,
+    right: 0,
+    backgroundColor: COLORS.red,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  headerWrapper: {
+    flex: 1,
+    width: SIZES.width,
+    backgroundColor: COLORS.white
   },
   profile: {
     width: 24,
