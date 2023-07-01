@@ -141,7 +141,6 @@ const Home = () => {
       <View
         style={{
           marginHorizontal: SIZES.padding,
-          marginTop: SIZES.radius
         }}>
         <Text
           style={{
@@ -202,8 +201,8 @@ const Home = () => {
     <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
       <ScrollView
-        stickyHeaderIndices={[0]}
-        stickyHeaderHiddenOnScroll
+        // stickyHeaderIndices={[0]}
+        // stickyHeaderHiddenOnScroll
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>
         {/* header */}
@@ -212,16 +211,16 @@ const Home = () => {
             containerStyle={{
               paddingHorizontal: SIZES.padding,
               alignItems: 'center',
-              borderBottomWidth: 1,
-              borderColor: COLORS.lightGray2
+              // borderBottomWidth: 1,
+              // borderColor: COLORS.lightGray2
             }}
             rightComponent={
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{ paddingHorizontal: SIZES.radius }}
                   onPress={() => navigation.navigate("Search")}>
                   <Image source={icons.search} style={styles.icon} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity
                   style={{ paddingHorizontal: SIZES.radius }}
                   onPress={() => navigation.navigate("Notification")}>

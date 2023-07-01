@@ -155,7 +155,16 @@ const Cart = ({ navigation }) => {
         leftComponent={(
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={{ paddingHorizontal: SIZES.radius }}
+            style={{
+              marginLeft: SIZES.radius,
+              paddingHorizontal: SIZES.radius,
+              backgroundColor: COLORS.lightGray2,
+              borderRadius: 100,
+              width: 40,
+              height: 40,
+              justifyContent: 'center',
+              elevation: 3
+            }}
           >
             <Image
               source={icons.arrow_back}
@@ -199,7 +208,7 @@ const Cart = ({ navigation }) => {
             }}
           >
             <Text style={styles.textTitle}>3 products</Text>
-            <Text style={styles.textTitle}>Checkout</Text>
+            <Text style={styles.textTitle}>Go to checkout</Text>
             <Text style={styles.textTitle}>$400</Text>
           </TouchableOpacity>
         </View>
