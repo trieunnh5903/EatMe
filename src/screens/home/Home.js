@@ -215,14 +215,9 @@ const Home = () => {
               // borderColor: COLORS.lightGray2
             }}
             rightComponent={
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                {/* <TouchableOpacity
-                  style={{ paddingHorizontal: SIZES.radius }}
-                  onPress={() => navigation.navigate("Search")}>
-                  <Image source={icons.search} style={styles.icon} />
-                </TouchableOpacity> */}
+              <View style={{ flexDirection: 'row', alignItems: 'center'}}>
                 <TouchableOpacity
-                  style={{ paddingHorizontal: SIZES.radius }}
+                  style={{ padding: SIZES.base }}
                   onPress={() => navigation.navigate("Notification")}>
                   <Image source={icons.notification} style={styles.icon} />
                 </TouchableOpacity>

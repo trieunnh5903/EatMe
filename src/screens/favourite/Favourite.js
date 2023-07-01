@@ -1,200 +1,118 @@
-import React, { useCallback, useMemo, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
-import { COLORS, FONTS, SIZES, icons } from '../../constants';
-import { Shadow } from 'react-native-shadow-2';
-import { ButtonIcon, ButtonText } from '../../components';
-
-const RADIUS = 26;
+  StyleSheet, Text, View,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView
+} from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
 const Favourite = () => {
-  // ref
-  const bottomSheetModalRef = useRef(null);
-
-  // variables
-  const snapPoints = useMemo(() => ['75%', '95%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback((index) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-
-  const handleDismissModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.dismiss()
-  }, []);
-
-  // renders
-  const SheetHandle = () => {
-    return (
-      <Shadow
-        sides={{ start: false, end: false, bottom: false }}
-        corners={{ bottomStart: false, bottomEnd: false }}
-        distance={5}
-        radius={RADIUS}
-        viewStyle={styles.shadowContainer}>
-        <View style={styles.handleContainer}>
-          <View style={styles.handle} />
-        </View>
-      </Shadow>
-    )
-  }
-
-  const renderBottomSheet = () => {
-    const Chip = ({ label }) => (
-      <ButtonText
-        label={label}
-        labelStyle={{
-          color: COLORS.white,
-          ...FONTS.subtitle1
-        }}
-        containerStyle={{
-          height: 40,
-          marginRight: SIZES.spacing,
-          marginBottom: SIZES.spacing,
-          borderRadius: SIZES.padding,
-          backgroundColor: COLORS.primary,
-          paddingHorizontal: SIZES.padding,
-          alignSelf: 'flex-start'
-        }}
-      />
-    )
-    return (
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}
-        handleComponent={SheetHandle}
-      >
-        <View style={styles.contentContainer}>
-          {/* header */}
-          <View
+  const _enerateArray = useCallback(
+    (n) => {
+      let arr = new Array(n);
+      for (let i = 0; i < n; i++) {
+        arr[i] = {
+          id: Math.random(),
+          name: "Hamburger",
+          description: "Chicken patty hamburger",
+          categories: [1, 2],
+          price: 15.99,
+          calories: 78,
+          isFavourite: i % 2 == 0 ? true : false,
+          image: "https://cdn.tgdd.vn/Products/Images/2565/85959/bhx/-202306190956004561_300x300.jpg"
+        }
+      }
+      return arr;
+    }, [])
+  const [menuList, setMenuList] = useState(_enerateArray(15));
+  const renderItem = ({ item, index }) => {
+    if (item.isFavourite) {
+      return (
+        <View
+          style={{
+            flexDirection: 'row',
+            borderRadius: SIZES.base,
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: SIZES.radius,
+            borderBottomWidth: 1,
+            borderColor: COLORS.lightGray2
+          }}
+        >
+          {/* image */}
+          <Image
             style={{
-              marginBottom: SIZES.padding,
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginVertical: SIZES.radius
-            }}>
+              marginHorizontal: SIZES.radius,
+              width: 70,
+              height: 70,
+            }}
+            source={{
+              uri:
+                item.image
+            }}></Image>
+          {/* content */}
+          <View style={{ flex: 1 }}>
             <Text
               style={{
-                ...FONTS.h5,
-                fontWeight: 'bold',
-                color: COLORS.black,
-                flex: 1
+                color: COLORS.blackText,
+                ...FONTS.subtitle1
               }}
-            >Filter</Text>
-            <ButtonIcon
-              icon={icons.close}
-              iconStyle={styles.icon}
-              containerStyle={{
-                padding: SIZES.base,
-                borderRadius: 24,
-              }}
-              onPress={handleDismissModalPress}
-            />
-          </View>
-          {/* category */}
-          <View>
-            <Text
-              style={{
-                ...FONTS.subtitle1,
-                color: COLORS.black,
-                marginBottom: SIZES.radius
-              }}
-            >Category</Text>
-            <View
+            >Thùng 30 gói mì Hảo Hảo tôm chua cay 75g</Text>
+            <TouchableOpacity
               style={{
                 flexDirection: 'row',
-                flexWrap: 'wrap',
-              }}>
-              <Chip
-                label={"All"}
-              />
-              <Chip
-                label={"Hamburger"}
-              />
-              <Chip
-                label={"Break"}
-              />
-              <Chip
-                label={"Break"}
-              />
-              <Chip
-                label={"Break"}
-              />
-            </View>
+                alignItems: 'center'
+              }}
+            >
+              <Text
+                style={{
+                  color: COLORS.darkGray,
+                  ...FONTS.caption
+                }}
+              >Xem chi tiết</Text>
+              <Image source={icons.down_arrow}
+                style={{ width: 18, height: 18, tintColor: COLORS.black }} />
+            </TouchableOpacity>
           </View>
-          {/* price */}
-          <Text
-             style={{
-              marginTop: SIZES.padding,
-              ...FONTS.subtitle1,
-              color: COLORS.black,
-            }}
-          >Price</Text>
+          {/* btn favourite */}
+          <TouchableOpacity
+            onPress={() => item.isFavourite = false}
+            style={{
+              padding: SIZES.radius,
+            }}>
+            <Image
+              source={icons.favourite_fill}
+              style={{
+                width: 24,
+                height: 24,
+                tintColor: COLORS.primary
+              }}
+            />
+          </TouchableOpacity>
         </View>
-      </BottomSheetModal>
-    )
+      )
+    }
+
   }
   return (
-    <BottomSheetModalProvider>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={{
-            height: 50, width: 100, backgroundColor: COLORS.red
-          }}
-          onPress={handlePresentModalPress}
-        >
-          <Text style={{ fontSize: 20 }}>Open</Text>
-        </TouchableOpacity>
-        {renderBottomSheet()}
-      </View>
-    </BottomSheetModalProvider>
-  );
-};
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={menuList}
+        keyExtractor={(item, index) => `${index}`}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem}
+      />
+    </SafeAreaView>
+  )
+}
+
+export default Favourite
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 24,
-    height: 24,
-    tintColor: COLORS.black,
-    resizeMode: 'cover'
-  },
-
-  // sheet
-  shadowContainer: {
-    width: '100%',
-  },
-  handleContainer: {
-    width: SIZES.width,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 12,
-    borderTopLeftRadius: RADIUS,
-    borderTopRightRadius: RADIUS,
-  },
-  handle: {
-    width: 30,
-    height: 4,
-    backgroundColor: COLORS.blackText,
-    borderRadius: 4,
-  },
   container: {
     flex: 1,
-    padding: 24,
     backgroundColor: COLORS.white
-  },
-  contentContainer: {
-    flex: 1,
-    paddingHorizontal: SIZES.padding
-  },
-});
-
-export default Favourite;
+  }
+})

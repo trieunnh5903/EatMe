@@ -50,7 +50,6 @@ const Cart = ({ navigation }) => {
         <Image
           style={{
             margin: SIZES.base,
-            backgroundColor: 'red',
             width: 70,
             height: 70,
           }}

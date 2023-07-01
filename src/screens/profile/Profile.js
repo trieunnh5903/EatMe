@@ -26,6 +26,9 @@ const OptionItem = ({ icon, label }) => (
       }}
     >{label}
     </Text>
+    <Image
+      source={icons.chevron_right}
+      style={styles.icon} />
   </TouchableOpacity>
 )
 
@@ -54,13 +57,22 @@ const Profile = () => {
             style={styles.profile}
             source={{ uri: data.myProfile.profile_image }}>
           </Image>
-          <Text
-            style={{
-              color: COLORS.blackText,
-              ...FONTS.h6,
-              fontWeight: 'bold'
-            }}
-          >{data.myProfile.name}</Text>
+          <View>
+            <Text
+              style={{
+                color: COLORS.blackText,
+                ...FONTS.h6,
+                fontWeight: 'bold'
+              }}
+            >{data.myProfile.name}</Text>
+            <Text
+              style={{
+                color: COLORS.blackText,
+                ...FONTS.subtitle2,
+                fontWeight: 'bold'
+              }}
+            >Thành viên</Text>
+          </View>
         </View>
         {/* user options */}
         {/* system options */}
@@ -111,9 +123,9 @@ const styles = StyleSheet.create({
   },
 
   profileWrapper: {
-    // flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 10,
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    gap: 20,
     alignItems: 'center',
     paddingHorizontal: SIZES.padding,
   },
