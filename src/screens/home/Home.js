@@ -20,6 +20,31 @@ const Section = ({ title, onPress, children, style }) => {
   )
 }
 
+const Categories = () => (
+  <View style={styles.categoriesWrapper}>
+    {
+      data.categories.map((item, index) => {
+        return (
+          <TouchableOpacity
+            key={item.id}
+            style={styles.categoriesItem}>
+            <Image
+              source={item.icon}
+              style={{ width: 48, height: 48, resizeMode: 'contain' }}
+            />
+            <Text
+              style={{
+                color: COLORS.blackText,
+                ...FONTS.subtitle2,
+                fontWeight: 'bold'
+              }}>{item.name}</Text>
+          </TouchableOpacity>
+        )
+      })
+    }
+  </View>
+)
+
 const Home = () => {
   const navigation = useNavigation();
   const [page, setPage] = useState(1)
@@ -229,41 +254,8 @@ const Home = () => {
         <DeliveryTo />
         {/* carousel */}
         <MyCarousel />
-        <View style={{
-          flexDirection: 'row', flexWrap: 'wrap',
-          paddingHorizontal: SIZES.padding,
-          paddingVertical: SIZES.radius,
-          marginBottom: SIZES.padding,
-          rowGap: 30 ,
-          columnGap: 5
-        }}>
-          {
-            data.categories.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  style={{
-                    width: 80,
-                    height: 50,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                  <Image
-                    source={item.icon}
-                    style={{ width: 48, height: 48, resizeMode: 'contain' }}
-                  />
-                  <Text
-                  style={{
-                   
-                    color: COLORS.blackText,
-                    ...FONTS.subtitle2,
-                    fontWeight: 'bold'
-                  }}>{item.name}</Text>
-                </TouchableOpacity>
-              )
-            })
-          }
-        </View>
+        {/* category */}
+        <Categories />
         {/* list popular */}
         <PopularSection />
         {/* list recommended */}
@@ -301,6 +293,15 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
+  categoriesWrapper: {
+    flexDirection: 'row', flexWrap: 'wrap',
+    paddingHorizontal: SIZES.padding,
+    paddingVertical: SIZES.radius,
+    marginBottom: SIZES.padding,
+    rowGap: 30,
+    columnGap: 5
+  },
+
   badgeNotification: {
     position: 'absolute',
     width: 10,
@@ -339,13 +340,10 @@ const styles = StyleSheet.create({
     width: 120,
   },
   categoriesItem: {
-    alignItems: 'center',
-    minHeight: 50,
-    borderRadius: SIZES.radius,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    marginTop: SIZES.padding
+    width: 80,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   section: {

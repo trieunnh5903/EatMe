@@ -140,14 +140,18 @@ const DetailFood = ({ route, navigation }) => {
             paddingHorizontal: SIZES.padding,
           }}
           leftComponent={(
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              style={styles.buttonNavWrapper}
+              onPress={() => navigation.goBack()}>
               <Image
                 source={icons.arrow_back}
                 style={styles.icon} />
             </TouchableOpacity>
           )}
           rightComponent={(
-            <TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.buttonNavWrapper, {alignItems: 'center'}]}
+            >
               <Image
                 source={item.isFavourite ? icons.favourite_fill : icons.favourite}
                 style={[styles.icon, { tintColor: item.isFavourite ? COLORS.primary : COLORS.black }]} />
@@ -162,11 +166,7 @@ const DetailFood = ({ route, navigation }) => {
         <ButtonText
           label={"Add to Cart"}
           containerStyle={styles.buttonFooter}
-          labelStyle={{
-            color: COLORS.white,
-            ...FONTS.bodyText1,
-            fontWeight: 'bold'
-          }}
+          labelStyle={styles.labelFooter}
         />
       </ScrollView>
     </SafeAreaView>
@@ -176,6 +176,21 @@ const DetailFood = ({ route, navigation }) => {
 export default DetailFood
 
 const styles = StyleSheet.create({
+  buttonNavWrapper: {
+    borderRadius: 100,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    paddingHorizontal: SIZES.radius,
+    backgroundColor: COLORS.lightGray2,
+  },
+
+  labelFooter: {
+    color: COLORS.white,
+    ...FONTS.bodyText1,
+    fontWeight: 'bold'
+  },
+
   buttonFooter: {
     marginTop: SIZES.padding,
     marginBottom: SIZES.radius,
