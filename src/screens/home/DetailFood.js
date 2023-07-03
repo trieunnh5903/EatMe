@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: 40,
     height: 40,
+    alignItems:'center',
     justifyContent: 'center',
     paddingHorizontal: SIZES.radius,
     backgroundColor: COLORS.lightGray2,

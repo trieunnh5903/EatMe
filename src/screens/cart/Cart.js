@@ -35,23 +35,15 @@ const Cart = ({ navigation }) => {
   const renderItem = ({ item, index }) => {
     return (
       <View
-        style={{
-          flexDirection: 'row',
-          borderRadius: SIZES.base,
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: SIZES.radius,
-          borderTopWidth: 1,
-          borderBottomWidth: 1,
-          borderColor: COLORS.lightGray2
-        }}
+        style={styles.itemContainer}
       >
         {/* image */}
         <Image
           style={{
             margin: SIZES.base,
             width: 70,
-            height: 70,
+            height: 80,
+            resizeMode: 'contain'
           }}
           source={{
             uri:
@@ -81,8 +73,8 @@ const Cart = ({ navigation }) => {
               style={{ width: 18, height: 18, tintColor: COLORS.black }} />
           </TouchableOpacity>
         </View>
-        {/* quantity input */}
-        <View style={{ alignItems: 'flex-end', marginHorizontal: SIZES.radius, }}>
+        <View style={{ alignItems: 'flex-end', marginHorizontal: SIZES.radius }}>
+          {/* total price */}
           <Text
             style={{
               color: COLORS.black,
@@ -90,6 +82,7 @@ const Cart = ({ navigation }) => {
               fontWeight: 'bold',
             }}
           >$225</Text>
+          {/* quantity input */}
           <QuantityInput
             labelStyle={{
               color: COLORS.blackText,
@@ -99,7 +92,8 @@ const Cart = ({ navigation }) => {
             }}
 
             iconContainerStyle={{
-              backgroundColor: COLORS.primary,
+              borderColor: COLORS.primary,
+              borderWidth: 1,
               height: 40,
               borderRadius: SIZES.base,
               paddingHorizontal: SIZES.base
@@ -108,7 +102,7 @@ const Cart = ({ navigation }) => {
             iconStyle={{
               width: 24,
               height: 24,
-              tintColor: COLORS.white,
+              tintColor: COLORS.black,
             }}
 
             containerStyle={{
@@ -125,31 +119,12 @@ const Cart = ({ navigation }) => {
           >
             $225/product</Text>
         </View>
-        {/* <TouchableOpacity
-          style={{
-            zIndex: 10,
-            elevation: 3,
-            position: 'absolute',
-            top: 5,
-            right: 10,
-            padding: 2,
-            backgroundColor: COLORS.lightGray2,
-            borderRadius: 100,
-          }}>
-          <Image
-            source={icons.close}
-            style={{
-              width: 24,
-              height: 24,
-              tintColor: COLORS.black
-            }}
-          />
-        </TouchableOpacity> */}
       </View>
     )
   }
   return (
     <SafeAreaView style={styles.container}>
+      {/* navigation */}
       <Header
         leftComponent={(
           <TouchableOpacity
@@ -162,7 +137,7 @@ const Cart = ({ navigation }) => {
               width: 40,
               height: 40,
               justifyContent: 'center',
-              elevation: 3
+              alignItems: 'center'
             }}
           >
             <Image
@@ -184,12 +159,14 @@ const Cart = ({ navigation }) => {
           paddingHorizontal: SIZES.radius
         }}
       />
+      {/* list */}
       <FlatList
         data={menuList}
         keyExtractor={(item, index) => `${index}`}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
       />
+      {/* footer */}
       <Shadow>
         <View style={{
           backgroundColor: COLORS.white,
@@ -219,6 +196,17 @@ const Cart = ({ navigation }) => {
 export default Cart
 
 const styles = StyleSheet.create({
+  itemContainer: {
+    flexDirection: 'row',
+    borderRadius: SIZES.base,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SIZES.radius,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: COLORS.lightGray2
+  },
+
   textTitle: {
     color: COLORS.white2,
     ...FONTS.subtitle1,

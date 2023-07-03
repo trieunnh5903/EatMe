@@ -156,6 +156,7 @@ const Search = () => {
         {/* list */}
         {
           !keyword ? (
+            // before search
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
               <View style={{ flex: 1 }}>
                 <View
@@ -189,6 +190,7 @@ const Search = () => {
             </TouchableWithoutFeedback>
           ) :
             (
+              // after search
               <>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: SIZES.padding, marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
                   <Text>Found 13+ products</Text>
