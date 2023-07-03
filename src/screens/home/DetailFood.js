@@ -3,20 +3,26 @@ import React, { useCallback, useState, memo } from 'react'
 import { ButtonText, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { SharedElement } from 'react-navigation-shared-element'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from '../../redux/slice/cartSlice'
 import Toast from 'react-native-simple-toast';
 
 const DetailFood = ({ route, navigation }) => {
   const dispatch = useDispatch();
+  const cartList = useSelector(state => state.cart.cartList);
   const item = route.params;
   const [quantity, setQuantity] = useState(1);
   const onAddToCartPress = (item) => {
+    const existingItem = cartList.find(itemCart => itemCart.id == item.id);
+    if (existingItem) {
+      Toast.show('The product already exists in the cart.', Toast.LONG);
+      return;
+    }
     dispatch(addItem({ ...item, quantity }));
     Toast.show('Add to cart successfully');
     navigation.goBack();
   }
-  
+
   const TextMore = memo(() => {
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
@@ -26,7 +32,6 @@ const DetailFood = ({ route, navigation }) => {
 
     const onTextLayout = useCallback(e => {
       setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
-      // console.log(e.nativeEvent);
     }, []);
     return (
       <View style={{ marginTop: SIZES.padding, marginBottom: SIZES.radius }}>

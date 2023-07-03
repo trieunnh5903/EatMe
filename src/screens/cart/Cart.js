@@ -5,13 +5,15 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { Shadow } from 'react-native-shadow-2'
 import { useDispatch, useSelector } from 'react-redux'
+import { removeItem, updateItemQuantity } from '../../redux/slice/cartSlice'
 
 const Cart = ({ navigation }) => {
   const cartList = useSelector(state => state.cart.cartList);
@@ -20,33 +22,41 @@ const Cart = ({ navigation }) => {
   const dispatch = useDispatch();
   // const [cartList, setCartList] = useState();
 
-  const onIncreasePress = (itemId) => {
-    const updatedCart = cartList.map(item => {
-      if (item.id == itemId) {
-        const quantity = item.quantity + 1;
-        const priceTotal = parseFloat((quantity * item.price).toFixed(2)) || 0
-        return { ...item, quantity, priceTotal }
-      }
-      return item;
-    })
-    // setCartList(updatedCart);
+  const onIncreasePress = (itemId, previousQuantity) => {
+    const quantity = previousQuantity + 1;
+    dispatch(updateItemQuantity({ itemId, quantity }));
 
   }
 
-  const onDecreasePress = (itemId) => {
-    const updatedCart = cartList.map(item => {
-      if (item.id == itemId) {
-        if (item.quantity === 1) {
-          // return null;
-        } else {
-          const quantity = item.quantity - 1
-          return { ...item, quantity, priceTotal: quantity * item.price || 0 }
-        }
-
+  const showAlertDelete = (itemIdToRemove) => {
+    Alert.alert(
+      "Notification",
+      "Do you want to delete this product?",
+      [
+        {
+          text: 'Cancel',
+          style: 'default',
+        },
+        {
+          text: 'OK',
+          onPress: () => dispatch(removeItem(itemIdToRemove)),
+          style: 'default',
+        },
+      ],
+      {
+        cancelable: true,
       }
-      return item;
-    })
-    // setCartList(updatedCart);
+    )
+  }
+
+  const onDecreasePress = (item) => {
+    const itemId = item.id;
+    if (item.quantity > 1) {
+      const quantity = item.quantity - 1;
+      dispatch(updateItemQuantity({ itemId, quantity }));
+    } else {
+      showAlertDelete(itemId);
+    }
   }
 
   const renderItem = ({ item, index }) => {
@@ -100,8 +110,8 @@ const Cart = ({ navigation }) => {
           >${item.priceTotal}</Text>
           {/* quantity input */}
           <QuantityInput
-            onAddPress={() => onIncreasePress(item.id)}
-            onRemovePress={() => onDecreasePress(item.id)}
+            onAddPress={() => onIncreasePress(item.id, item.quantity)}
+            onRemovePress={() => onDecreasePress(item)}
             labelStyle={{
               color: COLORS.blackText,
               ...FONTS.subtitle1,
