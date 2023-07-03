@@ -11,39 +11,25 @@ import React, { useCallback, useState } from 'react'
 import { Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { Shadow } from 'react-native-shadow-2'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Cart = ({ navigation }) => {
-  const _enerateArray = useCallback(
-    (n) => {
-      let arr = new Array(n);
-      for (let i = 0; i < n; i++) {
-        arr[i] = {
-          quantity: 1,
-          id: Math.random(),
-          name: "Thùng 30 gói mì Hảo Hảo tôm chua cay 75g",
-          description: "Chicken patty hamburger",
-          categories: [1, 2],
-          price: 15.99,
-          calories: 78,
-          isFavourite: i % 2 == 0 ? true : false,
-          image: "https://cdn.tgdd.vn/Products/Images/2565/85959/bhx/-202306190956004561_300x300.jpg",
-          priceTotal: 15.99,
-        }
-      }
-      return arr;
-    }, [])
-  const [cartList, setCartList] = useState(_enerateArray(5));
+  const cartList = useSelector(state => state.cart.cartList);
+  const totalCartPrice = useSelector(state => state.cart.totalCartPrice);
+
+  const dispatch = useDispatch();
+  // const [cartList, setCartList] = useState();
 
   const onIncreasePress = (itemId) => {
     const updatedCart = cartList.map(item => {
       if (item.id == itemId) {
-        const quantity = item.quantity + 1 || 1
+        const quantity = item.quantity + 1;
         const priceTotal = parseFloat((quantity * item.price).toFixed(2)) || 0
         return { ...item, quantity, priceTotal }
       }
       return item;
     })
-    setCartList(updatedCart);
+    // setCartList(updatedCart);
 
   }
 
@@ -60,10 +46,9 @@ const Cart = ({ navigation }) => {
       }
       return item;
     })
-    setCartList(updatedCart);
+    // setCartList(updatedCart);
   }
 
-  const cartTotal = cartList.reduce((total, item) => total + item.priceTotal, 0).toFixed(2)
   const renderItem = ({ item, index }) => {
     return (
       <View
@@ -216,9 +201,9 @@ const Cart = ({ navigation }) => {
               backgroundColor: COLORS.primary
             }}
           >
-            <Text style={styles.textTitle}>{cartList.length} products</Text>
+            <Text style={styles.textTitle}>{cartList?.length || 0} products</Text>
             <Text style={styles.textTitle}>Go to checkout</Text>
-            <Text style={styles.textTitle}>${cartTotal}</Text>
+            <Text style={styles.textTitle}>${totalCartPrice}</Text>
           </TouchableOpacity>
         </View>
       </Shadow>

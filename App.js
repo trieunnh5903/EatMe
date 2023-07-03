@@ -2,17 +2,19 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SplashScreen from 'react-native-splash-screen'
 import { MainNavigator } from './src/navigation'
-import { NavigationContainer } from '@react-navigation/native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
+import { Provider } from "react-redux";
+import store from './src/redux/store'
 const App = () => {
   React.useEffect(() => {
     SplashScreen.hide()
   }, [])
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <MainNavigator />
-    </GestureHandlerRootView>
+    <Provider store={store}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <MainNavigator />
+      </GestureHandlerRootView>
+    </Provider>
   )
 }
 

@@ -3,10 +3,20 @@ import React, { useCallback, useState, memo } from 'react'
 import { ButtonText, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { SharedElement } from 'react-navigation-shared-element'
+import { useDispatch } from "react-redux";
+import { addItem } from '../../redux/slice/cartSlice'
+import Toast from 'react-native-simple-toast';
+
 const DetailFood = ({ route, navigation }) => {
-  // const navigation = useNavigation();
+  const dispatch = useDispatch();
   const item = route.params;
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const onAddToCartPress = (item) => {
+    dispatch(addItem({ ...item, quantity }));
+    Toast.show('Add to cart successfully');
+    navigation.goBack();
+  }
+  
   const TextMore = memo(() => {
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
@@ -18,7 +28,6 @@ const DetailFood = ({ route, navigation }) => {
       setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
       // console.log(e.nativeEvent);
     }, []);
-
     return (
       <View style={{ marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
         <Text
@@ -150,7 +159,7 @@ const DetailFood = ({ route, navigation }) => {
           )}
           rightComponent={(
             <TouchableOpacity
-              style={[styles.buttonNavWrapper, {alignItems: 'center'}]}
+              style={[styles.buttonNavWrapper, { alignItems: 'center' }]}
             >
               <Image
                 source={item.isFavourite ? icons.favourite_fill : icons.favourite}
@@ -164,6 +173,7 @@ const DetailFood = ({ route, navigation }) => {
         <InformationFood />
         {/* footer */}
         <ButtonText
+          onPress={() => onAddToCartPress(item)}
           label={"Add to Cart"}
           containerStyle={styles.buttonFooter}
           labelStyle={styles.labelFooter}
@@ -180,7 +190,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: 40,
     height: 40,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: SIZES.radius,
     backgroundColor: COLORS.lightGray2,
