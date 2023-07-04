@@ -19,8 +19,8 @@ const DetailFood = ({ route, navigation }) => {
       return;
     }
     dispatch(addItem({ ...item, quantity }));
-    Toast.show('Add to cart successfully');
     navigation.goBack();
+    Toast.show('Add to cart successfully');
   }
 
   const TextMore = memo(() => {

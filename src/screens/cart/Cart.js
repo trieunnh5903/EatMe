@@ -9,18 +9,16 @@ import {
   Alert
 } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { Header, QuantityInput } from '../../components'
+import { ButtonIcon, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { Shadow } from 'react-native-shadow-2'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeItem, updateItemQuantity } from '../../redux/slice/cartSlice'
-
+import { SwipeListView } from "react-native-swipe-list-view";
 const Cart = ({ navigation }) => {
   const cartList = useSelector(state => state.cart.cartList);
   const totalCartPrice = useSelector(state => state.cart.totalCartPrice);
-
   const dispatch = useDispatch();
-  // const [cartList, setCartList] = useState();
 
   const onIncreasePress = (itemId, previousQuantity) => {
     const quantity = previousQuantity + 1;
@@ -59,35 +57,61 @@ const Cart = ({ navigation }) => {
     }
   }
 
-  const renderItem = ({ item, index }) => {
+  const closeRow = (rowMap, rowId) => {
+    if (rowMap[rowId]) {
+      rowMap[rowId].closeRow();
+    }
+  };
+  const deleteRow = (rowMap, rowId) => {
+    closeRow(rowMap, rowId);
+    dispatch(removeItem(rowId))
+  };
+
+  const renderHiddenItem = (data, rowMap) => (
+    <View
+      style={[styles.rowFront,
+      {
+        height: 100,
+        width: SIZES.width,
+        alignItems: 'flex-end',
+      }]}>
+      <ButtonIcon
+        icon={icons.delete}
+        iconStyle={{
+          width: 48,
+          height: 48,
+          tintColor: COLORS.white
+        }}
+        containerStyle={{
+          width: 100,
+          height: 100,
+          backgroundColor: COLORS.primary
+        }}
+        onPress={() => {
+          deleteRow(rowMap, data.item.id)
+        }}
+      />
+    </View>
+  );
+
+  const renderItem = (data, rowMap) => {
     return (
       <View
         style={styles.itemContainer}
       >
         {/* image */}
         <Image
-          style={{
-            margin: SIZES.base,
-            width: 70,
-            height: 80,
-            resizeMode: 'contain'
-          }}
+          style={styles.itemImage}
           source={{
-            uri: item.image
+            uri: data.item.image
           }}></Image>
         {/* content */}
         <View style={{ flex: 1 }}>
           <Text
-            style={{
-              color: COLORS.blackText,
-              ...FONTS.subtitle1
-            }}
-          >{item.name}</Text>
+            style={styles.itemName}
+          >{data.item.name}</Text>
           <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center'
-            }}
+            style={styles.itemBtnDetail}
           >
             <Text
               style={{
@@ -107,32 +131,19 @@ const Cart = ({ navigation }) => {
               ...FONTS.subtitle1,
               fontWeight: 'bold',
             }}
-          >${item.priceTotal}</Text>
+          >${data.item.priceTotal}</Text>
           {/* quantity input */}
           <QuantityInput
-            onAddPress={() => onIncreasePress(item.id, item.quantity)}
-            onRemovePress={() => onDecreasePress(item)}
-            labelStyle={{
-              color: COLORS.blackText,
-              ...FONTS.subtitle1,
-              fontWeight: 'bold',
-              marginHorizontal: SIZES.radius,
-            }}
-
-            iconContainerStyle={{
-              borderColor: COLORS.primary,
-              borderWidth: 1,
-              height: 40,
-              borderRadius: SIZES.base,
-              paddingHorizontal: SIZES.base
-            }}
-            quantity={item.quantity}
+            onAddPress={() => onIncreasePress(data.item.id, data.item.quantity)}
+            onRemovePress={() => onDecreasePress(data.item)}
+            labelStyle={styles.labelQuantityInput}
+            iconContainerStyle={styles.iconQuantityInput}
+            quantity={data.item.quantity}
             iconStyle={{
               width: 24,
               height: 24,
               tintColor: COLORS.black,
             }}
-
             containerStyle={{
               justifyContent: 'space-between',
               height: 40,
@@ -145,11 +156,12 @@ const Cart = ({ navigation }) => {
               ...FONTS.caption
             }}
           >
-            ${item.price}/product</Text>
+            ${data.item.price}/product</Text>
         </View>
       </View>
     )
   }
+
   return (
     <SafeAreaView style={styles.container}>
       {/* navigation */}
@@ -187,13 +199,22 @@ const Cart = ({ navigation }) => {
           paddingHorizontal: SIZES.radius
         }}
       />
+
       {/* list */}
-      <FlatList
+      <SwipeListView
         data={cartList}
-        keyExtractor={(item, index) => `${index}`}
+        keyExtractor={(item, index) => `${item.id}`}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
+        renderHiddenItem={renderHiddenItem}
+        rightOpenValue={-100}
+        previewRowKey={'0'}
+        previewOpenValue={-10}
+        previewOpenDelay={6000}
+        previewRepeat={true}
+        useNativeDriver={true}
       />
+
       {/* footer */}
       <Shadow>
         <View style={{
@@ -224,12 +245,45 @@ const Cart = ({ navigation }) => {
 export default Cart
 
 const styles = StyleSheet.create({
+  iconQuantityInput: {
+    borderColor: COLORS.primary,
+    borderWidth: 1,
+    height: 40,
+    borderRadius: SIZES.base,
+    paddingHorizontal: SIZES.base
+  },
+
+  labelQuantityInput: {
+    color: COLORS.blackText,
+    ...FONTS.subtitle1,
+    fontWeight: 'bold',
+    marginHorizontal: SIZES.radius,
+  },
+
+  itemBtnDetail: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+
+  itemName: {
+    color: COLORS.blackText,
+    ...FONTS.subtitle1
+  },
+
+  itemImage: {
+    margin: SIZES.base,
+    width: 70,
+    height: 80,
+    resizeMode: 'contain'
+  },
+
   itemContainer: {
     flexDirection: 'row',
-    borderRadius: SIZES.base,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: SIZES.radius,
+    backgroundColor: COLORS.white,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: COLORS.lightGray2
