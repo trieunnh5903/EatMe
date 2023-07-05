@@ -34,6 +34,7 @@ export default icons = {
     sort: require('../assets/icons/sort_FILL0_wght400_GRAD0_opsz48.png'),
     down_arrow: require('../assets/icons/expand.png'),
     cart: require('../assets/icons/shopping_bag_FILL0_wght600_GRAD0_opsz48.png'),
+    cart_weight400: require('../assets/icons/shopping_bag_FILL0_wght400_GRAD0_opsz48.png'),
     cart_fill: require('../assets/icons/shopping_bag_FILL1_wght600_GRAD0_opsz48.png'),
     calories: require('../assets/icons/calories.png'),
     star: require('../assets/icons/star.png'),

@@ -8,9 +8,12 @@ import {
 import React, { useCallback, useState } from 'react'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { ButtonIcon, Header } from '../../components'
-import { SwipeListView } from 'react-native-swipe-list-view'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFromFavorite } from '../../redux/slice/userSlice'
 
 const Favourite = () => {
+  const dispatch = useDispatch();
+  const favoriteList = useSelector(state => state.user.favorite);
   const _enerateArray = useCallback(
     (n) => {
       let arr = new Array(n);
@@ -28,19 +31,13 @@ const Favourite = () => {
       }
       return arr;
     }, [])
-  const [menuList, setMenuList] = useState(_enerateArray(3));
-
-  const renderItem = (data, rowMap) => (
+  // const [menuList, setMenuList] = useState(_enerateArray(3));
+  const onRemovePress = (itemToRemove) => {
+    dispatch(removeFromFavorite(itemToRemove))
+  }
+  const renderItem = ({ item }) => (
     <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: SIZES.radius,
-        borderBottomWidth: 1,
-        borderColor: COLORS.lightGray2,
-        backgroundColor: COLORS.white
-      }}
+      style={styles.itemContainer}
     >
       {/* image */}
       <Image
@@ -51,7 +48,7 @@ const Favourite = () => {
         }}
         source={{
           uri:
-            data.item.image
+            item.image
         }}></Image>
       {/* content */}
       <View style={{ flex: 1 }}>
@@ -80,8 +77,12 @@ const Favourite = () => {
       </View>
       {/* btn favourite */}
       <TouchableOpacity
+        onPress={() => onRemovePress(item)}
         style={{
-          padding: SIZES.radius,
+          padding: SIZES.base,
+          backgroundColor: COLORS.lightGray2,
+          marginRight: SIZES.radius,
+          borderRadius: 100,
         }}>
         <Image
           source={icons.favourite_fill}
@@ -95,71 +96,39 @@ const Favourite = () => {
     </View>
   )
 
-  const closeRow = (rowMap, rowId) => {
-    if (rowMap[rowId]) {
-      rowMap[rowId].closeRow();
-    }
-  };
-  const deleteRow = (rowMap, rowId) => {
-    closeRow(rowMap, rowId);
-    setTimeout(() => {
-      const newData = [...menuList];
-      const prevIndex = menuList.findIndex(item => item.id === rowId);
-      newData.splice(prevIndex, 1);
-      setMenuList(newData);
-    }, 0)
-  };
-
-  const renderHiddenItem = (data, rowMap) => (
-    <View
-      style={[styles.rowFront,
-      {
-        height: 100,
-        width: SIZES.width,
-        alignItems: 'flex-end',
-      }]}>
-      <ButtonIcon
-        icon={icons.delete}
-        iconStyle={{
-          width: 48,
-          height: 48,
-          tintColor: COLORS.white
-        }}
-        containerStyle={{
-          width: 100,
-          height: 100,
-          backgroundColor: COLORS.primary
-        }}
-        onPress={() => {
-          deleteRow(rowMap, data.item.id)
-        }}
-      />
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <Header
         title={"Favorite"}
       />
-      <FlatList
-        data={menuList}
-        keyExtractor={(item, index) => `${index}`}
-        showsVerticalScrollIndicator={false}
-        renderItem={renderItem}
-      />
+      {
+        favoriteList.length ? (
+          <FlatList
+            data={favoriteList}
+            keyExtractor={(item, index) => `${index}`}
+            showsVerticalScrollIndicator={false}
+            renderItem={renderItem}
+          />
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.black,
+                ...FONTS.h5,
+                fontWeight: 'bold'
+              }}
+            >Your favourite is empty !</Text>
+          </View>
+        )
+      }
 
-      {/* <SwipeListView
-        data={menuList}
-        renderItem={renderItem}
-        renderHiddenItem={renderHiddenItem}
-        rightOpenValue={-100}
-        previewRowKey={'0'}
-        previewOpenValue={-40}
-        previewOpenDelay={3000}
-        previewRepeat={true}
-        useNativeDriver={true}
-      /> */}
+
     </SafeAreaView>
   )
 }
@@ -167,6 +136,16 @@ const Favourite = () => {
 export default Favourite
 
 const styles = StyleSheet.create({
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SIZES.radius,
+    borderBottomWidth: 1,
+    borderColor: COLORS.lightGray2,
+    backgroundColor: COLORS.white
+  },
+
   container: {
     flex: 1,
     backgroundColor: COLORS.white

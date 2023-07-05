@@ -6,12 +6,24 @@ import { SharedElement } from 'react-navigation-shared-element'
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from '../../redux/slice/cartSlice'
 import Toast from 'react-native-simple-toast';
+import data from '../../data'
+import { addToFavorite, removeFromFavorite } from '../../redux/slice/userSlice'
 
 const DetailFood = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList);
+  const favorite = useSelector(state => state.user.favorite);
   const item = route.params;
+  const isFavorite = favorite.some(product => product.id === item.id);
   const [quantity, setQuantity] = useState(1);
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorite(item));
+    } else {
+      dispatch(addToFavorite(item));
+    }
+  };
+
   const onAddToCartPress = (item) => {
     const existingItem = cartList.find(itemCart => itemCart.id == item.id);
     if (existingItem) {
@@ -143,7 +155,6 @@ const DetailFood = ({ route, navigation }) => {
       </View>
     </View>
   )
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -164,11 +175,12 @@ const DetailFood = ({ route, navigation }) => {
           )}
           rightComponent={(
             <TouchableOpacity
+              onPress={() => handleToggleFavorite()}
               style={[styles.buttonNavWrapper, { alignItems: 'center' }]}
             >
               <Image
-                source={item.isFavourite ? icons.favourite_fill : icons.favourite}
-                style={[styles.icon, { tintColor: item.isFavourite ? COLORS.primary : COLORS.black }]} />
+                source={isFavorite ? icons.favourite_fill : icons.favourite}
+                style={[styles.icon, { tintColor: isFavorite ? COLORS.primary : COLORS.black }]} />
             </TouchableOpacity>
           )}
         />

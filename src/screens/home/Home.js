@@ -57,9 +57,10 @@ const Home = () => {
           name: "Hamburger",
           description: "Chicken patty hamburger",
           categories: [1, 2],
+          // // favorite include id user
+          // favorite: [],
           price: 15.99,
           calories: 78,
-          isFavourite: i % 2 == 0 ? true : false,
           image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
         }
       }
@@ -69,7 +70,6 @@ const Home = () => {
   const [menuList, setMenuList] = useState(_enerateArray(20));
   const [recommends, setRecommends] = useState(_enerateArray(10));
   const [popular, setPopular] = useState(_enerateArray(20))
-
   const SearchInput = () => {
     return (
       <View style={styles.searchContainer}>

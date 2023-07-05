@@ -169,16 +169,7 @@ const Cart = ({ navigation }) => {
         leftComponent={(
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={{
-              marginLeft: SIZES.radius,
-              paddingHorizontal: SIZES.radius,
-              backgroundColor: COLORS.lightGray2,
-              borderRadius: 100,
-              width: 40,
-              height: 40,
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
+            style={styles.btnBack}
           >
             <Image
               source={icons.arrow_back}
@@ -200,44 +191,100 @@ const Cart = ({ navigation }) => {
         }}
       />
 
-      {/* list */}
-      <SwipeListView
-        data={cartList}
-        keyExtractor={(item, index) => `${item.id}`}
-        showsVerticalScrollIndicator={false}
-        renderItem={renderItem}
-        renderHiddenItem={renderHiddenItem}
-        rightOpenValue={-100}
-        previewRowKey={'0'}
-        previewOpenValue={-10}
-        previewOpenDelay={6000}
-        previewRepeat={true}
-        useNativeDriver={true}
-      />
+      {
+        cartList.length > 0 ?
+          (
+            <>
+              {/* list */}
+              <SwipeListView
+                data={cartList}
+                keyExtractor={(item, index) => `${item.id}`}
+                showsVerticalScrollIndicator={false}
+                renderItem={renderItem}
+                renderHiddenItem={renderHiddenItem}
+                rightOpenValue={-100}
+                previewRowKey={'0'}
+                previewOpenValue={-10}
+                previewOpenDelay={6000}
+                previewRepeat={true}
+                useNativeDriver={true}
+              />
+              {/* footer */}
+              <Shadow>
+                <View style={{
+                  backgroundColor: COLORS.white,
+                  width: SIZES.width
+                }}>
+                  <TouchableOpacity
+                    style={{
+                      margin: SIZES.radius,
+                      flexDirection: 'row',
+                      height: 50,
+                      justifyContent: 'space-around',
+                      alignItems: 'center',
+                      borderRadius: SIZES.radius,
+                      backgroundColor: COLORS.primary
+                    }}
+                  >
+                    <Text style={styles.textTitle}>{cartList?.length || 0} products</Text>
+                    <Text style={styles.textTitle}>Go to checkout</Text>
+                    <Text style={styles.textTitle}>${totalCartPrice}</Text>
+                  </TouchableOpacity>
+                </View>
+              </Shadow>
+            </>
+          ) : (
+            <>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <Image
+                  style={{
+                    tintColor: COLORS.primary,
+                    width: 70,
+                    height: 70,
 
-      {/* footer */}
-      <Shadow>
-        <View style={{
-          backgroundColor: COLORS.white,
-          width: SIZES.width
-        }}>
-          <TouchableOpacity
-            style={{
-              margin: SIZES.radius,
-              flexDirection: 'row',
-              height: 50,
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              borderRadius: SIZES.radius,
-              backgroundColor: COLORS.primary
-            }}
-          >
-            <Text style={styles.textTitle}>{cartList?.length || 0} products</Text>
-            <Text style={styles.textTitle}>Go to checkout</Text>
-            <Text style={styles.textTitle}>${totalCartPrice}</Text>
-          </TouchableOpacity>
-        </View>
-      </Shadow>
+                  }}
+                  source={icons.cart_weight400}
+                />
+                <Text
+                  style={{
+                    color: COLORS.black,
+                    ...FONTS.h5,
+                    fontWeight: 'bold'
+                  }}
+                >Your cart is empty !</Text>
+              </View>
+              <Shadow>
+                <View style={{
+                  backgroundColor: COLORS.white,
+                  width: SIZES.width
+                }}>
+                  <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                      margin: SIZES.radius,
+                      flexDirection: 'row',
+                      height: 50,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: SIZES.radius,
+                      backgroundColor: COLORS.primary
+                    }}
+                  >
+                    <Text style={styles.textTitle}>Start shopping</Text>
+                  </TouchableOpacity>
+                </View>
+              </Shadow>
+            </>
+          )
+      }
+
+
     </SafeAreaView>
   )
 }
@@ -245,6 +292,17 @@ const Cart = ({ navigation }) => {
 export default Cart
 
 const styles = StyleSheet.create({
+  btnBack: {
+    marginLeft: SIZES.radius,
+    paddingHorizontal: SIZES.radius,
+    backgroundColor: COLORS.lightGray2,
+    borderRadius: 100,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   iconQuantityInput: {
     borderColor: COLORS.primary,
     borderWidth: 1,
