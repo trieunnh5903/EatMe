@@ -40,8 +40,9 @@ const DetailFood = ({ route, navigation }) => {
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
     const toggleNumberOfLines = useCallback(() => { //To toggle the show text or hide it
       setTextShown(!textShown);
+      console.log(textShown);
     }, [])
-
+    console.log(textShown);
     const onTextLayout = useCallback(e => {
       setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
     }, []);
@@ -50,13 +51,13 @@ const DetailFood = ({ route, navigation }) => {
         <Text
           onTextLayout={onTextLayout}
           numberOfLines={textShown ? undefined : 4}
-          style={{ color: COLORS.blackText, ...FONTS.bodyText1 }}>
+          style={{ color: COLORS.blackText, ...FONTS.body_large }}>
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
         </Text>
         {
           lengthMore ? <Text
             onPress={toggleNumberOfLines}
-            style={{ color: COLORS.primary, ...FONTS.bodyText1, fontWeight: 'bold' }}>{textShown ? 'Read less...' : 'Read more...'}</Text>
+            style={{ color: COLORS.primary, ...FONTS.body_large, fontWeight: 'bold' }}>{textShown ? 'Read less...' : 'Read more...'}</Text>
             : null
         }
       </View>
@@ -90,7 +91,7 @@ const DetailFood = ({ route, navigation }) => {
         labelStyle={{
           color: COLORS.white,
           marginHorizontal: 5,
-          ...FONTS.h6,
+          ...FONTS.title_large,
           fontWeight: 'bold'
         }}
         iconContainerStyle={{
@@ -145,11 +146,14 @@ const DetailFood = ({ route, navigation }) => {
           style={{
             marginHorizontal: SIZES.radius,
             color: COLORS.black,
-            ...FONTS.bodyText1
+            ...FONTS.body_large
           }}
         >Delivery Time:
           <Text
-            style={{ color: COLORS.gray }}
+            style={{
+              color: COLORS.gray,
+              ...FONTS.body_large
+            }}
           > 30 Mins</Text></Text>
 
       </View>
@@ -219,7 +223,7 @@ const styles = StyleSheet.create({
   },
 
   buttonFooter: {
-    marginTop: SIZES.padding,
+    marginTop: SIZES.radius,
     marginBottom: SIZES.radius,
     marginHorizontal: SIZES.padding,
     height: 50,
@@ -230,12 +234,12 @@ const styles = StyleSheet.create({
 
   textTitle: {
     color: COLORS.blackText,
-    ...FONTS.h5,
+    ...FONTS.headline_medium,
     fontWeight: 'bold'
   },
   textBody: {
     color: COLORS.blackText,
-    ...FONTS.bodyText1
+    ...FONTS.body_large
   },
 
   imageFood: {

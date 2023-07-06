@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { COLORS, FONTS, SIZES } from '../constants'
 
 const TextInputCustom = ({
+    value,
     containerStyle,
     placeholder,
     inputStyle,
@@ -29,6 +30,7 @@ const TextInputCustom = ({
             <View style={[styles.inputWrapper, inputStyle, isFocused ? styles.focusedTextInput : styles.defaultTextInput]}>
                 {leftComponent}
                 <TextInput
+                    value={value}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     cursorColor={COLORS.primary}
@@ -55,6 +57,7 @@ export default TextInputCustom
 const styles = StyleSheet.create({
     input: {
         flex: 1,
+        ...FONTS.title_medium
     },
     focusedTextInput: {
         borderColor: COLORS.transparentBlack7,
@@ -79,6 +82,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: SIZES.padding,
         paddingVertical: SIZES.base,
         color: COLORS.red,
-        ...FONTS.body4,
+        ...FONTS.title_small,
     }
 })

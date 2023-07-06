@@ -27,6 +27,9 @@ const ConfirmOtp = ({ navigation }) => {
         value,
         setValue,
     });
+    const isEnableButton = () => {
+        return value.length == CELL_COUNT
+    }
     return (
         <AuthLayout>
             <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -38,14 +41,15 @@ const ConfirmOtp = ({ navigation }) => {
                     style={{
                         marginTop: 30,
                         color: COLORS.blackText,
-                        ...FONTS.h5,
+                        ...FONTS.headline_medium,
                     }}
-                >OTP Authencation</Text>
+                >Xác thực OTP</Text>
                 <Text
                     style={{
                         color: COLORS.blackText,
+                        ...FONTS.body_large
                     }}
-                >An authencation code has been sent to trieu@gmail.com</Text>
+                >Mã xác thực đã được gửi tới trieu@gmail.com</Text>
                 {/* otp */}
                 <CodeField
                     ref={ref}
@@ -78,12 +82,13 @@ const ConfirmOtp = ({ navigation }) => {
                     alignItems: 'center',
                     marginTop: SIZES.padding
                 }}>
-                    <Text style={{ color: COLORS.darkGray, ...FONTS.body3 }}>Didn't receive the code? </Text>
+                    <Text style={{ color: COLORS.darkGray, ...FONTS.body_large }}>Didn't receive the code? </Text>
                     <ButtonText
                         label={`Resend (${timer}s)`}
                         disabled={timer == 0 ? false : true}
                         labelStyle={{
                             color: COLORS.primary,
+                            ...FONTS.body_large
                         }}
                         onPress={() => setTimer(60)}
                     />
@@ -92,17 +97,17 @@ const ConfirmOtp = ({ navigation }) => {
             {/* Footer */}
             <View>
                 <ButtonText
+                    disabled={!isEnableButton()}
                     labelStyle={{
                         color: COLORS.white,
-                        ...FONTS.button
                     }}
                     label={"Continue"}
-                    containerStyle={{
+                    containerStyle={[{
                         height: 50,
                         alignItems: 'center',
                         borderRadius: SIZES.radius,
                         backgroundColor: COLORS.primary
-                    }}
+                    }, !isEnableButton() && { opacity: 0.5 }]}
                     onPress={() => navigation.navigate('Root')} />
                 <View
                     style={{
@@ -113,7 +118,7 @@ const ConfirmOtp = ({ navigation }) => {
                     <Text
                         style={{
                             color: COLORS.darkGray,
-                            ...FONTS.body3
+                            ...FONTS.body_medium
                         }}>
                         By signing up, you agree to our
                     </Text>
@@ -121,7 +126,7 @@ const ConfirmOtp = ({ navigation }) => {
                         label={"Terms and Conditions"}
                         labelStyle={{
                             color: COLORS.primary,
-                            ...FONTS.body3
+                            ...FONTS.title_small
                         }}
                         onPress={() => console.log("Terms and Conditions")} />
                 </View>
@@ -155,5 +160,6 @@ const styles = StyleSheet.create({
     textCell: {
         color: COLORS.blackText,
         textAlign: 'center',
+        ...FONTS.headline_small
     }
 })

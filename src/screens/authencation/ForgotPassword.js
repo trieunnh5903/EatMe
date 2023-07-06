@@ -35,7 +35,7 @@ const ForgotPassword = ({ navigation }) => {
           style={{
             marginTop: SIZES.radius,
             color: COLORS.blackText,
-            ...FONTS.subtitle1,
+            ...FONTS.body_large,
           }}
         >Vui lòng nhập số điện thoại của bạn để lấy lại mật khẩu</Text>
         {/* input */}
@@ -75,9 +75,10 @@ const ForgotPassword = ({ navigation }) => {
               borderRadius: SIZES.radius,
             }}
             onPress={onSendPassword}
-            label={"Submit"}
+            label={"Khôi phục"}
             labelStyle={{
-              color: COLORS.white
+              color: COLORS.white,
+              ...FONTS.title_medium
             }}
           />
         </View>
@@ -90,7 +91,6 @@ export default ForgotPassword
 
 const styles = StyleSheet.create({
   btnBack: {
-    marginLeft: SIZES.radius,
     paddingHorizontal: SIZES.radius,
     backgroundColor: COLORS.lightGray2,
     borderRadius: 100,

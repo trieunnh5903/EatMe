@@ -60,7 +60,7 @@ const SortBottomSheet = ({ bottomSheetModalRef }) => {
                 <View>
                     <Text
                         style={{
-                            ...FONTS.subtitle1,
+                            ...FONTS.title_large,
                             color: COLORS.black,
                             marginBottom: SIZES.radius
                         }}

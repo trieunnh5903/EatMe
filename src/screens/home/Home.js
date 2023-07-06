@@ -9,9 +9,9 @@ const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
       <View style={[styles.section, style]}>
-        <Text style={{ ...FONTS.h5, color: COLORS.blackText, fontWeight: 'bold' }}>{title}</Text>
+        <Text style={{ ...FONTS.headline_small,fontWeight: 'bold', color: COLORS.blackText}}>{title}</Text>
         <TouchableOpacity onPress={onPress}>
-          <Text style={{ color: COLORS.primary, ...FONTS.subtitle2 }}>Show All</Text>
+          <Text style={{ color: COLORS.primary, ...FONTS.title_medium}}>Tất cả</Text>
         </TouchableOpacity>
       </View>
       {children}
@@ -35,8 +35,7 @@ const Categories = () => (
             <Text
               style={{
                 color: COLORS.blackText,
-                ...FONTS.subtitle2,
-                fontWeight: 'bold'
+                ...FONTS.label_large,
               }}>{item.name}</Text>
           </TouchableOpacity>
         )
@@ -55,7 +54,7 @@ const Home = () => {
         arr[i] = {
           id: i,
           name: "Hamburger",
-          description: "Chicken patty hamburger",
+          description: "Hamburger thịt gà",
           categories: [1, 2],
           // // favorite include id user
           // favorite: [],
@@ -70,30 +69,11 @@ const Home = () => {
   const [menuList, setMenuList] = useState(_enerateArray(20));
   const [recommends, setRecommends] = useState(_enerateArray(10));
   const [popular, setPopular] = useState(_enerateArray(20))
-  const SearchInput = () => {
-    return (
-      <View style={styles.searchContainer}>
-        {/* icon */}
-        <Image source={icons.search} style={styles.icon} />
-        {/* text input */}
-        <TouchableOpacity style={{ flex: 1 }} onPress={() => navigation.navigate("Search")}>
-          <TextInput
-            editable={false}
-            placeholder='search food'
-            style={styles.searchInput}></TextInput>
-        </TouchableOpacity>
-        {/* filter */}
-        <TouchableOpacity>
-          <Image source={icons.filter} style={styles.icon} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
 
   const RecommendedSection = () => {
     return (
       <Section
-        title={"Recomended"}
+        title={"Gợi ý"}
         onPress={() => console.log("show all recommended")}
       >
         <FlatList
@@ -132,7 +112,7 @@ const Home = () => {
       <Section
         style={{ marginTop: 0 }}
         onPress={() => console.log("Popular section")}
-        title={"Popular"}>
+        title={"Phổ biến"}>
         <FlatList
           data={popular}
           keyExtractor={item => `${item.id}`}
@@ -170,16 +150,16 @@ const Home = () => {
         <Text
           style={{
             color: COLORS.primary,
-            ...FONTS.subtitle1
+            ...FONTS.title_medium
           }}>
-          DELIVERY TO
+          GIAO ĐẾN
         </Text>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("EnterAddress")}
           style={styles.deliveryTo}>
           <Text
-            style={{ ...FONTS.h6, color: COLORS.blackText, fontWeight: 'bold' }}
+            style={{ ...FONTS.title_medium, color: COLORS.blackText, fontWeight: 'bold' }}
           >{data?.myProfile?.address}</Text>
           <Image source={icons.down_arrow} style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
@@ -267,8 +247,9 @@ const Home = () => {
           marginTop: 30,
           marginHorizontal: SIZES.padding,
           marginBottom: 20,
-          ...FONTS.h5, color: COLORS.blackText, fontWeight: 'bold'
-        }}>Nearby you</Text>
+          fontWeight: 'bold',
+          ...FONTS.headline_small, color: COLORS.blackText
+        }}>Gần bạn</Text>
         <FlatList
           data={menuList}
           scrollEnabled={false}

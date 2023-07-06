@@ -5,7 +5,7 @@ const myProfile = {
     id: 1,
     name: "Hai Trieu",
     profile_image: "https://plus.unsplash.com/premium_photo-1671581559476-10b8a92ffb77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    address: "No. 88, Jin Padungan, Kuching"
+    address: "214/66/7 Nguyễn Oanh"
 }
 
 
@@ -15,22 +15,22 @@ const onboarding_screens = [
         id: 1,
         backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/favourite_food.png"),
-        title: "Choose a Favourite Food",
-        description: "When you oder Eat Steet, we’ll hook you up with exclusive coupon, specials and rewards"
+        title: "Chọn một món ăn yêu thích",
+        description: "Khi bạn đặt hàng Eatme, chúng tôi sẽ kết nối bạn với phiếu giảm giá độc quyền, ưu đãi đặc biệt và phần thưởng"
     },
     {
         id: 2,
         backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/hot_delivery.png"),
-        title: "Hot Delivery to Home",
-        description: "We make food ordering fasr, simple and free-no matter if you order online or cash"
+        title: "Giao hàng đến tận nhà",
+        description: "Chúng tôi đặt món ăn nhanh hơn, đơn giản và miễn phí - bất kể bạn đặt hàng trực tuyến hay tiền mặt"
     },
     {
         id: 3,
         backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/great_food.png"),
-        title: "Receive the Great Food",
-        description: "You’ll receive the great food within a hour. And get free delivery credits for every order."
+        title: "Những món ăn tuyệt vời",
+        description: "Bạn sẽ nhận được những món ăn tuyệt vời trong vòng vài giờ. Và nhận tín dụng giao hàng miễn phí cho mỗi đơn hàng."
     }
 ]
 const delivery_time = [
@@ -110,22 +110,22 @@ const tags = [
 const categories = [
     {
         id: 1,
-        name: "Baguette",
+        name: "Bánh mì",
         icon: icons.baguette
     },
     {
         id: 2,
-        name: "Drinks",
+        name: "Đồ uống",
         icon: icons.cola
     },
     {
         id: 3,
-        name: "Rice",
+        name: "Cơm",
         icon: icons.rice
     },
     {
         id: 4,
-        name: "Cookies",
+        name: "Bánh quy",
         icon: icons.cookies
     },
     {
@@ -145,12 +145,12 @@ const categories = [
     },
     {
         id: 8,
-        name: "Noodles",
+        name: "Mì",
         icon: icons.noodles
     },
     {
         id: 9,
-        name: "Rice",
+        name: "Pizza",
         icon: icons.pizza
     }
 ]

@@ -55,7 +55,7 @@ const Favourite = () => {
         <Text
           style={{
             color: COLORS.blackText,
-            ...FONTS.subtitle1
+            ...FONTS.label_large
           }}
         >Thùng 30 gói mì Hảo Hảo tôm chua cay 75g</Text>
         <TouchableOpacity
@@ -68,7 +68,7 @@ const Favourite = () => {
           <Text
             style={{
               color: COLORS.darkGray,
-              ...FONTS.caption
+              ...FONTS.label_medium
             }}
           >Xem chi tiết</Text>
           <Image source={icons.down_arrow}
@@ -99,7 +99,7 @@ const Favourite = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        title={"Favorite"}
+        title={"Yêu thích"}
       />
       {
         favoriteList.length ? (
@@ -120,10 +120,9 @@ const Favourite = () => {
             <Text
               style={{
                 color: COLORS.black,
-                ...FONTS.h5,
-                fontWeight: 'bold'
+                ...FONTS.headline_small,
               }}
-            >Your favourite is empty !</Text>
+            >Danh sách của bạn trống</Text>
           </View>
         )
       }

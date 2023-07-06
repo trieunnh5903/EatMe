@@ -1,45 +1,120 @@
 
 export const FONTS = {
-    h1: { fontFamily: "Poppins-Light", fontSize: 93, letterSpacing: -1.5 },
-    h2: { fontFamily: "Poppins-Light", fontSize: 58, letterSpacing: -0.5 },
-    h3: { fontFamily: "Poppins-Regular", fontSize: 47, letterSpacing: 0 },
-    h4: { fontFamily: "Poppins-Regular", fontSize: 33, letterSpacing: 0.25 },
-    h5: { fontFamily: "Poppins-Regular", fontSize: 23, letterSpacing: 0},
-    h6: { fontFamily: "Poppins-Regular", fontSize: 19, letterSpacing: 0.15 },
-    subtitle1: {
-        fontSize: 16,
-        fontFamily: "Poppins-Regular",
-        letterSpacing: 0.15
-    },
-    subtitle2: {
-        fontSize: 14,
-        fontFamily: "Poppins-Medium",
-        letterSpacing: 0.1
-    },
-    bodyText1: {
-        fontSize: 16,
-        fontFamily: "Poppins-Regular",
-        letterSpacing: 0.5
-    },
-    bodyText2: {
-        fontSize: 14,
-        fontFamily: "Poppins-Regular",
-        letterSpacing: 0.25
+    display_large: {
+        lineHeight: 64,
+        fontSize: 57,
+        letterSpacing: -0.25,
+        fontFamily: "Roboto-Regular",
+
     },
 
-    button: {
+    display_medium: {
+        lineHeight: 52,
+        fontSize: 45,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    display_small: {
+        lineHeight: 44,
+        fontSize: 36,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    headline_large: {
+        lineHeight: 40,
+        fontSize: 32,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    headline_medium: {
+        lineHeight: 36,
+        fontSize: 28,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    headline_small: {
+        lineHeight: 32,
+        fontSize: 24,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    title_large: {
+        lineHeight: 28,
+        fontSize: 22,
+        letterSpacing: 0,
+        fontFamily: "Roboto-Regular",
+
+    },
+
+    title_medium: {
+        lineHeight: 24,
+        fontSize: 16,
+        letterSpacing: 0.15,
+        fontFamily: "Roboto-Medium",
+
+    },
+
+    title_small: {
+        lineHeight: 20,
         fontSize: 14,
-        fontFamily: "Poppins-Medium",
-        letterSpacing: 0.5
+        letterSpacing: 0.1,
+        fontFamily: "Roboto-Medium",
+
     },
-    caption: {
+
+    label_large: {
+        lineHeight: 20,
+        fontSize: 15,
+        letterSpacing: 0.1,
+        fontFamily: "Roboto-Medium",
+
+    },
+
+    label_medium: {
+        lineHeight: 16,
         fontSize: 12,
-        fontFamily: "Poppins-Regular",
-        letterSpacing: 0.4
+        letterSpacing: 0.5,
+        fontFamily: "Roboto-Medium",
+
     },
-    overline: {
-        fontSize: 10,
-        fontFamily: "Poppins-Regular",
-        letterSpacing: 1.5
-    }
+
+    label_small: {
+        lineHeight: 16,
+        fontSize: 11,
+        letterSpacing: 0.5,
+        fontFamily: "Roboto-Medium",
+    },
+
+    body_large: {
+        lineHeight: 24,
+        fontSize: 16,
+        letterSpacing: 0.5,
+        fontFamily: "Roboto-Regular",
+    },
+
+    body_medium: {
+        lineHeight: 20,
+        fontSize: 14,
+        letterSpacing: 0.25,
+        fontFamily: "Roboto-Regular",
+    },
+
+    body_small: {
+        lineHeight: 16,
+        fontSize: 12,
+        letterSpacing: 0.4,
+        fontFamily: "Roboto-Regular",
+    },
+
+
 };

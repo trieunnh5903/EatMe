@@ -30,18 +30,19 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
                 <Text
                     style={{
                         color: COLORS.blackText,
-                        ...FONTS.h6,
+                        ...FONTS.title_large,
                         fontWeight: 'bold'
                     }}>{item.name}</Text>
                 <Text
                     style={{
                         color: COLORS.darkGray2,
-                        ...FONTS.subtitle2
+                        ...FONTS.body_medium
                     }}>{item.description}</Text>
                 <Text
                     style={[{
                         color: COLORS.blackText,
                         marginTop: SIZES.base,
+                        ...FONTS.title_large,
                         fontWeight: 'bold'
                     },
                     FONTS.h5]}>${item.price}</Text>
@@ -54,7 +55,7 @@ export default VerticalFoodCard
 
 const styles = StyleSheet.create({
     textCalories: {
-        flex: 1, ...FONTS.bodyText2, color: COLORS.darkGray2
+        flex: 1, ...FONTS.label_large, color: COLORS.darkGray2
     },
     iconCalories: { width: 24, height: 24 },
     container: {

@@ -32,22 +32,40 @@ const Login = ({ navigation }) => {
                     <Text
                         style={{
                             color: COLORS.blackText,
-                            ...FONTS.h5,
+                            ...FONTS.headline_medium,
                         }}
                     >Đăng nhập</Text>
                     {/* phone number */}
                     <TextInputCustom
+                        value={phoneNumber}
                         placeholder={"Số điện thoại di động"}
                         rightComponent={
                             <View>
                                 {
                                     phoneNumber != '' && (
-                                        <Image style={[styles.iconCheck, {
-                                            tintColor: phoneNumberError == '' ? COLORS.green : COLORS.red
-                                        }]} source={
-                                            phoneNumberError == '' ? icons.check_circle : icons.cancel_circle
-                                        } />
+                                        phoneNumberError == '' ?
+                                            (
+                                                <Image
+                                                    style={[styles.iconCheck, {
+                                                        tintColor: COLORS.green
+                                                    }]} source={
+                                                        icons.check_circle
+                                                    } />
+                                            ) : (
+                                                <TouchableOpacity onPress={() => {
+                                                    setPhoneNumber('')
+                                                    setPhoneNumberError('')
+                                                }}>
+                                                    <Image
+                                                        style={[styles.iconCheck, {
+                                                            tintColor: COLORS.red
+                                                        }]} source={
+                                                            icons.cancel_circle
+                                                        } />
+                                                </TouchableOpacity>
+                                            )
                                     )
+
                                 }
                             </View>
                         }
@@ -75,6 +93,7 @@ const Login = ({ navigation }) => {
                     />
 
                     <TouchableOpacity
+                        style={{alignSelf: 'flex-start'}}
                         onPress={() => navigation.navigate("ForgotPassword")}
                     >
                         <Text
@@ -82,7 +101,7 @@ const Login = ({ navigation }) => {
                                 color: COLORS.blackText,
                                 marginTop: SIZES.base
                             },
-                            FONTS.body4]}>Quên mật khẩu?</Text>
+                            FONTS.title_small]}>Quên mật khẩu?</Text>
                     </TouchableOpacity>
 
                     <ButtonText
@@ -91,8 +110,7 @@ const Login = ({ navigation }) => {
                         label={"Đăng nhập"}
                         labelStyle={{
                             color: COLORS.white,
-                            ...FONTS.button,
-                            fontSize: 18
+                            ...FONTS.title_medium
 
                         }}
                         containerStyle={[{
@@ -106,7 +124,8 @@ const Login = ({ navigation }) => {
                     <View style={{ alignItems: 'center' }}>
                         <Text style={[{
                             color: COLORS.blackText,
-                            marginTop: SIZES.padding
+                            marginTop: SIZES.padding,
+                            ...FONTS.title_small
                         },
                         FONTS.body4]}>Hoặc đăng nhập bằng</Text>
                         <View style={{ flexDirection: 'row', gap: 10, marginVertical: SIZES.padding, }}>
@@ -134,7 +153,7 @@ const Login = ({ navigation }) => {
                     label={"Tạo tài khoản mới"}
                     labelStyle={{
                         color: COLORS.primary,
-                        ...FONTS.subtitle1,
+                        ...FONTS.title_medium
                     }}
                     onPress={() => navigation.navigate("Register")}
                 />

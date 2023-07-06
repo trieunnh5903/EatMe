@@ -13,9 +13,9 @@ const HorizontalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
                 <Image style={imageStyle} source={{ uri: item.image }}></Image>
             </SharedElement>
             <View style={{ flex: 1, marginTop: SIZES.radius }}>
-                <Text numberOfLines={1} style={[FONTS.h6, { color: COLORS.blackText, fontWeight: 'bold' }]}>{item.name}</Text>
-                <Text numberOfLines={1} style={[FONTS.subtitle2, { color: COLORS.darkGray2 }]}>{item.description}</Text>
-                <Text numberOfLines={1} style={[FONTS.h5, { color: COLORS.blackText, fontWeight: 'bold' },]}>${item.price}</Text>
+                <Text numberOfLines={1} style={[FONTS.title_large, { color: COLORS.blackText, fontWeight: 'bold' }]}>{item.name}</Text>
+                <Text numberOfLines={1} style={[FONTS.body_medium, { color: COLORS.darkGray2 }]}>{item.description}</Text>
+                <Text numberOfLines={1} style={[FONTS.title_large, { color: COLORS.blackText, fontWeight: 'bold' },]}>${item.price}</Text>
             </View>
             {/* calories */}
             <View style={styles.icon}>

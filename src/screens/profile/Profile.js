@@ -21,7 +21,7 @@ const OptionItem = ({ icon, label }) => (
       style={{
         marginLeft: SIZES.radius,
         color: COLORS.blackText,
-        ...FONTS.bodyText1,
+        ...FONTS.label_large,
         flex: 1
       }}
     >{label}
@@ -61,38 +61,38 @@ const Profile = () => {
             <Text
               style={{
                 color: COLORS.blackText,
-                ...FONTS.h6,
+                ...FONTS.title_large,
                 fontWeight: 'bold'
               }}
             >{data.myProfile.name}</Text>
             <Text
               style={{
                 color: COLORS.blackText,
-                ...FONTS.subtitle2,
-                fontWeight: 'bold'
+                ...FONTS.label_large,
+             
               }}
-            >Member</Text>
+            >Thành viên</Text>
           </View>
         </View>
         {/* user options */}
         {/* system options */}
         <View
           style={styles.optionWrapper}>
-          <OptionItem icon={icons.person} label={"Personal Info"} />
+          <OptionItem icon={icons.person} label={"Chỉnh sửa thông tin"} />
           <View style={{ height: SIZES.radius }} />
-          <OptionItem icon={icons.wallet} label={"Payment Method"} />
+          <OptionItem icon={icons.wallet} label={"Phương thức thanh toán"} />
           <View style={{ height: SIZES.radius }} />
-          <OptionItem icon={icons.address} label={"Addresses"} />
+          <OptionItem icon={icons.address} label={"Địa chỉ"} />
         </View>
         <View style={styles.optionWrapper}>
-          <OptionItem icon={icons.policy} label={"Terms and Policy"} />
+          <OptionItem icon={icons.policy} label={"Điều khoản và Chính sách"} />
           <View style={{ height: SIZES.radius }} />
-          <OptionItem icon={icons.support} label={"Support"} />
+          <OptionItem icon={icons.support} label={"Hỗ trợ"} />
           <View style={{ height: SIZES.radius }} />
-          <OptionItem icon={icons.notification_w400} label={"Notification"} />
+          <OptionItem icon={icons.notification_w400} label={"Thông báo"} />
         </View>
         <View style={styles.optionWrapper}>
-          <OptionItem icon={icons.logout} label={"Logout"} />
+          <OptionItem icon={icons.logout} label={"Đăng xuất"} />
         </View>
       </ScrollView>
     </SafeAreaView>

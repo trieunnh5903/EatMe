@@ -19,7 +19,7 @@ const SearchInput = ({ keyword, setKeyword, onDeletePress }) => {
         value={keyword}
         onChangeText={(value) => setKeyword(value)}
         cursorColor={COLORS.black}
-        placeholder='search food'
+        placeholder='Tìm kiếm món ăn'
         style={styles.searchInput}></TextInput>
       {/* filter */}
       {
@@ -40,7 +40,7 @@ const Chips = ({ label, onPress }) => (
     label={label}
     labelStyle={{
       color: COLORS.gray,
-      ...FONTS.subtitle1
+      ...FONTS.label_large
     }}
     containerStyle={{
       justifyContent: 'center',
@@ -100,18 +100,18 @@ const Search = () => {
           }>
           <Text
             style={{
-              ...FONTS.subtitle1,
+              ...FONTS.title_medium,
               color: COLORS.blackText,
 
             }}>
-            Popular
+            Phổ biến
           </Text>
           <TouchableOpacity >
             <Text
               style={{
                 color: COLORS.primary,
-                ...FONTS.subtitle2
-              }}>Show All</Text>
+                ...FONTS.title_small
+              }}>Tất cả</Text>
           </TouchableOpacity>
         </View>
         <FlatList
@@ -167,21 +167,21 @@ const Search = () => {
                   <Text
                     style={{
                       color: COLORS.blackText,
-                      ...FONTS.subtitle1,
+                      ...FONTS.title_medium,
                       marginBottom: SIZES.radius
-                    }}>Hot search</Text>
+                    }}>Tìm kiếm nhiều</Text>
                   <View
                     style={{
                       flexDirection: 'row',
                       flexWrap: 'wrap'
                     }}
                   >
-                    <Chips label={"Rice"} onPress={() => console.log("Chips press")} />
-                    <Chips label={"Noodle"} onPress={() => console.log("Chips press")} />
-                    <Chips label={"Bread"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Cơm"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Bún"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Bánh mì"} onPress={() => console.log("Chips press")} />
                     <Chips label={"Pizza"} onPress={() => console.log("Chips press")} />
                     <Chips label={"Hamburger"} onPress={() => console.log("Chips press")} />
-                    <Chips label={"Cookies"} onPress={() => console.log("Chips press")} />
+                    <Chips label={"Bánh ngọt"} onPress={() => console.log("Chips press")} />
                     <Chips label={"Coca"} onPress={() => console.log("Chips press")} />
                   </View>
                 </View>
@@ -193,7 +193,10 @@ const Search = () => {
               // after search
               <>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: SIZES.padding, marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
-                  <Text>Found 13+ products</Text>
+                  <Text
+                    style={{ color: COLORS.gray, ...FONTS.body_medium }}>
+                    Tìm thấy 13+ sản phẩm
+                  </Text>
                   <ButtonTextIcon
                     containerStyle={{
                       borderRadius: SIZES.padding,
@@ -204,10 +207,10 @@ const Search = () => {
                       marginTop: -SIZES.base,
                     }}
                     onPress={handlePresentModalPress}
-                    labelStyle={{ color: COLORS.gray }}
+                    labelStyle={{ color: COLORS.gray, ...FONTS.label_large }}
                     iconLeft={icons.sort}
                     iconStyle={{ width: 16, height: 16, marginRight: SIZES.base, tintColor: COLORS.gray }}
-                    label={"Sort"} />
+                    label={"Lọc"} />
                 </View>
                 <FlatList
                   data={menuList}
@@ -261,6 +264,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS.black
   },
   searchInput: {
+    ...FONTS.body_medium,
     flex: 1,
     marginLeft: 16,
   },

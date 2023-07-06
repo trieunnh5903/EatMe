@@ -9,7 +9,7 @@ const AuthLayout = ({ children }) => {
             <FocusAwareStatusBar />
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={[styles.container, { paddingTop: StatusBar.currentHeight }]}>
+                style={[styles.container]}>
                 <TouchableWithoutFeedback
                     touchSoundDisabled={true}
                     onPress={Keyboard.dismiss}>

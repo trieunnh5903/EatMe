@@ -8,7 +8,7 @@ const ButtonText = ({ label, labelStyle, containerStyle, onPress, disabled }) =>
             disabled={disabled}
             onPress={onPress}
             style={[styles.container, containerStyle]}>
-            <Text style={[FONTS.button, labelStyle]}>{label}</Text>
+            <Text style={[FONTS.title_medium, labelStyle]}>{label}</Text>
         </TouchableOpacity>
     )
 }

@@ -27,7 +27,7 @@ const Register = ({ navigation }) => {
                     <Text
                         style={{
                             color: COLORS.blackText,
-                            ...FONTS.h5,
+                            ...FONTS.headline_medium,
                         }}
                     >Đăng ký</Text>
                     {/* phoneNumber */}
@@ -112,7 +112,8 @@ const Register = ({ navigation }) => {
                     <View style={{ alignItems: 'center' }}>
                         <Text style={[{
                             color: COLORS.blackText,
-                            marginTop: SIZES.padding
+                            marginTop: SIZES.padding,
+                            ...FONTS.title_small
                         },
                         FONTS.body4]}>Hoặc đăng nhập bằng</Text>
                         <View style={{ flexDirection: 'row', gap: 10, marginVertical: SIZES.padding, }}>
@@ -140,7 +141,7 @@ const Register = ({ navigation }) => {
                     label={"Đăng nhập"}
                     labelStyle={{
                         color: COLORS.primary,
-                        ...FONTS.subtitle1,
+                        ...FONTS.title_medium
                     }}
                     onPress={() => navigation.goBack()}
                 />

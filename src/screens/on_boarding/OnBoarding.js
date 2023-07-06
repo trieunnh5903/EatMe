@@ -27,27 +27,26 @@ const renderItem = ({ item, index }) => {
     return (
         <View style={{ flex: 1, width: SIZES.width }}>
             <ImageBackground
-                style={{ flex: 1 }}
+            resizeMode='cover'
+                style={{ flex: 1, }}
                 source={item.backgroundImage}>
                 <View style={[styles.bannerImageWrapper]} >
                     <Image
                         resizeMode='contain'
-                        style={[styles.bannerImage, { marginBottom: -SIZES.padding }]}
+                        style={[styles.bannerImage]}
                         source={item.bannerImage}></Image>
                 </View>
             </ImageBackground>
             <View style={{
                 alignItems: 'center',
-                justifyContent: 'center',
-                padding: SIZES.radius,
-                marginTop: 30,
-                marginBottom: index == 1 ? 21 : 0
+                justifyContent: 'flex-start',
+                marginTop: SIZES.padding,
+                padding: SIZES.base,
             }}>
                 <Text style={{
                     color: COLORS.blackText,
                     textAlign: 'center',
-                    ...FONTS.h5,
-                    fontWeight: 'bold'
+                    ...FONTS.headline_medium,
                 }}>{item.title}</Text>
                 <Text
                     style={{
@@ -55,7 +54,7 @@ const renderItem = ({ item, index }) => {
                         textAlign: 'center',
                         paddingHorizontal: SIZES.padding,
                         marginTop: SIZES.radius,
-                        ...FONTS.bodyText2
+                        ...FONTS.body_large
                     }}>{item.description}</Text>
             </View>
         </View>
@@ -128,7 +127,7 @@ const OnBoarding = ({ navigation }) => {
             }, [currentIndex])
         return (
             <View style={{
-
+                marginTop: SIZES.spacing
             }}>
                 {/* dots */}
                 <View style={{
@@ -147,8 +146,8 @@ const OnBoarding = ({ navigation }) => {
                     }}>
                     <ButtonText
                         onPress={() => navigation.navigate("Login")}
-                        label={"Skip"}
-                        labelStyle={[FONTS.subtitle1, { color: COLORS.gray, fontWeight: 'bold' }]} />
+                        label={"Bỏ qua"}
+                        labelStyle={[FONTS.title_medium, { color: COLORS.gray }]} />
                     <ButtonText
                         onPress={() => {
                             if (currentIndex < 2) {
@@ -156,8 +155,8 @@ const OnBoarding = ({ navigation }) => {
                             }
                             else navigation.navigate("Login")
                         }}
-                        label={"Next"}
-                        labelStyle={[FONTS.subtitle1, { color: COLORS.white, fontWeight: 'bold' }]}
+                        label={"Tiếp tục"}
+                        labelStyle={[FONTS.title_medium, { color: COLORS.white, }]}
                         containerStyle={{
                             backgroundColor: COLORS.primary,
                             height: 60,
@@ -171,7 +170,7 @@ const OnBoarding = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <FocusAwareStatusBar/>
+            <FocusAwareStatusBar />
             {/* logo */}
             <Logo />
             {/* content */}
@@ -195,9 +194,9 @@ export default OnBoarding
 
 const styles = StyleSheet.create({
     bannerImage: {
-        width: SIZES.width * 0.8,
-        height: SIZES.width * 0.8,
-        // marginBottom: -SIZES.padding
+        width: SIZES.width * 0.7,
+        height: SIZES.width * 0.7,
+        marginBottom:-10
     },
     bannerImageWrapper: {
         justifyContent: 'flex-end',
@@ -209,7 +208,7 @@ const styles = StyleSheet.create({
 
     logo: {
         width: SIZES.width * 0.5,
-        height: 100
+        height: 100,
     },
 
     headerLogo: {
@@ -217,7 +216,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         right: 0,
-        top: SIZES.padding,
+        top: 0,
         justifyContent: 'center',
         alignItems: 'center',
     },

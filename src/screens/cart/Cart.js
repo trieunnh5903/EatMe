@@ -28,15 +28,15 @@ const Cart = ({ navigation }) => {
 
   const showAlertDelete = (itemIdToRemove) => {
     Alert.alert(
-      "Notification",
-      "Do you want to delete this product?",
+      "Thông báo",
+      "Bạn muốn xóa sản phẩm này không?",
       [
         {
-          text: 'Cancel',
+          text: 'Hủy',
           style: 'default',
         },
         {
-          text: 'OK',
+          text: 'Đồng ý',
           onPress: () => dispatch(removeItem(itemIdToRemove)),
           style: 'default',
         },
@@ -116,7 +116,7 @@ const Cart = ({ navigation }) => {
             <Text
               style={{
                 color: COLORS.darkGray,
-                ...FONTS.caption
+                ...FONTS.title_small
               }}
             >Xem chi tiết</Text>
             <Image source={icons.down_arrow}
@@ -128,7 +128,7 @@ const Cart = ({ navigation }) => {
           <Text
             style={{
               color: COLORS.black,
-              ...FONTS.subtitle1,
+              ...FONTS.title_medium,
               fontWeight: 'bold',
             }}
           >${data.item.priceTotal}</Text>
@@ -153,10 +153,10 @@ const Cart = ({ navigation }) => {
           <Text
             style={{
               color: COLORS.black,
-              ...FONTS.caption
+              ...FONTS.label_medium
             }}
           >
-            ${data.item.price}/product</Text>
+            ${data.item.price}/sản phẩm</Text>
         </View>
       </View>
     )
@@ -185,7 +185,7 @@ const Cart = ({ navigation }) => {
             }}
           />
         )}
-        title={"My Cart"}
+        title={"Giỏ hàng"}
         containerStyle={{
           paddingHorizontal: SIZES.radius
         }}
@@ -226,8 +226,8 @@ const Cart = ({ navigation }) => {
                       backgroundColor: COLORS.primary
                     }}
                   >
-                    <Text style={styles.textTitle}>{cartList?.length || 0} products</Text>
-                    <Text style={styles.textTitle}>Go to checkout</Text>
+                    <Text style={styles.textTitle}>{cartList?.length || 0} sản phẩm</Text>
+                    <Text style={styles.textTitle}>Thanh toán</Text>
                     <Text style={styles.textTitle}>${totalCartPrice}</Text>
                   </TouchableOpacity>
                 </View>
@@ -254,8 +254,7 @@ const Cart = ({ navigation }) => {
                 <Text
                   style={{
                     color: COLORS.black,
-                    ...FONTS.h5,
-                    fontWeight: 'bold'
+                    ...FONTS.headline_small,
                   }}
                 >Your cart is empty !</Text>
               </View>
@@ -313,7 +312,7 @@ const styles = StyleSheet.create({
 
   labelQuantityInput: {
     color: COLORS.blackText,
-    ...FONTS.subtitle1,
+    ...FONTS.title_medium,
     fontWeight: 'bold',
     marginHorizontal: SIZES.radius,
   },
@@ -326,7 +325,7 @@ const styles = StyleSheet.create({
 
   itemName: {
     color: COLORS.blackText,
-    ...FONTS.subtitle1
+    ...FONTS.title_medium
   },
 
   itemImage: {
@@ -349,7 +348,7 @@ const styles = StyleSheet.create({
 
   textTitle: {
     color: COLORS.white2,
-    ...FONTS.subtitle1,
+    ...FONTS.title_medium,
     fontWeight: 'bold'
   },
 
