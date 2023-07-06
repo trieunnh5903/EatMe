@@ -1,11 +1,9 @@
 import { StyleSheet, StatusBar, View } from 'react-native'
 import React from 'react'
-import { useIsFocused } from '@react-navigation/native';
+import { COLORS } from '../constants'
 
-function FocusAwareStatusBar(props) {
-    const isFocused = useIsFocused();
-
-    return isFocused ? <StatusBar {...props} /> : null;
+function FocusAwareStatusBar() {
+    return <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
 }
 
 export default FocusAwareStatusBar

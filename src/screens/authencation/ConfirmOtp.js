@@ -5,7 +5,7 @@ import { CodeField, useBlurOnFulfill, useClearByFocusCell, Cursor } from 'react-
 import { COLORS, SIZES, FONTS, images } from '../../constants'
 import { ButtonText } from '../../components'
 const CELL_COUNT = 4;
-const ConfirmOtp = () => {
+const ConfirmOtp = ({ navigation }) => {
     const [value, setValue] = useState('');
     const [timer, setTimer] = useState(60)
     useEffect(() => {
@@ -29,7 +29,7 @@ const ConfirmOtp = () => {
     });
     return (
         <AuthLayout>
-            <View style={{ flex: 1, justifyContent: 'center'}}>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
                 {/* logo */}
                 <View style={{ alignItems: 'center', alignSelf: 'center' }}>
                     <Image source={images.logo_03} resizeMode='contain' style={styles.logo} />
@@ -103,7 +103,7 @@ const ConfirmOtp = () => {
                         borderRadius: SIZES.radius,
                         backgroundColor: COLORS.primary
                     }}
-                    onPress={() => console.log('continue')} />
+                    onPress={() => navigation.navigate('Root')} />
                 <View
                     style={{
                         marginVertical: SIZES.padding,

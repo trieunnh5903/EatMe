@@ -158,7 +158,6 @@ const DetailFood = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
         {/* header */}
         <Header
           containerStyle={{

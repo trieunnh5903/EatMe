@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View, S
 import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
 import { icons, COLORS, SIZES, FONTS, images } from '../../constants'
 import data from '../../data'
-import { BadgeButton, Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
+import { BadgeButton, FocusAwareStatusBar, Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
 const Section = ({ title, onPress, children, style }) => {
@@ -224,7 +224,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <StatusBar backgroundColor={COLORS.white} barStyle={'dark-content'} />
+      <FocusAwareStatusBar/>
       <ScrollView
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>

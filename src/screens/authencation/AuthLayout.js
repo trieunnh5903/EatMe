@@ -1,14 +1,15 @@
-import { Image, Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import { COLORS, FONTS, SIZES, images } from '../../constants'
+import { FocusAwareStatusBar } from '../../components'
 
 const AuthLayout = ({ children }) => {
     return (
         <>
+            <FocusAwareStatusBar />
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={[styles.container, { paddingTop: StatusBar.currentHeight }]}>
-                <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
                 <TouchableWithoutFeedback
                     touchSoundDisabled={true}
                     onPress={Keyboard.dismiss}>

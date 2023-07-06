@@ -10,7 +10,7 @@ import React, { useRef, useState, useCallback } from 'react'
 import { COLORS, SIZES, images, FONTS } from '../../constants'
 import data from '../../data'
 import Animated, { Extrapolate, interpolate, interpolateColor, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
-import { ButtonText } from '../../components'
+import { ButtonText, FocusAwareStatusBar } from '../../components'
 
 
 const Logo = () => (
@@ -171,8 +171,8 @@ const OnBoarding = ({ navigation }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <FocusAwareStatusBar/>
             {/* logo */}
-            <StatusBar animated translucent backgroundColor={COLORS.transparent} barStyle={"dark-content"} />
             <Logo />
             {/* content */}
             <Animated.FlatList

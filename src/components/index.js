@@ -5,7 +5,6 @@ import VerticalFoodCard from "./VerticalFoodCard"
 import ButtonIcon from "./ButtonIcon"
 import ButtonText from "./ButtonText"
 import ButtonTextIcon from "./ButtonTextIcon"
-import InputForm from "./InputForm"
 import ButtonQuantityCart from "./ButtonQuantityCart"
 import QuantityInput from "./QuantityInput"
 import TotalFooter from "./TotalFooter"
@@ -19,7 +18,6 @@ export {
     CardItem,
     TotalFooter,
     Divider,
-    InputForm,
     HorizontalFoodCard,
     FocusAwareStatusBar,
     VerticalFoodCard,

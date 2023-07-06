@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import React, { useRef, useState } from 'react'
 import AuthLayout from './AuthLayout'
-import { ButtonIcon, ButtonText, TextInputCustom } from '../../components'
+import { ButtonIcon, ButtonText, FocusAwareStatusBar, TextInputCustom } from '../../components'
 import { SIZES, FONTS, COLORS, icons, images } from '../../constants'
 import validate from '../../utils/validate'
 
@@ -21,7 +21,8 @@ const Login = ({ navigation }) => {
         return phoneNumber != '' && password != '' && passwordError == '' && phoneNumberError == '';
     }
     return (
-        <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <FocusAwareStatusBar />
             <AuthLayout>
                 {/* logo */}
                 <View style={{ alignItems: 'center', alignSelf: 'center' }}>
