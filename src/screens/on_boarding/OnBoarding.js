@@ -61,13 +61,16 @@ const renderItem = ({ item, index }) => {
         </View>
     )
 }
-const OnBoarding = () => {
+const OnBoarding = ({ navigation }) => {
     const scrollX = useRef(useSharedValue(0)).current
     const flastListRef = useRef();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const onViewChangeRef = useRef(({ viewableItems }) => {
-        setCurrentIndex(viewableItems[0].index)
-    })
+    const handleViewableItemsChanged = useRef(({ viewableItems }) => {
+        if (viewableItems.length > 0) {
+            const firstVisibleItem = viewableItems[0];
+            setCurrentIndex(firstVisibleItem.index);
+        }
+    });
     const onScroll = useAnimatedScrollHandler((event) => {
         scrollX.value = event.contentOffset.x
     })
@@ -117,11 +120,11 @@ const OnBoarding = () => {
     const Footer = () => {
         const onPress = useCallback(
             () => {
-                console.log("onPress");
-                flastListRef?.current.scrollToIndex({
-                    index: currentIndex + 1,
-                    animated: true
-                })
+                const nextIndex = currentIndex + 1;
+                setCurrentIndex(nextIndex);
+                if (flastListRef.current) {
+                    flastListRef.current.scrollToIndex({ index: nextIndex, animated: true });
+                }
             }, [currentIndex])
         return (
             <View style={{
@@ -134,51 +137,35 @@ const OnBoarding = () => {
                     <Dots />
                 </View>
                 {/* button */}
-                {currentIndex < data.onboarding_screens.length - 1 ?
-                    <View
-                        style={{
-                            width: SIZES.width,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            marginVertical: SIZES.padding,
-                            paddingHorizontal: SIZES.padding
-                        }}>
-                        <ButtonText
-                            // onPress={() => navigation.navigate("SignIn")}
-                            label={"Skip"}
-                            labelStyle={[FONTS.subtitle1, { color: COLORS.gray, fontWeight: 'bold' }]} />
-                        <ButtonText
-                            onPress={onPress}
-                            label={"Next"}
-                            labelStyle={[FONTS.subtitle1, { color: COLORS.white, fontWeight: 'bold' }]}
-                            containerStyle={{
-                                backgroundColor: COLORS.primary,
-                                height: 60,
-                                width: SIZES.width * 0.5,
-                                borderRadius: SIZES.radius
-                            }}
-                        />
-                    </View> :
-                    <View style={{
-                        paddingHorizontal: SIZES.padding,
+                <View
+                    style={{
+                        width: SIZES.width,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
                         marginVertical: SIZES.padding,
+                        paddingHorizontal: SIZES.padding
                     }}>
-                        <ButtonText
-                            label={"Let's Get Started"}
-                            labelStyle={{
-                                color: COLORS.white,
-                                ...FONTS.subtitle1,
-                                fontWeight: 'bold'
-                            }}
-                            containerStyle={{
-                                height: 60,
-                                borderRadius: SIZES.radius,
-                                backgroundColor: COLORS.primary,
-                                width: SIZES.width - 2 * SIZES.padding
-                            }}
-                        />
-                    </View>
-                }
+                    <ButtonText
+                        onPress={() => navigation.navigate("Login")}
+                        label={"Skip"}
+                        labelStyle={[FONTS.subtitle1, { color: COLORS.gray, fontWeight: 'bold' }]} />
+                    <ButtonText
+                        onPress={() => {
+                            if (currentIndex < 2) {
+                                onPress()
+                            }
+                            else navigation.navigate("Login")
+                        }}
+                        label={"Next"}
+                        labelStyle={[FONTS.subtitle1, { color: COLORS.white, fontWeight: 'bold' }]}
+                        containerStyle={{
+                            backgroundColor: COLORS.primary,
+                            height: 60,
+                            width: SIZES.width * 0.5,
+                            borderRadius: SIZES.radius
+                        }}
+                    />
+                </View>
             </View>
         )
     }
@@ -190,7 +177,8 @@ const OnBoarding = () => {
             {/* content */}
             <Animated.FlatList
                 ref={flastListRef}
-                onViewableItemsChanged={onViewChangeRef.current}
+                onViewableItemsChanged={handleViewableItemsChanged.current}
+                viewabilityConfig={{ itemVisiblePercentThreshold: 50 }}
                 pagingEnabled
                 horizontal
                 onScroll={onScroll}

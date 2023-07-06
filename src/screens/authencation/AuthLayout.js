@@ -1,30 +1,24 @@
-import { Image, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Image, Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import { COLORS, FONTS, SIZES, images } from '../../constants'
 
-const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
+const AuthLayout = ({ children }) => {
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.container}>
-            <TouchableWithoutFeedback
-                touchSoundDisabled={true}
-                onPress={Keyboard.dismiss}>
-                <View style={styles.inner}>
-                    {/* logo */}
-                    <View style={{ alignItems: 'center', alignSelf: 'center'}}>
-                    <Image source={images.logo_03} resizeMode='contain' style={styles.logo} />
+        <>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={[styles.container, { paddingTop: StatusBar.currentHeight }]}>
+                <StatusBar animated backgroundColor={COLORS.white} barStyle={'dark-content'} />
+                <TouchableWithoutFeedback
+                    touchSoundDisabled={true}
+                    onPress={Keyboard.dismiss}>
+                    <View style={styles.inner}>
+                        {/* children */}
+                        {children}
                     </View>
-                    {/* title, subtitle */}
-                    {/* <View style={[titleContainerStyle, styles.titleWrapper]}>
-                        <Text style={styles.title}>{title}</Text>
-                        <Text style={styles.subtitle}>{subtitle}</Text>
-                    </View> */}
-                    {/* children */}
-                    {children}
-                </View>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </>
     )
 }
 
@@ -54,11 +48,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: COLORS.white,
     },
 
     inner: {
         flex: 1,
-        backgroundColor: COLORS.white,
         justifyContent: 'center',
         paddingHorizontal: SIZES.padding,
     },

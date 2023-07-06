@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS, FONTS, SIZES } from '../constants'
 
 const TextInputCustom = ({
     containerStyle,
-    label,
     placeholder,
     inputStyle,
     leftComponent,
@@ -15,12 +14,24 @@ const TextInputCustom = ({
     autoCapitalize = 'none',
     errorMsg,
 }) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    };
+
     return (
         <View style={containerStyle}>
             {/* text input */}
-            <View style={[styles.inputWrapper, inputStyle]}>
+            <View style={[styles.inputWrapper, inputStyle, isFocused ? styles.focusedTextInput : styles.defaultTextInput]}>
                 {leftComponent}
                 <TextInput
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    cursorColor={COLORS.primary}
                     style={[styles.input]}
                     placeholder={placeholder}
                     placeholderTextColor={COLORS.gray}
@@ -45,6 +56,13 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
     },
+    focusedTextInput: {
+        borderColor: COLORS.transparentBlack7,
+    },
+
+    defaultTextInput: {
+        borderColor: COLORS.lightGray1,
+    },
 
     inputWrapper: {
         flexDirection: 'row',
@@ -57,10 +75,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
-    label: {
-        color: COLORS.gray,
-        ...FONTS.body4
-    },
     errorMsg: {
         paddingHorizontal: SIZES.padding,
         paddingVertical: SIZES.base,

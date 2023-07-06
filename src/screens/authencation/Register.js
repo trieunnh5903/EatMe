@@ -1,27 +1,23 @@
-import {
-    StyleSheet, Text, View,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-    StatusBar
-} from 'react-native'
-import React, { useRef, useState } from 'react'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native'
+import React, { useState } from 'react'
 import AuthLayout from './AuthLayout'
 import { ButtonIcon, ButtonText, TextInputCustom } from '../../components'
-import { SIZES, FONTS, COLORS, icons, images } from '../../constants'
+import { COLORS, FONTS, SIZES, images } from '../../constants'
 import validate from '../../utils/validate'
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [fullName, setFullName] = useState('');
+    const [fullNameError, setFullNameError] = useState('');
     const isEnableSignIn = () => {
-        return phoneNumber != '' && password != '' && passwordError == '' && phoneNumberError == '';
+        return phoneNumber != '' && password != '' && passwordError == '' && phoneNumberError == '' && fullName != '';
     }
     return (
-        <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <AuthLayout>
                 {/* logo */}
                 <View style={{ alignItems: 'center', alignSelf: 'center' }}>
@@ -33,8 +29,8 @@ const Login = ({ navigation }) => {
                             color: COLORS.blackText,
                             ...FONTS.h5,
                         }}
-                    >Đăng nhập</Text>
-                    {/* phone number */}
+                    >Đăng ký</Text>
+                    {/* phoneNumber */}
                     <TextInputCustom
                         placeholder={"Số điện thoại di động"}
                         rightComponent={
@@ -72,22 +68,33 @@ const Login = ({ navigation }) => {
                         }}
                         errorMsg={passwordError}
                     />
-
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("ForgotPassword")}
-                    >
-                        <Text
-                            style={[{
-                                color: COLORS.blackText,
-                                marginTop: SIZES.base
-                            },
-                            FONTS.body4]}>Quên mật khẩu?</Text>
-                    </TouchableOpacity>
+                    <TextInputCustom
+                        containerStyle={{ marginTop: passwordError ? 0 : SIZES.radius }}
+                        placeholder={"Tên của bạn"}
+                        rightComponent={
+                            <View>
+                                {
+                                    fullName != '' && (
+                                        <Image style={[styles.iconCheck, {
+                                            tintColor: fullNameError == '' ? COLORS.green : COLORS.red
+                                        }]} source={
+                                            fullNameError == '' ? icons.check_circle : icons.cancel_circle
+                                        } />
+                                    )
+                                }
+                            </View>
+                        }
+                        onChangeText={(value) => {
+                            validate.validateFullName(value, setFullNameError)
+                            setFullName(value);
+                        }}
+                        errorMsg={fullNameError}
+                    />
 
                     <ButtonText
                         disabled={!isEnableSignIn()}
                         onPress={() => navigation.navigate("ConfirmOtp")}
-                        label={"Đăng nhập"}
+                        label={"Đăng ký"}
                         labelStyle={{
                             color: COLORS.white,
                             ...FONTS.button,
@@ -130,19 +137,19 @@ const Login = ({ navigation }) => {
                 </View>
 
                 <ButtonText
-                    label={"Tạo tài khoản mới"}
+                    label={"Đăng nhập"}
                     labelStyle={{
                         color: COLORS.primary,
                         ...FONTS.subtitle1,
                     }}
-                    onPress={() => navigation.navigate("Register")}
+                    onPress={() => navigation.goBack()}
                 />
             </AuthLayout>
         </SafeAreaView>
     )
 }
 
-export default Login
+export default Register
 
 const styles = StyleSheet.create({
     iconSocial: {
@@ -155,7 +162,7 @@ const styles = StyleSheet.create({
         height: 20,
     },
     contentWrapper: {
-        marginTop: SIZES.padding * 2,
+        marginTop: SIZES.padding * 2
     },
     logo: {
         height: 70,

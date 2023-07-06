@@ -8,7 +8,13 @@ import EnterAddress from "./home/EnterAddress";
 import Profile from "./profile/Profile";
 import OnBoarding from "./on_boarding/OnBoarding";
 import Login from "./authencation/Login";
+import Register from "./authencation/Register";
+import ConfirmOtp from "./authencation/ConfirmOtp";
+import ForgotPassword from "./authencation/ForgotPassword";
 export {
+    ConfirmOtp,
+    ForgotPassword,
+    Register,
     Login,
     OnBoarding,
     Profile,

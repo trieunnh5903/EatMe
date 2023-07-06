@@ -1,31 +1,40 @@
-function isValidEmail(value) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(value).toLowerCase());
+function isValidPhoneNumber(value) {
+    const phoneRegex = /^[0-9]{10}$/;;
+    return phoneRegex.test(String(value).toLowerCase());
 }
 
-function validateEmail(value, setEmailError) {
+function validatePhoneNumber(value, setPhoneNumberError) {
     if (value == "") {
-        setEmailError("")
+        setPhoneNumberError("")
     }
-    else if (isValidEmail(value)) {
-        setEmailError("")
+    else if (isValidPhoneNumber(value)) {
+        setPhoneNumberError("")
     }
     else {
-        setEmailError("Invalid Email")
+        setPhoneNumberError("Số điện thoại không đúng")
     }
 }
 
 function validatePassword(value, setPasswordError) {
     if (value.length > 0 && value.length < 9) {
-        setPasswordError("Password must be 9 characters")
+        setPasswordError("Mật khẩu nhiều hơn 9 ký tự")
     } else {
         setPasswordError("")
     }
 }
 
+function validateFullName(value, setFullNameError) {
+    if (!value.length > 0) {
+        setFullNameError("Tên không để trống")
+    } else {
+        setFullNameError("")
+    }
+}
+
 const validate = {
-    validateEmail,
-    validatePassword
+    validatePhoneNumber,
+    validatePassword,
+    validateFullName
 };
 
 export default validate;
