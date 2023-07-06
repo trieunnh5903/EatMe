@@ -13,21 +13,21 @@ const myProfile = {
 const onboarding_screens = [
     {
         id: 1,
-        backgroundImage: require("../assets/images/on_boarding/background_01.png"),
+        backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/favourite_food.png"),
         title: "Choose a Favourite Food",
         description: "When you oder Eat Steet, we’ll hook you up with exclusive coupon, specials and rewards"
     },
     {
         id: 2,
-        backgroundImage: require("../assets/images/on_boarding/background_02.png"),
+        backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/hot_delivery.png"),
         title: "Hot Delivery to Home",
         description: "We make food ordering fasr, simple and free-no matter if you order online or cash"
     },
     {
         id: 3,
-        backgroundImage: require("../assets/images/on_boarding/background_01.png"),
+        backgroundImage: images.on_boarding_bg1,
         bannerImage: require("../assets/images/on_boarding/great_food.png"),
         title: "Receive the Great Food",
         description: "You’ll receive the great food within a hour. And get free delivery credits for every order."

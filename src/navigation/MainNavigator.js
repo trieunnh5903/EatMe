@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './BottomTabNavigator';
-import { DetailFood, EnterAddress, Home, Notification, Search } from '../screens';
+import { DetailFood, EnterAddress, Home, Login, Notification, OnBoarding, Search } from '../screens';
 import Feature from '../screens/home/Feature';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
@@ -40,6 +40,8 @@ const MainNavigator = () => {
                 screenOptions={{
                     headerShown: false
                 }}>
+                <Stack.Screen name='Login' component={Login}></Stack.Screen>
+                <Stack.Screen name='OnBoarding' component={OnBoarding}></Stack.Screen>
                 <Stack.Screen name='Root' component={TabNavigator}></Stack.Screen>
                 <Stack.Screen name='DetailFood' component={DetailFood}
                     options={options}

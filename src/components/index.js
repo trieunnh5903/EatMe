@@ -12,7 +12,9 @@ import TotalFooter from "./TotalFooter"
 import Divider from "./Divider"
 import CardItem from "./CardItem"
 import BadgeButton from "./BadgeButton"
+import TextInputCustom from "./TextInputCustom"
 export {
+    TextInputCustom,
     Header,
     CardItem,
     TotalFooter,
