@@ -7,7 +7,6 @@ import icons from '../constants/icons'
 import { SharedElement } from 'react-navigation-shared-element'
 
 const HorizontalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
-    console.log(item.id);
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, containerStyle]}>
             <SharedElement id={`item.${item.id}.image`}>
