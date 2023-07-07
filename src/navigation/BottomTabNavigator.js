@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text } from "react-native";
 import { COLORS, FONTS, SIZES, bottom_tabs } from '../constants';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeNavigator from './HomeNavigator';
+import { useSelector } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+    const cartList = useSelector(state => state.cart.cartList);
+    const cartListLength = cartList.length;
     return (
         <Tab.Navigator
             barStyle={{
@@ -61,6 +64,8 @@ const BottomTabNavigator = () => {
                     tabBarStyle: {
                         display: 'none'
                     },
+
+                    tabBarBadge: cartListLength > 0 ? cartListLength : null,
 
                     tabBarIcon: ({ focused }) => {
                         return <Image

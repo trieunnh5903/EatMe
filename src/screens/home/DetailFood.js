@@ -40,9 +40,8 @@ const DetailFood = ({ route, navigation }) => {
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
     const toggleNumberOfLines = useCallback(() => { //To toggle the show text or hide it
       setTextShown(!textShown);
-      console.log(textShown);
     }, [])
-    console.log(textShown);
+    // console.log(textShown);
     const onTextLayout = useCallback(e => {
       setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
     }, []);
@@ -146,13 +145,13 @@ const DetailFood = ({ route, navigation }) => {
           style={{
             marginHorizontal: SIZES.radius,
             color: COLORS.black,
-            ...FONTS.body_large
+            ...FONTS.title_medium
           }}
         >Delivery Time:
           <Text
             style={{
               color: COLORS.gray,
-              ...FONTS.body_large
+              ...FONTS.title_medium
             }}
           > 30 Mins</Text></Text>
 

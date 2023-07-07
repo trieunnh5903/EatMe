@@ -20,6 +20,10 @@ export const removeItem = createAsyncThunk('cart/removeItem', (itemIdToRemove, {
     dispatch(cartSlice.actions.calculateTotalCart());
 })
 
+export const clearCart = createAsyncThunk('cart/clearCart', (payload, { dispatch }) => {
+    dispatch(cartSlice.actions.clearCart());
+    dispatch(cartSlice.actions.calculateTotalCart());
+})
 const cartSlice = createSlice({
     initialState,
     name: 'cart',
@@ -49,9 +53,9 @@ const cartSlice = createSlice({
             const itemIdToRemove = action.payload;
             state.cartList = state.cartList.filter(item => item.id !== itemIdToRemove);
         },
-        // clearCart(state) {
-        //     state.cartList = [];
-        // },
+        clearCart(state) {
+            state.cartList = [];
+        },
     }
 })
 

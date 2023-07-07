@@ -13,7 +13,7 @@ import { ButtonIcon, Header, QuantityInput } from '../../components'
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 import { Shadow } from 'react-native-shadow-2'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeItem, updateItemQuantity } from '../../redux/slice/cartSlice'
+import { clearCart, removeItem, updateItemQuantity } from '../../redux/slice/cartSlice'
 import { SwipeListView } from "react-native-swipe-list-view";
 const Cart = ({ navigation }) => {
   const cartList = useSelector(state => state.cart.cartList);
@@ -162,6 +162,26 @@ const Cart = ({ navigation }) => {
     )
   }
 
+  const onDeleteAll = () => {
+    Alert.alert(
+      "Thông báo",
+      "Bạn muốn xóa tất cả sản phẩm không?",
+      [
+        {
+          text: 'Hủy',
+          style: 'default',
+        },
+        {
+          text: 'Đồng ý',
+          onPress: () => dispatch(clearCart()),
+          style: 'default',
+        },
+      ],
+      {
+        cancelable: true,
+      }
+    )
+  }
   return (
     <SafeAreaView style={styles.container}>
       {/* navigation */}
@@ -177,13 +197,14 @@ const Cart = ({ navigation }) => {
           </TouchableOpacity>
         )}
         rightComponent={(
-          <View
-            style={{
-              paddingHorizontal: SIZES.radius,
-              width: 24,
-              height: 24
-            }}
-          />
+          <TouchableOpacity onPress={() => onDeleteAll()}>
+            <Text
+              style={{
+                color: COLORS.red,
+                ...FONTS.title_small
+              }}
+            >Xóa tất cả</Text>
+          </TouchableOpacity>
         )}
         title={"Giỏ hàng"}
         containerStyle={{
@@ -204,8 +225,8 @@ const Cart = ({ navigation }) => {
                 renderHiddenItem={renderHiddenItem}
                 rightOpenValue={-100}
                 previewRowKey={'0'}
-                previewOpenValue={-10}
-                previewOpenDelay={6000}
+                previewOpenValue={-5}
+                previewOpenDelay={8000}
                 previewRepeat={true}
                 useNativeDriver={true}
               />
@@ -292,7 +313,6 @@ export default Cart
 
 const styles = StyleSheet.create({
   btnBack: {
-    marginLeft: SIZES.radius,
     paddingHorizontal: SIZES.radius,
     backgroundColor: COLORS.lightGray2,
     borderRadius: 100,
