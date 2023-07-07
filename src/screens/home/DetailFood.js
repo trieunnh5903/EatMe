@@ -35,33 +35,33 @@ const DetailFood = ({ route, navigation }) => {
     Toast.show('Add to cart successfully');
   }
 
-  const TextMore = memo(() => {
-    const [textShown, setTextShown] = useState(false); //To show ur remaining Text
-    const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
-    const toggleNumberOfLines = useCallback(() => { //To toggle the show text or hide it
-      setTextShown(!textShown);
-    }, [])
-    // console.log(textShown);
-    const onTextLayout = useCallback(e => {
-      setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
-    }, []);
+  const TextMore = () => {
+    const descText = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
+    const [expanded, setExpanded] = useState(false);
+
+    const toggleExpansion = () => {
+      setExpanded(!expanded);
+    };
     return (
-      <View style={{ marginTop: SIZES.padding, marginBottom: SIZES.radius }}>
+
+      <>
         <Text
-          onTextLayout={onTextLayout}
-          numberOfLines={textShown ? undefined : 4}
-          style={{ color: COLORS.blackText, ...FONTS.body_large }}>
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        </Text>
+          style={{ color: COLORS.blackText, ...FONTS.body_large }}
+        >{expanded ? descText : descText.substring(0, 200) + '...'}</Text>
         {
-          lengthMore ? <Text
-            onPress={toggleNumberOfLines}
-            style={{ color: COLORS.primary, ...FONTS.body_large, fontWeight: 'bold' }}>{textShown ? 'Read less...' : 'Read more...'}</Text>
-            : null
+          !expanded ? (
+            <TouchableOpacity onPress={toggleExpansion}>
+              <Text style={{ color: COLORS.primary, ...FONTS.body_large, fontWeight: 'bold' }}>Xem thêm</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={toggleExpansion}>
+              <Text style={{ color: COLORS.primary, ...FONTS.body_large, fontWeight: 'bold' }}>Thu gọn</Text>
+            </TouchableOpacity>
+          )
         }
-      </View>
+      </>
     )
-  }, [item])
+  }
 
   const ImageFood = () => (
     <View style={{ paddingHorizontal: SIZES.padding, alignItems: 'center' }}>
@@ -137,7 +137,7 @@ const DetailFood = ({ route, navigation }) => {
       <TextMore />
       {/* delivery */}
       <View
-        style={{ flexDirection: 'row' }}>
+        style={{ flexDirection: 'row', marginTop: SIZES.base }}>
         <Image
           source={icons.clock}
           style={styles.icon} />
@@ -147,13 +147,13 @@ const DetailFood = ({ route, navigation }) => {
             color: COLORS.black,
             ...FONTS.title_medium
           }}
-        >Delivery Time:
+        >Thời gian giao hàng dự kiến:
           <Text
             style={{
               color: COLORS.gray,
               ...FONTS.title_medium
             }}
-          > 30 Mins</Text></Text>
+          > 30 Phút</Text></Text>
 
       </View>
     </View>
@@ -193,7 +193,7 @@ const DetailFood = ({ route, navigation }) => {
         {/* footer */}
         <ButtonText
           onPress={() => onAddToCartPress(item)}
-          label={"Add to Cart"}
+          label={"Thêm vào giỏ hàng"}
           containerStyle={styles.buttonFooter}
           labelStyle={styles.labelFooter}
         />

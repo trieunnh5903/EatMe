@@ -5,13 +5,14 @@ import data from '../../data'
 import { BadgeButton, FocusAwareStatusBar, Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
+import { v4 as uuidv4 } from 'uuid';
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
       <View style={[styles.section, style]}>
-        <Text style={{ ...FONTS.headline_small,fontWeight: 'bold', color: COLORS.blackText}}>{title}</Text>
+        <Text style={{ ...FONTS.headline_small, fontWeight: 'bold', color: COLORS.blackText }}>{title}</Text>
         <TouchableOpacity onPress={onPress}>
-          <Text style={{ color: COLORS.primary, ...FONTS.title_medium}}>Tất cả</Text>
+          <Text style={{ color: COLORS.primary, ...FONTS.title_medium }}>Tất cả</Text>
         </TouchableOpacity>
       </View>
       {children}
@@ -52,7 +53,7 @@ const Home = () => {
       let arr = new Array(n);
       for (let i = 0; i < n; i++) {
         arr[i] = {
-          id: i,
+          id: uuidv4(),
           name: "Hamburger",
           description: "Hamburger thịt gà",
           categories: [1, 2],
@@ -204,7 +205,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <FocusAwareStatusBar/>
+      <FocusAwareStatusBar />
       <ScrollView
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}>

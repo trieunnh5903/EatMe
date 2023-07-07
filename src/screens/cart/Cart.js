@@ -196,16 +196,28 @@ const Cart = ({ navigation }) => {
               style={styles.icon} />
           </TouchableOpacity>
         )}
-        rightComponent={(
-          <TouchableOpacity onPress={() => onDeleteAll()}>
-            <Text
-              style={{
-                color: COLORS.red,
-                ...FONTS.title_small
-              }}
-            >Xóa tất cả</Text>
-          </TouchableOpacity>
-        )}
+        rightComponent={
+          cartList.length > 0 ?
+            (
+              <TouchableOpacity onPress={() => onDeleteAll()}>
+                <Text
+                  style={{
+                    color: COLORS.red,
+                    ...FONTS.title_small
+                  }}
+                >Xóa tất cả</Text>
+              </TouchableOpacity>
+            ) :
+            (
+              <View
+                style={{
+                  paddingHorizontal: SIZES.radius,
+                  width: 24,
+                  height: 24
+                }}
+              />
+            )
+        }
         title={"Giỏ hàng"}
         containerStyle={{
           paddingHorizontal: SIZES.radius
