@@ -1,5 +1,5 @@
 function isValidPhoneNumber(value) {
-    const phoneRegex = /^[0-9]{10}$/;;
+    const phoneRegex = /^0\d{9}$/;
     return phoneRegex.test(String(value).toLowerCase());
 }
 
