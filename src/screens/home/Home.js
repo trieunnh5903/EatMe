@@ -6,6 +6,7 @@ import { BadgeButton, FocusAwareStatusBar, Header, HorizontalFoodCard, VerticalF
 import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux'
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
@@ -45,9 +46,8 @@ const Categories = () => (
   </View>
 )
 
+
 const Home = () => {
-  const navigation = useNavigation();
-  const [page, setPage] = useState(1)
   const _enerateArray = useCallback(
     (n) => {
       let arr = new Array(n);
@@ -66,10 +66,16 @@ const Home = () => {
       }
       return arr;
     }, [])
-
+  const dispatch = useDispatch();
+  const foodList = useSelector(state => state.food.foodList);
   const [menuList, setMenuList] = useState(_enerateArray(20));
   const [recommends, setRecommends] = useState(_enerateArray(10));
   const [popular, setPopular] = useState(_enerateArray(20))
+  console.log(foodList);
+  const navigation = useNavigation();
+  useEffect(() => {
+    dispatch({ type: 'FETCH_FOOD_REQUESTED' })
+  }, [])
 
   const RecommendedSection = () => {
     return (

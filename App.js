@@ -5,6 +5,12 @@ import { MainNavigator } from './src/navigation'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Provider } from "react-redux";
 import store from './src/redux/store'
+import setupMirage from './json_server/mirageServer'
+
+if (process.env.NODE_ENV === "development") {
+  setupMirage({ environment: "development" })
+}
+
 const App = () => {
   React.useEffect(() => {
     SplashScreen.hide()

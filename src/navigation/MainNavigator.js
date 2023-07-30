@@ -37,7 +37,7 @@ const MainNavigator = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName='OnBoarding'
+                initialRouteName='Root'
                 screenOptions={{
                     headerShown: false
                 }}>
