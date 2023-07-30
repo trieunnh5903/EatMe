@@ -7,6 +7,7 @@ import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux'
+import { ActivityIndicator } from 'react-native-paper'
 const Section = ({ title, onPress, children, style }) => {
   return (
     <View>
@@ -67,7 +68,7 @@ const Home = () => {
       return arr;
     }, [])
   const dispatch = useDispatch();
-  const foodList = useSelector(state => state.food.foodList);
+  const { isLoading, foodList, error } = useSelector(state => state.food);
   const [recommends, setRecommends] = useState(_enerateArray(10));
   const [popular, setPopular] = useState(_enerateArray(20))
   const navigation = useNavigation();
@@ -75,6 +76,16 @@ const Home = () => {
     dispatch({ type: 'food/fetchFoodRequested' })
   }, [])
 
+  const handleLoadMore = () => {
+    // console.log("handleLoadMore");
+    dispatch({ type: 'food/fetchFoodRequested' })
+  };
+
+  const renderFooter = () => {
+    return (
+      <ActivityIndicator style={{ alignSelf: 'flex-start', marginVertical: SIZES.radius, marginHorizontal: SIZES.padding }} size="small" color={COLORS.primary} />
+    );
+  };
   const RecommendedSection = () => {
     return (
       <Section
@@ -245,8 +256,6 @@ const Home = () => {
         <PopularSection />
         {/* list recommended */}
         <RecommendedSection />
-        {/* menu type */}
-        {/* <HeaderMenuType /> */}
         {/* list */}
         <Text style={{
           marginTop: 30,
@@ -257,6 +266,8 @@ const Home = () => {
         }}>Gần bạn</Text>
         <FlatList
           data={foodList}
+          style={{ flex: 1 }}
+          contentContainerStyle={{ flex: 1 }}
           scrollEnabled={false}
           keyExtractor={(item, index) => `${index}`}
           showsVerticalScrollIndicator={false}
@@ -270,6 +281,9 @@ const Home = () => {
               />
             )
           }}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={renderFooter}
         />
       </ScrollView>
     </SafeAreaView>

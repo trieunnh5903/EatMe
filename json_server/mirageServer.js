@@ -7,8 +7,8 @@ export default function setupMirage({ environment = 'development' }) {
       this.namespace = "api/v1/";
       this.get("/foods/:page", (schema, request) => {
         let page = request.params.page;
-        let offset = (page - 1) * 10;
-        return DATA.slice(offset, offset + 10)
+        let offset = (page - 1) * 20;
+        return DATA.slice(offset, offset + 20)
       })
 
     },
