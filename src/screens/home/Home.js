@@ -68,13 +68,11 @@ const Home = () => {
     }, [])
   const dispatch = useDispatch();
   const foodList = useSelector(state => state.food.foodList);
-  const [menuList, setMenuList] = useState(_enerateArray(20));
   const [recommends, setRecommends] = useState(_enerateArray(10));
   const [popular, setPopular] = useState(_enerateArray(20))
-  console.log(foodList);
   const navigation = useNavigation();
   useEffect(() => {
-    dispatch({ type: 'FETCH_FOOD_REQUESTED' })
+    dispatch({ type: 'food/fetchFoodRequested' })
   }, [])
 
   const RecommendedSection = () => {
@@ -258,7 +256,7 @@ const Home = () => {
           ...FONTS.headline_small, color: COLORS.blackText
         }}>Gần bạn</Text>
         <FlatList
-          data={menuList}
+          data={foodList}
           scrollEnabled={false}
           keyExtractor={(item, index) => `${index}`}
           showsVerticalScrollIndicator={false}

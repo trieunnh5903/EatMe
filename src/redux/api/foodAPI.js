@@ -2,9 +2,9 @@
 import axios from "axios";
 
 const FOOD_API = {
-    fetchAllFood: async () => {
+    fetchAllFood: async (pageNumber) => {
         try {
-            const res = await axios.get('/api/v1/foods');
+            const res = await axios.get(`/api/v1/foods/${pageNumber}`);
             console.log(res.status);
             return res.data;
         } catch (error) {

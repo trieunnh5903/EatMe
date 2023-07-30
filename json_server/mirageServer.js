@@ -4,9 +4,9 @@ export default function setupMirage({ environment = 'development' }) {
   createServer({
     environment,
     routes() {
-      this.namespace = "api/v1";
-      this.get("/foods", (schema) => {
-        let page = 1;
+      this.namespace = "api/v1/";
+      this.get("/foods/:page", (schema, request) => {
+        let page = request.params.page;
         let offset = (page - 1) * 10;
         return DATA.slice(offset, offset + 10)
       })

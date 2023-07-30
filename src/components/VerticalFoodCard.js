@@ -12,14 +12,14 @@ const VerticalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {
             onPress={onPress}
             style={[styles.container, containerStyle]}>
             {/* calories */}
-            <View
+            {/* <View
                 style={styles.calories}>
                 <Image
                     style={styles.iconCalories}
                     source={icons.calories} />
                 <Text
                     style={styles.textCalories}>{item.calories} Calories</Text>
-            </View>
+            </View> */}
             {/* image */}
             <SharedElement id={`item.${item.id}.image`}>
                 <Image style={imageStyle} source={{ uri: item.image }}></Image>
