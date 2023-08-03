@@ -1,9 +1,7 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './BottomTabNavigator';
-import { ConfirmOtp, DetailFood, EnterAddress, ForgotPassword, Home, Login, Notification, OnBoarding, Register, Search } from '../screens';
-import Feature from '../screens/home/Feature';
+import { ConfirmOtp, DetailFood, EnterAddress, ForgotPassword, Login, Notification, OnBoarding, Register } from '../screens';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
 const Stack = createSharedElementStackNavigator();
@@ -37,7 +35,7 @@ const MainNavigator = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName='Root'
+                initialRouteName='OnBoarding'
                 screenOptions={{
                     headerShown: false
                 }}>

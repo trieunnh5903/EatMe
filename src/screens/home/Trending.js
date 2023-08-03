@@ -51,7 +51,6 @@ const Trending = () => {
   }
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.white,  minHeight: 1, minWidth: 1  }}>
-      <Text>sajdjjhasd</Text>
       <RecyclerListView
         dataProvider={dataProvider}
         layoutProvider={layoutProvider}

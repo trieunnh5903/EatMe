@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList } from 'reac
 import React, { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { RecyclerListView, DataProvider, LayoutProvider, BaseScrollView } from 'recyclerlistview'
 import { COLORS, SIZES } from '../../constants'
-import StickyContainer from 'recyclerlistview/sticky';
 import { HorizontalFoodCard } from '../../components'
 
 const Header = () => <View style={styles.header} />
@@ -63,13 +62,6 @@ const Notification = memo(() => {
         onPress={() => console.log(`HorizontalFoodCard ${index}`)}
         item={data} />
     )
-  }
-  const _applyWindowCorrection = (offset, offsetY, windowCorrection) => {
-    // Provide a positive value to startCorrection to shift the Top Sticky widget downwards.
-    windowCorrection.startCorrection = -20;
-
-    // Provide a positive value to endCorrection to shift the Bottom Sticky widget upwards.
-    windowCorrection.endCorrection = 20;
   }
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
