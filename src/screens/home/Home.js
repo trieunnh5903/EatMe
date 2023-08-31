@@ -1,97 +1,126 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, View, SafeAreaView, ScrollView, StatusBar } from 'react-native'
-import React, { useCallback, useEffect, useRef, useState, useMemo } from 'react'
-import { icons, COLORS, SIZES, FONTS, images } from '../../constants'
-import data from '../../data'
-import { BadgeButton, FocusAwareStatusBar, Header, HorizontalFoodCard, VerticalFoodCard } from '../../components'
-import Carousel from 'react-native-reanimated-carousel'
-import { useNavigation } from '@react-navigation/native'
-import { v4 as uuidv4 } from 'uuid';
-import { useDispatch, useSelector } from 'react-redux'
-import { ActivityIndicator } from 'react-native-paper'
-const Section = ({ title, onPress, children, style }) => {
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  View,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState, useMemo} from 'react';
+import {icons, COLORS, SIZES, FONTS, images} from '../../constants';
+import data from '../../data';
+import {
+  BadgeButton,
+  FocusAwareStatusBar,
+  Header,
+  HorizontalFoodCard,
+  VerticalFoodCard,
+} from '../../components';
+import Carousel from 'react-native-reanimated-carousel';
+import {useNavigation} from '@react-navigation/native';
+import {v4 as uuidv4} from 'uuid';
+import {useDispatch, useSelector} from 'react-redux';
+import {ActivityIndicator} from 'react-native-paper';
+const Section = ({title, onPress, children, style}) => {
   return (
     <View>
       <View style={[styles.section, style]}>
-        <Text style={{ ...FONTS.headline_small, fontWeight: 'bold', color: COLORS.blackText }}>{title}</Text>
+        <Text
+          style={{
+            ...FONTS.headline_small,
+            fontWeight: 'bold',
+            color: COLORS.blackText,
+          }}>
+          {title}
+        </Text>
         <TouchableOpacity onPress={onPress}>
-          <Text style={{ color: COLORS.primary, ...FONTS.title_medium }}>Tất cả</Text>
+          <Text style={{color: COLORS.primary, ...FONTS.title_medium}}>
+            Tất cả
+          </Text>
         </TouchableOpacity>
       </View>
       {children}
     </View>
-
-  )
-}
+  );
+};
 
 const Categories = () => (
   <View style={styles.categoriesWrapper}>
-    {
-      data.categories.map((item, index) => {
-        return (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.categoriesItem}>
-            <Image
-              source={item.icon}
-              style={{ width: 48, height: 48, resizeMode: 'contain' }}
-            />
-            <Text
-              style={{
-                color: COLORS.blackText,
-                ...FONTS.label_large,
-              }}>{item.name}</Text>
-          </TouchableOpacity>
-        )
-      })
-    }
+    {data.categories.map((item, index) => {
+      return (
+        <TouchableOpacity key={item.id} style={styles.categoriesItem}>
+          <Image
+            source={item.icon}
+            style={{width: 48, height: 48, resizeMode: 'contain'}}
+          />
+          <Text
+            style={{
+              color: COLORS.blackText,
+              ...FONTS.label_large,
+            }}>
+            {item.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    })}
   </View>
-)
-
+);
 
 const Home = () => {
-  const _enerateArray = useCallback(
-    (n) => {
-      let arr = new Array(n);
-      for (let i = 0; i < n; i++) {
-        arr[i] = {
-          id: uuidv4(),
-          name: "Hamburger",
-          description: "Hamburger thịt gà",
-          categories: [1, 2],
-          // // favorite include id user
-          // favorite: [],
-          price: 15.99,
-          calories: 78,
-          image: 'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png'
-        }
-      }
-      return arr;
-    }, [])
+  const _enerateArray = useCallback(n => {
+    let arr = new Array(n);
+    for (let i = 0; i < n; i++) {
+      arr[i] = {
+        id: uuidv4(),
+        name: 'Hamburger',
+        description: 'Hamburger thịt gà',
+        categories: [1, 2],
+        // // favorite include id user
+        // favorite: [],
+        price: 15.99,
+        calories: 78,
+        image:
+          'https://raw.githubusercontent.com/byprogrammers/LCRN16-food-delivery-app-lite-starter/master/assets/dummyData/hamburger.png',
+      };
+    }
+    return arr;
+  }, []);
   const dispatch = useDispatch();
-  const { isLoading, foodList, error } = useSelector(state => state.food);
+  const {isLoading, foodList, error} = useSelector(state => state.food);
   const [recommends, setRecommends] = useState(_enerateArray(10));
-  const [popular, setPopular] = useState(_enerateArray(20))
+  const [popular, setPopular] = useState(_enerateArray(20));
   const navigation = useNavigation();
   useEffect(() => {
-    dispatch({ type: 'food/fetchFoodRequested' })
-  }, [])
+    dispatch({type: 'food/fetchFoodRequested'});
+  }, []);
 
   const handleLoadMore = () => {
     // console.log("handleLoadMore");
-    dispatch({ type: 'food/fetchFoodRequested' })
+    dispatch({type: 'food/fetchFoodRequested'});
   };
 
   const renderFooter = () => {
     return (
-      <ActivityIndicator style={{ alignSelf: 'flex-start', marginVertical: SIZES.radius, marginHorizontal: SIZES.padding }} size="small" color={COLORS.primary} />
+      <ActivityIndicator
+        style={{
+          alignSelf: 'flex-start',
+          marginVertical: SIZES.radius,
+          marginHorizontal: SIZES.padding,
+        }}
+        size="small"
+        color={COLORS.primary}
+      />
     );
   };
   const RecommendedSection = () => {
     return (
       <Section
-        title={"Gợi ý"}
-        onPress={() => console.log("show all recommended")}
-      >
+        title={'Gợi ý'}
+        onPress={() => console.log('show all recommended')}>
         <FlatList
           data={recommends}
           keyExtractor={item => `${item.id}`}
@@ -99,42 +128,45 @@ const Home = () => {
           decelerationRate="fast"
           snapToInterval={SIZES.width * 0.85 + 18}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
+          renderItem={({item, index}) => {
             return (
               <HorizontalFoodCard
                 onPress={() => navigation.navigate('DetailFood', item)}
                 imageStyle={{
                   marginTop: 35,
                   height: 150,
-                  width: 150
+                  width: 150,
                 }}
                 item={item}
                 containerStyle={{
                   height: 180,
                   width: SIZES.width * 0.85,
                   marginLeft: index == 0 ? SIZES.padding : 18,
-                  marginRight: index == recommends.length - 1 ? SIZES.padding : 0,
+                  marginRight:
+                    index == recommends.length - 1 ? SIZES.padding : 0,
                   paddingRight: SIZES.radius,
-                  alignItems: 'center'
-                }} />
-            )
-          }} />
+                  alignItems: 'center',
+                }}
+              />
+            );
+          }}
+        />
       </Section>
-    )
-  }
+    );
+  };
 
   const PopularSection = () => {
     return (
       <Section
-        style={{ marginTop: 0 }}
-        onPress={() => console.log("Popular section")}
-        title={"Phổ biến"}>
+        style={{marginTop: 0}}
+        onPress={() => console.log('Popular section')}
+        title={'Phổ biến'}>
         <FlatList
           data={popular}
           keyExtractor={item => `${item.id}`}
           horizontal
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
+          renderItem={({item, index}) => {
             return (
               <VerticalFoodCard
                 onPress={() => navigation.navigate('DetailFood', item)}
@@ -143,19 +175,20 @@ const Home = () => {
                   marginLeft: index == 0 ? SIZES.padding : 18,
                   marginRight: index == popular.length - 1 ? SIZES.padding : 0,
                   padding: SIZES.radius,
-                  width: 210
+                  width: 210,
                 }}
                 imageStyle={{
                   width: 150,
                   height: 150,
-                  marginTop: SIZES.radius
+                  marginTop: SIZES.radius,
                 }}
               />
-            )
-          }} />
+            );
+          }}
+        />
       </Section>
-    )
-  }
+    );
+  };
 
   const DeliveryTo = () => {
     return (
@@ -166,22 +199,27 @@ const Home = () => {
         <Text
           style={{
             color: COLORS.primary,
-            ...FONTS.title_medium
+            ...FONTS.title_medium,
           }}>
           GIAO ĐẾN
         </Text>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("EnterAddress")}
+          onPress={() => navigation.navigate('EnterAddress')}
           style={styles.deliveryTo}>
           <Text
-            style={{ ...FONTS.title_medium, color: COLORS.blackText, fontWeight: 'bold' }}
-          >{data?.myProfile?.address}</Text>
-          <Image source={icons.down_arrow} style={{ width: 24, height: 24 }} />
+            style={{
+              ...FONTS.title_medium,
+              color: COLORS.blackText,
+              fontWeight: 'bold',
+            }}>
+            {data?.myProfile?.address}
+          </Text>
+          <Image source={icons.down_arrow} style={{width: 24, height: 24}} />
         </TouchableOpacity>
       </View>
-    )
-  }
+    );
+  };
 
   const MyCarousel = () => {
     return (
@@ -197,33 +235,31 @@ const Home = () => {
         data={data.carousel}
         scrollAnimationDuration={3500}
         // onSnapToItem={(index) => console.log('current index:', index)}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => console.log(item.id)}
             style={{
-              flex: 1
+              flex: 1,
             }}>
             <Image
               source={item.image}
-              resizeMode='cover'
+              resizeMode="cover"
               style={{
                 width: null,
                 height: null,
-                flex: 1
+                flex: 1,
               }}
             />
           </TouchableOpacity>
         )}
       />
-    )
-  }
+    );
+  };
 
   return (
     <SafeAreaView style={[styles.container]}>
       <FocusAwareStatusBar />
-      <ScrollView
-        nestedScrollEnabled
-        showsVerticalScrollIndicator={false}>
+      <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
         {/* header */}
         <View style={styles.headerWrapper}>
           <Header
@@ -233,7 +269,7 @@ const Home = () => {
             }}
             rightComponent={
               <BadgeButton
-                onPress={() => navigation.navigate("Notification")}
+                onPress={() => navigation.navigate('Notification')}
                 icon={icons.notification}
                 iconStyle={styles.icon}
                 badgeStyle={styles.badgeNotification}
@@ -257,21 +293,25 @@ const Home = () => {
         {/* list recommended */}
         <RecommendedSection />
         {/* list */}
-        <Text style={{
-          marginTop: 30,
-          marginHorizontal: SIZES.padding,
-          marginBottom: 20,
-          fontWeight: 'bold',
-          ...FONTS.headline_small, color: COLORS.blackText
-        }}>Gần bạn</Text>
+        <Text
+          style={{
+            marginTop: 30,
+            marginHorizontal: SIZES.padding,
+            marginBottom: 20,
+            fontWeight: 'bold',
+            ...FONTS.headline_small,
+            color: COLORS.blackText,
+          }}>
+          Gần bạn
+        </Text>
         <FlatList
           data={foodList}
-          style={{ flex: 1 }}
-          contentContainerStyle={{ flex: 1 }}
+          style={{flex: 1}}
+          contentContainerStyle={{flex: 1}}
           scrollEnabled={false}
           keyExtractor={(item, index) => `${index}`}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item, index }) => {
+          renderItem={({item, index}) => {
             return (
               <HorizontalFoodCard
                 imageStyle={styles.imageCard}
@@ -279,7 +319,7 @@ const Home = () => {
                 item={item}
                 containerStyle={styles.horizontalFoodCard}
               />
-            )
+            );
           }}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.1}
@@ -287,19 +327,20 @@ const Home = () => {
         />
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
   categoriesWrapper: {
-    flexDirection: 'row', flexWrap: 'wrap',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.radius,
     marginBottom: SIZES.padding,
     rowGap: 30,
-    columnGap: 5
+    columnGap: 5,
   },
 
   badgeNotification: {
@@ -317,17 +358,17 @@ const styles = StyleSheet.create({
   headerWrapper: {
     flex: 1,
     width: SIZES.width,
-    backgroundColor: COLORS.white
+    backgroundColor: COLORS.white,
   },
   profile: {
     width: 24,
     height: 24,
-    borderRadius: 24
+    borderRadius: 24,
   },
   deliveryTo: {
     flexDirection: 'row',
     marginTop: SIZES.base,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   iconBottomTab: {
     width: 24,
@@ -343,7 +384,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   section: {
@@ -353,13 +394,13 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 20,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   imageCard: {
     width: 110,
     height: 110,
-    marginTop: 20
+    marginTop: 20,
   },
 
   horizontalFoodCard: {
@@ -371,7 +412,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-    tintColor: COLORS.black
+    tintColor: COLORS.black,
   },
 
   searchInput: {
@@ -388,11 +429,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 40,
     backgroundColor: COLORS.lightGray2,
-    borderRadius: SIZES.radius,
     marginVertical: SIZES.radius,
     marginHorizontal: SIZES.padding,
     paddingHorizontal: 12,
     borderRadius: SIZES.padding,
     alignItems: 'center',
-  }
-})
+  },
+});
