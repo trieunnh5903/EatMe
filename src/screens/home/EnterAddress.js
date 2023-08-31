@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BadgeButton, Header } from '../../components'
-import { COLORS, SIZES, icons } from '../../constants'
+import { COLORS, SIZES, icons } from '../../config'
 const EnterAddress = ({ navigation }) => {
     return (
         <SafeAreaView>

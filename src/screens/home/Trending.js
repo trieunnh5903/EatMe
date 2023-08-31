@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview'
-import { COLORS, SIZES } from '../../constants'
+import { COLORS, SIZES } from '../../config'
 import { HorizontalFoodCard } from '../../components'
 
 const Trending = () => {

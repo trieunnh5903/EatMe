@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS, SIZES } from '../constants'
+import { COLORS, SIZES } from '../config'
 
 const Divider = () => {
   return (

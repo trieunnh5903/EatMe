@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS } from '../constants/colors'
-import { FONTS, SIZES } from '../constants'
+import { COLORS } from '../config/colors'
+import { FONTS, SIZES } from '../config'
 
 const Header = ({ title, containerStyle, leftComponent, rightComponent }) => {
     return (

@@ -1,6 +1,6 @@
 import { Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
-import { COLORS, FONTS, SIZES, images } from '../../constants'
+import { COLORS, FONTS, SIZES, images } from '../../config'
 import { FocusAwareStatusBar } from '../../components'
 
 const AuthLayout = ({ children }) => {

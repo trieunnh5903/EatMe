@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, ActivityIndi
 import React, { useState, useEffect } from 'react'
 import data from '../../data'
 import { HorizontalFoodCard } from '../../components'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 
 const LIST = [
   {

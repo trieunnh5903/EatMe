@@ -8,7 +8,7 @@ import {
 import React, { useRef, useState } from 'react'
 import AuthLayout from './AuthLayout'
 import { ButtonIcon, ButtonText, FocusAwareStatusBar, TextInputCustom } from '../../components'
-import { SIZES, FONTS, COLORS, icons, images } from '../../constants'
+import { SIZES, FONTS, COLORS, icons, images } from '../../config'
 import validate from '../../utils/validate'
 
 const Login = ({ navigation }) => {

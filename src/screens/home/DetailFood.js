@@ -1,7 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
 import React, { useCallback, useState, memo } from 'react'
 import { ButtonText, Header, QuantityInput } from '../../components'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { SharedElement } from 'react-navigation-shared-element'
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from '../../redux/slice/cartSlice'

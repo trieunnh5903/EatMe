@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import React, {useCallback, useRef, useState} from 'react';
-import {COLORS, SIZES, images, FONTS} from '../../constants';
+import {COLORS, SIZES, images, FONTS} from '../../config';
 import data from '../../data';
 import Animated, {
   Extrapolate,
@@ -53,6 +53,7 @@ const OnBoarding = ({navigation}) => {
       setCurrentIndex(firstVisibleItem.index);
     }
   });
+
   const onScroll = useAnimatedScrollHandler(event => {
     scrollX.value = event.contentOffset.x;
   });
@@ -105,7 +106,6 @@ const OnBoarding = ({navigation}) => {
   //   );
   // };
 
-  console.log(currentIndex);
   const onNextPress = useCallback(() => {
     let nextIndex = currentIndex + 1;
     setCurrentIndex(nextIndex);

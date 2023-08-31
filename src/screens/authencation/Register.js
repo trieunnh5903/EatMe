@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'r
 import React, { useState } from 'react'
 import AuthLayout from './AuthLayout'
 import { ButtonIcon, ButtonText, TextInputCustom } from '../../components'
-import { COLORS, FONTS, SIZES, images } from '../../constants'
+import { COLORS, FONTS, SIZES, images } from '../../config'
 import validate from '../../utils/validate'
 
 const Register = ({ navigation }) => {

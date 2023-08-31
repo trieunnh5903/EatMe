@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import ButtonIcon from './ButtonIcon';
-import { COLORS, FONTS, SIZES, icons } from '../constants';
+import ButtonIcon from './button/ButtonIcon';
+import { COLORS, FONTS, SIZES, icons } from '../config';
 
 const QuantityInput = ({ containerStyle, iconContainerStyle, onAddPress, onRemovePress, quantity = 1, iconStyle, labelStyle }) => {
     return (

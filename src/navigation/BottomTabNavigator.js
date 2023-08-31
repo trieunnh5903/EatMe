@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
-import {COLORS, FONTS, SIZES, bottom_tabs} from '../constants';
+import {COLORS, FONTS, SIZES, bottom_tabs} from '../config';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './HomeNavigator';
 import {useSelector} from 'react-redux';

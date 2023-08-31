@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { FONTS, SIZES } from '../../constants'
+import { FONTS, SIZES } from '../../config'
 
 const TextDescription = () => {
     return (

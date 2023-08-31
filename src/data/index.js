@@ -1,5 +1,5 @@
-import {images} from '../constants';
-import icons from '../constants/icons';
+import {images} from '../config';
+import icons from '../config/icons';
 
 const myProfile = {
   id: 1,

@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import React, { useState } from 'react'
 import data from '../../data'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 
 const OptionItem = ({ icon, label }) => (
   <TouchableOpacity

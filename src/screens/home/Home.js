@@ -11,7 +11,7 @@ import {
   StatusBar,
 } from 'react-native';
 import React, {useCallback, useEffect, useRef, useState, useMemo} from 'react';
-import {icons, COLORS, SIZES, FONTS, images} from '../../constants';
+import {icons, COLORS, SIZES, FONTS, images} from '../../config';
 import data from '../../data';
 import {
   BadgeButton,

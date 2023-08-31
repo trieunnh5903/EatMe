@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect, useRef } from 'react'
 import AuthLayout from './AuthLayout'
 import { CodeField, useBlurOnFulfill, useClearByFocusCell, Cursor } from 'react-native-confirmation-code-field'
-import { COLORS, SIZES, FONTS, images } from '../../constants'
+import { COLORS, SIZES, FONTS, images } from '../../config'
 import { ButtonText } from '../../components'
 const CELL_COUNT = 4;
 const ConfirmOtp = ({ navigation }) => {

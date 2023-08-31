@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { ButtonIcon, Header, QuantityInput } from '../../components'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { Shadow } from 'react-native-shadow-2'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart, removeItem, updateItemQuantity } from '../../redux/slice/cartSlice'

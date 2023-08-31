@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { COLORS, FONTS, SIZES, icons } from '../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 
 const ButtonQuantityCart = ({ onPress, quantity, disabled = false }) => {
     return (

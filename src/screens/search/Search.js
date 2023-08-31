@@ -3,7 +3,7 @@ import {
   FlatList
 } from 'react-native'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { useNavigation } from '@react-navigation/native'
 import { ButtonText, ButtonTextIcon, HorizontalFoodCard, VerticalFoodCard, ButtonIcon } from '../../components'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'

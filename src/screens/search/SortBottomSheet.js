@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Shadow } from 'react-native-shadow-2'
 import { ButtonIcon } from '../../components'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { BottomSheetModal } from '@gorhom/bottom-sheet'
 import Chip from '../../components/Chip'
 const RADIUS = 26;

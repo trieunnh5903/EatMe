@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList } from 'react-native'
 import React, { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react'
 import { RecyclerListView, DataProvider, LayoutProvider, BaseScrollView } from 'recyclerlistview'
-import { COLORS, SIZES } from '../../constants'
+import { COLORS, SIZES } from '../../config'
 import { HorizontalFoodCard } from '../../components'
 
 const Header = () => <View style={styles.header} />

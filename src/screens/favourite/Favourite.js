@@ -6,7 +6,7 @@ import {
   SafeAreaView
 } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { ButtonIcon, Header } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromFavorite } from '../../redux/slice/userSlice'

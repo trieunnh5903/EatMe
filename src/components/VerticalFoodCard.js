@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import icons from '../constants/icons'
-import { SIZES } from '../constants/sizes'
-import { COLORS } from '../constants/colors'
-import { FONTS } from '../constants/fonts'
+import icons from '../config/icons'
+import { SIZES } from '../config/sizes'
+import { COLORS } from '../config/colors'
+import { FONTS } from '../config/fonts'
 import { SharedElement } from 'react-navigation-shared-element'
 
 const VerticalFoodCard = ({ containerStyle, item, imageStyle, onPress }) => {

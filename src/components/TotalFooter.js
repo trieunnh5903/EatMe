@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS, FONTS, SIZES } from '../constants'
+import { COLORS, FONTS, SIZES } from '../config'
 import Divider from './Divider'
-import ButtonText from './ButtonText'
+import ButtonText from './button/ButtonText'
 
 const TotalFooter = ({ subtotal = 0, delivery = 0, total = 0, onPress }) => {
     return (

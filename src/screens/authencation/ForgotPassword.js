@@ -1,7 +1,7 @@
 import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import AuthLayout from './AuthLayout'
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS, SIZES, icons } from '../../config'
 import { ButtonText, Header, InputForm, TextInputCustom } from '../../components'
 import validate from '../../utils/validate'
 
