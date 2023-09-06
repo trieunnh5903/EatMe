@@ -1,29 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import SplashScreen from 'react-native-splash-screen'
-import { MainNavigator } from './src/navigation'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { Provider } from "react-redux";
-import store from './src/redux/store'
-import setupMirage from './json_server/mirageServer'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import SplashScreen from 'react-native-splash-screen';
+import {MainNavigator} from './src/navigation';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
+import setupMirage from './json_server/mirageServer';
 
-if (process.env.NODE_ENV === "development") {
-  setupMirage({ environment: "development" })
+if (process.env.NODE_ENV === 'development') {
+  setupMirage({environment: 'development'});
 }
 
 const App = () => {
   React.useEffect(() => {
-    SplashScreen.hide()
-  }, [])
+    SplashScreen.hide();
+  }, []);
   return (
     <Provider store={store}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={{flex: 1}}>
         <MainNavigator />
       </GestureHandlerRootView>
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
