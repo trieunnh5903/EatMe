@@ -274,8 +274,8 @@ const Home = () => {
               />
             );
           }}
-          onEndReached={handleLoadMore}
-          onEndReachedThreshold={0.1}
+          // onEndReached={handleLoadMore}
+          // onEndReachedThreshold={0.1}
           ListFooterComponent={renderFooter}
         />
       </ScrollView>
