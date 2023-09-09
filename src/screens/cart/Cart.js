@@ -225,7 +225,7 @@ const Cart = ({navigation}) => {
                 color: COLORS.black,
                 ...FONTS.headline_small,
               }}>
-              Your cart is empty !
+              Giỏ hàng của bạn trống!
             </Text>
           </View>
           <Shadow>
@@ -237,7 +237,7 @@ const Cart = ({navigation}) => {
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
                 style={styles.buttonStartShopping}>
-                <Text style={styles.textTitle}>Start shopping</Text>
+                <Text style={styles.textTitle}>Bắt đầu mua sắm</Text>
               </TouchableOpacity>
             </View>
           </Shadow>

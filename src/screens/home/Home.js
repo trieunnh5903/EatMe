@@ -24,6 +24,7 @@ import {useNavigation} from '@react-navigation/native';
 import {v4 as uuidv4} from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator} from 'react-native-paper';
+import {useGetAllFoodsQuery} from '../../redux/slice/apiSlice';
 const Section = ({title, onPress, children, style}) => {
   return (
     <View>
@@ -198,18 +199,15 @@ const Home = () => {
     }
     return arr;
   }, []);
-  const dispatch = useDispatch();
-  const {isLoading, foodList, error} = useSelector(state => state.food);
   const [recommends, setRecommends] = useState(_enerateArray(10));
-  const [popular, setPopular] = useState(_enerateArray(20));
+  const [popular, setPopular] = useState(_enerateArray(10));
   const navigation = useNavigation();
-  useEffect(() => {
-    dispatch({type: 'food/fetchFoodRequested'});
-  }, [dispatch]);
+
+  const {data: foods} = useGetAllFoodsQuery(1);
 
   const handleLoadMore = () => {
     // console.log("handleLoadMore");
-    dispatch({type: 'food/fetchFoodRequested'});
+    // dispatch({type: 'food/fetchFoodRequested'});
   };
 
   const renderFooter = () => {
@@ -258,7 +256,7 @@ const Home = () => {
         {/* list nearby you*/}
         <Text style={styles.headlineNearYou}>Gần bạn</Text>
         <FlatList
-          data={foodList}
+          data={foods}
           style={{flex: 1}}
           contentContainerStyle={{flex: 1}}
           scrollEnabled={false}

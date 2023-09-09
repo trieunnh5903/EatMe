@@ -2,19 +2,15 @@
 import {configureStore} from '@reduxjs/toolkit';
 import cartSlice from './slice/cartSlice';
 import userSlice from './slice/userSlice';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './saga';
-import foodSlice from './slice/foodSlice';
-const sagaMiddleware = createSagaMiddleware();
+import {apiSlice} from './slice/apiSlice';
 const store = configureStore({
   reducer: {
     cart: cartSlice,
     user: userSlice,
-    food: foodSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(sagaMiddleware),
+    getDefaultMiddleware().concat([apiSlice.middleware]),
 });
 
-sagaMiddleware.run(rootSaga);
 export default store;

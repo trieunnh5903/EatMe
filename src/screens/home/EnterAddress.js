@@ -15,7 +15,8 @@ const EnterAddress = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={icons.arrow_back} style={styles.icon} />
           </TouchableOpacity>
-        }></Header>
+        }
+      />
       <BadgeButton
         containerStyle={{
           width: 24,
